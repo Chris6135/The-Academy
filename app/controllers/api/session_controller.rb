@@ -7,7 +7,7 @@ class SessionController < ApplicationController
 
         if @user
             login(@user)
-            #render
+            render"api/users/show"
         else
             render json: ["Sorry, we can't find that account, or your password didn't match. Please try again!"], status: 422
     end
@@ -16,7 +16,7 @@ class SessionController < ApplicationController
         @user = current_usre
         if @user
             logout
-            #render 
+            render"api/users/show"
         else
             render json: ["No user logged in"], status: 404
         end

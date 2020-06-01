@@ -15,4 +15,8 @@ class API::UsersController < ApplicationController
         session[:session_token] = nil
         @current_user = nil
     end
+
+    private
+    def user_params
+        params.require(:user).permis(:username, :password)
 end
