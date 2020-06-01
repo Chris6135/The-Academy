@@ -7,6 +7,7 @@ class SessionController < ApplicationController
             render"api/users/show"
         else
             render json: ["Sorry, we can't find that account, or your password didn't match. Please try again!"], status: 422
+        end
     end
 
     def destroy
