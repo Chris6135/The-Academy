@@ -2,7 +2,7 @@ class SessionController < ApplicationController
     def create
         @user = user.find_by_credentials(params[:user][:username], params[:user][:password])
         
-            login(@user)
+        if login(@user)
             render "api/users/show"
         else
             render json: ["Sorry, we can't find that account, or your password didn't match. Please try again!"], status: 422
