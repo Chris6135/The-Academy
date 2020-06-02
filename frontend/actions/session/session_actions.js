@@ -28,21 +28,21 @@ export const receiveErrors =(errors) => {
     }
 }
 
-export const logIn = (user) => (dispatch) => {
+export const signIn = (user) => (dispatch) => {
    return ( APIUtil.signIn(user)
      .then(user => {
-         return dispatch(recieveCurrentUser(user))
+         return dispatch(receiveCurrentUser(user))
      }, (errors) =>{ 
-        return dispatch(recieveErrors(errors))
+        return dispatch(receiveErrors(errors))
     }))
 } 
 
 export const signUp = (user) => (dispatch) => {
     return ( APIUtil.signUp(user)
       .then(user => {
-          return dispatch(recieveCurrentUser(user))
+          return dispatch(receiveCurrentUser(user))
       }, (errors) =>{
-          return dispatch(recieveErrors(errors))
+          return dispatch(receiveErrors(errors))
       }))
  } ;
 
@@ -51,6 +51,6 @@ export const signUp = (user) => (dispatch) => {
       .then(user => {
           return dispatch(logoutCurrentUser(user))
       }, (errors) =>{
-        return dispatch(recieveErrors(errors))
+        return dispatch(receiveErrors(errors))
     }))
  } ;

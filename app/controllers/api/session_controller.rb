@@ -7,16 +7,17 @@ class SessionController < ApplicationController
 
         if @user
             login(@user)
-            render"api/users/show"
+            render"api/splash/index"
         else
             render json: ["Sorry, we can't find that account, or your password didn't match. Please try again!"], status: 422
+        end
     end
 
     def destroy
         @user = current_usre
         if @user
             logout
-            render"api/users/show"
+            render"api/splash/index"
         else
             render json: ["No user logged in"], status: 404
         end
