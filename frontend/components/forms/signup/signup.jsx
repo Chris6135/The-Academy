@@ -1,5 +1,5 @@
 import React from 'react';
-import * as ListUtil from "../../util/list_variables_util"
+import * as ListUtil from "../../../util/list_variables_util"
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class SignUpForm extends React.Component {
       password: '',
       email: '',
       country: '',
-      userInfo: ''
+      user_info: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -67,28 +67,32 @@ class SignUpForm extends React.Component {
             </label>
             <br/>
             <label>Email:
-              <input type="email"
+              <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
                 className="signup-input"
                 />
             </label>
             <br/>
-            <label>userInfo:
-              <input type="userInfo"
-                value={this.state.userInfo}
-                onChange={this.update('userInfo')}
-                className="signup-input"
-                />
+            <label>user_info:
+            <select 
+                onChange={this.update('user_info')}
+                className="signup-input">
+                    <option default hidden >About you</option>
+                    {ListUtil.aboutYou.map((age,i) =>{
+                        return( <option key = {i}> {age}</option>)
+                    })}
+                </select>
             </label>
             <br/>
             <label>country:
-              <select type="country"
+              <select 
                 onChange={this.update('country')}
                 className="signup-input">
                     <option default hidden >Choose your country</option>
-                    {ListUtil.countryList.map((country) =>{
-                        return( <option> {country}</option>)
+                    {ListUtil.countryList.map((country,i) =>{
+                      console.log(country)
+                        return( <option key = {i} className="country"> {country} </option>)
                     })}
                 </select>
             </label>

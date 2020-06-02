@@ -1,23 +1,22 @@
-class SessionController < ApplicationController 
+class Api::SessionsController < ApplicationController 
     def create
-        @user = user.find_by_credentials(
-            params[:user][:username]
-            params[:user][:password]
-        )
+        @user = User.find_by_credentials(
+            params[:user][:username],
+            params[:user][:password])
 
         if @user
             login(@user)
-            render"api/splash/index"
+            render"api/users/show"
         else
             render json: ["Sorry, we can't find that account, or your password didn't match. Please try again!"], status: 422
         end
     end
 
     def destroy
-        @user = current_usre
+        @user = current_user
         if @user
-            logout
-            render"api/splash/index"
+            logout 
+            render"api/users/show"
         else
             render json: ["No user logged in"], status: 404
         end

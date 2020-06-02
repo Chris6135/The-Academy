@@ -35,8 +35,6 @@ class SignInForm extends React.Component {
   }
 
   render() {
-      console.log(this.props)
-      console.log(this.props.errors)
     return (
       <div className="signin-form-container">
         <form onSubmit={this.handleSubmit} className="signin-form-box">

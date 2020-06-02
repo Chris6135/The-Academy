@@ -1,17 +1,18 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
     def create 
         @user = User.new(user_params)
 
         if @user.save
             login(@user)
-            render "api/splash/index"
+            render "api/users/show"
         else
-            render json: @user.errors.full_messages, satus: 422
+            render json: @user.errors.full_messages, status: 422
         end
     end
 
 
     private
     def user_params
-        params.require(:user).permis(:username, :password)
+        params.require(:user).permit(:username, :password, :email, :country, :user_info)
+    end
 end
