@@ -39,9 +39,6 @@ class SignUpForm extends React.Component {
   }
 
   render() {
-      console.log(this.props)
-      console.log(this.props.errors)
-      console.log(this.state)
     return (
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit} className="signup-form-box">
@@ -91,7 +88,6 @@ class SignUpForm extends React.Component {
                 className="signup-input">
                     <option default hidden >Choose your country</option>
                     {ListUtil.countryList.map((country,i) =>{
-                      console.log(country)
                         return( <option key = {i} className="country"> {country} </option>)
                     })}
                 </select>

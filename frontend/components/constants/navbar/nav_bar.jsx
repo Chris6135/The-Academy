@@ -5,9 +5,12 @@ import UserToggleContainer from"./user_toggle/user_toggle_container"
 const navBar = (props)=>{
         return( 
             <nav className="nav-bar">
-                <span>
-                    <Link to="/">home</Link>
-                </span>
+                <ol className="cat-nav">
+                   <li> <Link to="/" className="home-button"> <i className="fas fa-university" /></Link></li>
+                   <li>catagory</li>
+                   <li>catacory</li>
+
+                </ol>
                 <span>
                     <UserToggleContainer/>
                 </span>

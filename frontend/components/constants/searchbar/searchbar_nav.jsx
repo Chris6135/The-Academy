@@ -3,7 +3,8 @@ import React from 'react';
 export default (props) => {
     return (<nav className = "searchbar-nav"> 
 
-    <span className ="left-searchbar-nav"> <div id="nav-logo">picture</div> 
+    <span className ="left-searchbar-nav"> 
+    <div id="nav-logo">the academy</div> 
     <div className="search-nav-buttons">button1 </div>
     <div className="search-nav-buttons">button2 </div>
     </span>

@@ -1,0 +1,39 @@
+/* splash-banner-content
+splash-banner-title
+splash-banner-text */
+
+.splash-banner{
+    display:flex;
+    background: black;
+    height:450px;
+    position: relative;
+}
+
+.splash-banner-content{
+    /* background: black; */
+    position:absolute;
+    top:110px;
+    left: 100px;
+    padding-top:25px;
+    padding-bottom: 25px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    height:30%;
+    width: 45vw; 
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right:45px;
+}
+
+.splash-banner-title{
+    font-size: 35px;
+    font-weight:bold;
+    color: white;
+    text-transform:uppercase;
+}
+
+.splash-banner-text{
+    color: white;
+}

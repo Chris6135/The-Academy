@@ -13,7 +13,7 @@ class UserToggle extends React.Component {
         const notLoggedIn = () =>{
             return (
                 <nav className="login-signup">
-                    <Link to="/signin" className="nav-login">log in</Link>
+                    <Link to="/signin" className="nav-login">login</Link>
                     <span id="nav-divider"> | </span>
                     <Link to="/signup"className="nav-signup">sign up</Link>
                 </nav>

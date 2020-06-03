@@ -6,13 +6,11 @@ import NavBar from "./constants/navbar/nav_bar"
 import NavBoxContainer from "./constants/navbar/nav_box/nav_box_container"
 import Splash from "./splash/splash"
 import SearchNav from "./constants/searchbar/searchbar_nav"
+import Footer from "./constants/footer/footer"
 
 import {
     Route,
-    Redirect,
-    Switch,
-    Link,
-    HashRouter
+    Link
   } from 'react-router-dom';
 
 const App = () => (
@@ -26,8 +24,9 @@ const App = () => (
             <Route path="/signin" component={Signin} />
             <Route exact path="/" component={Splash} /> 
 
-    <footer>Think of me as your footer.
-        <NavBoxContainer />
+    <footer>
+        <Footer/>
+        {/* <NavBoxContainer />  */}
     </footer>
   </div>
 );
