@@ -1,6 +1,9 @@
 /* splash-banner-content
 splash-banner-title
-splash-banner-text */
+splash-banner-text
+blurb > ol
+blurb-title
+blurb-content*/
 
 .splash-banner{
     display:flex;
@@ -36,4 +39,45 @@ splash-banner-text */
 
 .splash-banner-text{
     color: white;
+}
+
+/* blurb > ol
+blurb-title
+blurb-content */
+
+
+.blurb >ol {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.blurb >ol>li {
+    margin-left: 60px;
+    margin-right:60px;
+    margin-bottom:60px;
+    margin-top: 20px;
+}
+
+.blurb-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #333333
+}
+.blurb-content{
+    color: #555;
+    line-height: 1.5;
+}
+
+.splash-line{
+    margin-top:40px;
+    margin-bottom:40px;
+    position: relative;
+    display: inline-block;
+    padding:5px;
+    left: 2.5%;
+    width: 95%;
+    border-bottom:1px solid #ccc;
 }

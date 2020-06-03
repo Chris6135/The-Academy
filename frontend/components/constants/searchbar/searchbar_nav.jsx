@@ -1,10 +1,12 @@
 import React from 'react';
+import {Link} from "react-router-dom"
+
 
 export default (props) => {
     return (<nav className = "searchbar-nav"> 
 
     <span className ="left-searchbar-nav"> 
-    <div id="nav-logo">the academy</div> 
+    <Link className="nav-logo-link" to="/">the academy </Link> 
     <div className="search-nav-buttons">button1 </div>
     <div className="search-nav-buttons">button2 </div>
     </span>

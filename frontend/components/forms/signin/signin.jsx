@@ -24,7 +24,7 @@ class SignInForm extends React.Component {
 
   renderErrors() {
     return(
-      <ul>
+      <ul className="error-message">
         {this.props.errors.map((error, i) => (
           <li key={`error-${i}`}>
             {error}
@@ -38,30 +38,29 @@ class SignInForm extends React.Component {
     return (
       <div className="signin-form-container">
         <form onSubmit={this.handleSubmit} className="signin-form-box">
-          Sign In
-          <br/>
-          {this.renderErrors()}
           <div className="signin-form">
-            <br/>
-            <label>Username:
+          
+            <label className="signin-username">
               <input type="text"
                 value={this.state.username}
                 onChange={this.update('username')}
+                placeholder="Username"
                 className="signin-input"
                 />
             </label>
-            <br/>
-            <label>Password:
+       
+            <label className="signin-password">
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
+                placeholder="Password"
                 className="signin-input"
                 />
             </label>
             
-                {this.props.navLink}
-            <br/>
+              <div >{this.renderErrors()}</div>
             <input className="session-submit" type="submit" value="Login" />
+               <p>Not enrolled? Feel free to <span className="sign-up-link">{this.props.navLink} >> </span></p>
           </div>
         </form>
       </div>

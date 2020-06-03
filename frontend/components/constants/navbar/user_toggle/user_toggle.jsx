@@ -21,8 +21,20 @@ class UserToggle extends React.Component {
 
         const loggedIn = ()=>{
             return(
-             <nav className ="user-icon">
-                 <span>Hi {this.props.currentUser.username} this will eventually be your picture</span>
+             <nav className ="logged-in-nav">
+                 <div className="user-name">{this.props.currentUser.username}</div>
+                 <div className="user-icon"><div className="fas fa-user-graduate"></div></div>
+                 <div className="user-icon-dropdown"> 
+                    <div className="user-icon-dropdown-user-catagories">
+                        <ol>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ol>
+                    <button className="logout-button" onClick={this.props.logout}>Log Out</button>
+                    </div>
+                 </div>
              </nav>   
             )}
      

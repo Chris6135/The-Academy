@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-// import { logout } from '../../actions/session/session_actions'
+import { logOut } from '../../../../actions/session/session_actions'
 import UserToggle from './user_toggle.jsx'
 
 const mapStateToProps = (state) => {  
@@ -9,9 +9,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-// not creating map dispatch to props because I dont think it makes sense 
-//to next the popup that logout is located in within the toggle container, might change this 
-//after talking to josh. 
+const mapDispatchToProps = dispatch => ({
+    logout: () => dispatch(logOut())
+  });
+  
 
-export default connect(mapStateToProps)(UserToggle);
+export default connect(mapStateToProps ,mapDispatchToProps)(UserToggle);
 
