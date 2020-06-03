@@ -84,13 +84,39 @@
 
 .user-icon-dropdown{
     position: absolute;;
-    background:red;
+    background: #FFF;
     padding:10px;
     top:35px;
-    right:40px;
+    right:28px;
     height:280px;
     width:270px;
     z-index: 1;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.hidden {
+    display:none;
+}
+
+.hidden > * {
+    display:inherit
+}
+
+.logout-button {
+    color:black;
+    position:absolute;
+    right:10px;
+    top:10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right:16px;
+    margin: 5px;
+    background: #f6f6f6;
+    border: 1px solid  #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
 
@@ -166,7 +192,6 @@
     font-size: 12px;
     color: #555;
     letter-spacing: 0.75px;
-
 }
 
 .search-bar{

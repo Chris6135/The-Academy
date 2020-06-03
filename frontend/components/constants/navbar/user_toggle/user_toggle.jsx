@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import ContentBox from "./content_box/content_box"
 
 class UserToggle extends React.Component {
     constructor(props){
         super(props);
     }
 
+
     render(){
-        console.log(this.props.currentUser)
-        console.log("rendering user toggle")
 
         const notLoggedIn = () =>{
             return (
@@ -23,18 +23,7 @@ class UserToggle extends React.Component {
             return(
              <nav className ="logged-in-nav">
                  <div className="user-name">{this.props.currentUser.username}</div>
-                 <div className="user-icon"><div className="fas fa-user-graduate"></div></div>
-                 <div className="user-icon-dropdown"> 
-                    <div className="user-icon-dropdown-user-catagories">
-                        <ol>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ol>
-                    <button className="logout-button" onClick={this.props.logout}>Log Out</button>
-                    </div>
-                 </div>
+                  <ContentBox/>
              </nav>   
             )}
      
