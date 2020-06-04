@@ -8,9 +8,9 @@ blurb-content*/
 .splash-banner{
     display:flex;
     background-image: image-url('nicolas-hoizey-2MuZ23gkFKo-unsplash.jpg');
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-    // background-position: center -350px;
+    background-position: center -400px;
     height: 50vh;
     position: relative;
 }

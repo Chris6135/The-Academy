@@ -10,19 +10,39 @@
           session-submit */
 
 .signin-form-container{
-   /* background: red; */
-  /* background-image: url('../images/vance-osterhout-38OOhn_R6aA-unsplash.jpg');
-  background-size: cover; */
-}
+   background-image: image-url('black-and-white-car-vehicle-vintage-474.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+   }
 
 .signin-form-box{
-   background: #8C7D6B;
+   background: inherit;
+   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
    width:45vh;
    height:100vh;
    margin-left: 40px;
    display:flex;
    justify-content:center;
-   backdrop-filter: blur(5px) ;
+   backdrop-filter: blur(15px) ;
+   position: relative;
+   overflow: hidden;
+}
+
+.signin-form-box:before{
+   content: "";
+   position: absolute;
+   height: 10000px;
+   top: -100px;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   box-shadow: inset 0 0 20px #555;
+   background:inherit; 
+   filter: blur(15px);
+   z-index: -1;
+
+
+
 }
 
 .demo-line{

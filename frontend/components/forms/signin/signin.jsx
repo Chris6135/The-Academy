@@ -12,6 +12,18 @@ class SignInForm extends React.Component {
 
   }
 
+  //transition hieght 0 to hight
+
+  componentWillUnmount(){
+    console.log("unmount")
+    console.log(this.props)
+    this.props.clearErrors()
+  }
+
+  componentDidUpdate(){
+    console.log("update")
+  }
+
 
   demoLogin(e){
     e.preventDefault();

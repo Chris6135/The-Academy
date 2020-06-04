@@ -9,8 +9,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    logOut: () =>{
-     debugger   
+    logOut: () =>{   
      dispatch(logOut())
     }
   });

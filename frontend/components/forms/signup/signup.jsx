@@ -15,6 +15,12 @@ class SignUpForm extends React.Component {
     this.demoLogin = this.demoLogin.bind(this)
   }
 
+  
+  componentWillUnmount(){
+    console.log("unmounting")
+    this.props.clearErrors()
+  }
+
   demoLogin(e){
     e.preventDefault();
     const demo = {username:"Demo", password: "LemonWedge"}
@@ -36,8 +42,9 @@ class SignUpForm extends React.Component {
 
   stringErrors(){
     const errors = this.props.errors.map((error) =>{
-      return JSON.stringify(error)
+      return error
     })
+    return errors
   }
 
   renderErrors() {
@@ -52,14 +59,34 @@ class SignUpForm extends React.Component {
     );
   }
 
-  render() {
-    console.log("props")
-    console.log(this.props)
+
+
+  //counter thought, put the timer on the submit. just factor in an extra second for load time. 
+
+  ifError(error, string){
+    const errors = this.stringErrors()
+
+   if(errors.includes(error)){
+     return <div className="input-error">
+          <div className="error-bubble"> 
+              {string} 
+              setTimeout()
+          </div>
+       </div>
+    }
+  }
+
+  removeBubbles(){
+    
+  }
+
+
+  render(){
+
+    console.log(this.stringErrors())
     return (
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit} className="signup-form-box">
-
-          {this.renderErrors()}
 
           <div className="signup-form">
         <button className="demo-submit" type="submit" value="Login" onClick={this.demoLogin}> Demo Login</button>
@@ -70,7 +97,9 @@ class SignUpForm extends React.Component {
                 <div />
             </div>
 
+
             <label>
+            {this.ifError("Username can't be blank", "Please type your username")}
               <input type="text"
                 placeholder="Username"
                 value={this.state.username}
@@ -78,7 +107,10 @@ class SignUpForm extends React.Component {
                 className="signup-input"
                 />
             </label>
+
+
             <label>
+            {this.ifError("Password is too short (minimum is 6 characters)", "Please type your password")}
               <input type="password"
                 placeholder="Password"
                 value={this.state.password}
@@ -86,7 +118,9 @@ class SignUpForm extends React.Component {
                 className="signup-input"
                 />
             </label>
+
             <label>
+            {this.ifError("Email can't be blank", "Please enter your username")}
               <input type="text"
                 placeholder="Email"
                 value={this.state.email}
@@ -95,8 +129,12 @@ class SignUpForm extends React.Component {
                 />
             </label>
 
+
             <div className="signup-options">
+
+
               <label>
+            {this.ifError("User info can't be blank", "About You")} 
                 <select 
                     onChange={this.update('user_info')}
                     className="signup-option"
@@ -107,7 +145,10 @@ class SignUpForm extends React.Component {
                         })}
                    </select>
               </label>
+
+
               <label>
+              {this.ifError("Country can't be blank", "Country")}
                 <select 
                   onChange={this.update('country')}
                   className="signup-option"
@@ -125,6 +166,8 @@ class SignUpForm extends React.Component {
               <a className="sign-up-link" href=" https://github.com/Chris6135"> Employment </a></p>
             <button className="session-submit" type="submit" value={this.props.formType}>Sign Me Up! </button>
             <p>Already enrolled? <span className="sign-up-link">{this.props.navLink} >> </span></p>
+
+            {/* {this.renderErrors()} */}
 
           </div>
         </form>

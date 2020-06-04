@@ -3,9 +3,9 @@ import React from "react"
 export default (props)=>{
     return(
     <div className="footer-box">
-        <div className="footer logo">placeholder. picture will go here</div>
+        <div className="footer-logo"></div>
         <div className="footer-catagories"> 
-            <h2 className="footer-title">Catagories</h2>
+            <h2 className="footer-title">Categories</h2>
             <ol>
                 <div className="fas fa-exclamation-circle"><li>dummy</li> </div>
                 <div className="fas fa-exclamation-circle"><li>dummy</li> </div>
