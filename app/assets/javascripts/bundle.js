@@ -858,6 +858,13 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       this.props.processForm(user);
     }
   }, {
+    key: "stringErrors",
+    value: function stringErrors() {
+      var errors = this.props.errors.map(function (error) {
+        return JSON.stringify(error);
+      });
+    }
+  }, {
     key: "renderErrors",
     value: function renderErrors() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {

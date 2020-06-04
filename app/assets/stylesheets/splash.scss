@@ -7,7 +7,10 @@ blurb-content*/
 
 .splash-banner{
     display:flex;
-    background-image: image-url('thisisengineering-raeng-H4ClLKv3pqw-unsplash.jpg');
+    background-image: image-url('nicolas-hoizey-2MuZ23gkFKo-unsplash.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    // background-position: center -350px;
     height: 50vh;
     position: relative;
 }
