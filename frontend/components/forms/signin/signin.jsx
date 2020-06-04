@@ -37,8 +37,16 @@ class SignInForm extends React.Component {
   render() {
     return (
       <div className="signin-form-container">
+
         <form onSubmit={this.handleSubmit} className="signin-form-box">
           <div className="signin-form">
+        <button className="demo-submit" type="submit" value="Login"> Demo Login</button>
+
+        <div className="demo-line">
+            <div />
+            <span>OR</span>
+            <div />
+          </div>
           
             <label className="signin-username">
               <input type="text"

@@ -1,12 +1,11 @@
 import React from "react";
-import background from "../../../app/assets/images/annie-spratt-yD-raqkqqIw-unsplash.jpg"
+// import background from "../../../app/assets/images/annie-spratt-yD-raqkqqIw-unsplash.jpg"
 
 
 const splash = ()=>{
     return (
         <div className="splash-container">
              <section className ="splash-banner"> 
-             <img src={background}/>
 
                  <div className="splash-banner-content">
                     <h2 className="splash-banner-title">Learn to love learning</h2>

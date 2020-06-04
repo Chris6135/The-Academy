@@ -18,12 +18,33 @@
 
 .signin-form-box{
    background: #8C7D6B;
-   width:35vh;
+   width:45vh;
    height:100vh;
    margin-left: 40px;
    display:flex;
    justify-content:center;
    backdrop-filter: blur(5px);
+}
+
+.demo-line{
+   color:#FFFFFF;
+   display:flex;
+}
+.demo-line > div{
+   position: relative;
+   top:50%;
+   width:45%;
+   border-top: 1px solid #FFFFFF;
+}
+
+.demo-line > span{
+   margin: 10px
+}
+
+.demo-submit{
+   padding:14px;
+   background: #6218f7;
+   color: white;
 }
 
 

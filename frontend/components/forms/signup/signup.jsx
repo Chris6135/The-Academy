@@ -46,6 +46,14 @@ class SignUpForm extends React.Component {
           {this.renderErrors()}
 
           <div className="signup-form">
+        <button className="demo-submit" type="submit" value="Login"> Demo Login</button>
+
+            <div className="demo-line">
+                <div />
+                <span>OR</span>
+                <div />
+            </div>
+
             <label>
               <input type="text"
                 placeholder="Username"

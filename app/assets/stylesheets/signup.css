@@ -14,7 +14,7 @@ session-submit
  
  .signup-form-box{
     background: #8C7D6B;
-    width:35vh;
+    width:45vh;
     height:100vh;
     margin-left: 40px;
     display:flex;
@@ -90,13 +90,14 @@ session-submit
  }
 
  #user-info-option{
-    margin-right:10px;
+    margin-right:20px;
  }
 
  #country-option{
+    position:relative;
 
  }
 
  .signup-option{
-    width: 150px;
+    width: 180px;
  }
