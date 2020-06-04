@@ -23,15 +23,13 @@ class UserToggle extends React.Component {
             return(
              <nav className ="logged-in-nav">
                  <div className="user-name">{this.props.currentUser.username}</div>
-                  <ContentBox/>
+                  <ContentBox {...this.props}/>
              </nav>   
             )}
      
         if(this.props.currentUser){
-            console.log(this.props.currentUser)
             return  loggedIn() 
         }else{
-            console.log(this.props.currentUser)
          return notLoggedIn()
         }
     }

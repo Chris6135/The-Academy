@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-
 import { logOut } from '../../../../actions/session/session_actions'
 import UserToggle from './user_toggle.jsx'
 
@@ -10,7 +9,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    logout: () => dispatch(logOut())
+    logOut: () =>{
+     debugger   
+     dispatch(logOut())
+    }
   });
   
 

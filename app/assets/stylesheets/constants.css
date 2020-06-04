@@ -1,9 +1,9 @@
 .nav-bar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
     height: 38px;
-    background: #555	;
+     background: #555	;
 }
 
 /* catagories nav*/
@@ -82,12 +82,14 @@
     color: white;
 }
 
+/* dropdown */
+
 .user-icon-dropdown{
     position: absolute;;
     background: #FFF;
     padding:10px;
-    top:35px;
-    right:28px;
+    top:24px;
+    right:0px;
     height:280px;
     width:270px;
     z-index: 1;
@@ -209,10 +211,11 @@
 /* footer-catagories
 footer-spacer-div
 footer-about-me */
-/* 
+
+
 .footer-box{
-    position: absolute;
-    bottom:0;
+    position: relative;
+    bottom:0px;
     width: 100%;
     display:flex;
     justify-content: center;
@@ -222,7 +225,9 @@ footer-about-me */
 }
 
 .footer-box > * {
-    margin: 40px;
+    margin-top: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
     height: 70px;
 }
 
@@ -230,17 +235,65 @@ footer-about-me */
     margin:50px
 }
 
+.footer-title{
+   color: #fff;
+   font-size: 16px;
+   font-weight: 500;
+   margin-bottom:10px;
+}
 .footer-catagories{
     width: 20%;
 }
 .footer-catagories > ol {
+    height: 90px;
+    width:240px;
+    display:flex;
     flex-flow: column wrap;
-}
+    align-content: space-between;
+    }
 
+    
+    .footer-catagories > ol > div {
+        padding:5px;
+        /* width:10px; */
+    }
+    .footer-catagories > ol > div >li {
+        display: inline; 
+        margin-left:10px;   
+        /* width:10px; */
+    }
+    
 
-.footer-bar{
-    position: absolute;
-    width: 80%;
-    border-bottom: 1px solid #BBBBBB;
-    bottom: 60px
-} */
+    .footer-about-me > ol {
+    height: 90px;
+    /* width:200px; */
+    display:flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    }
+
+    .footer-about-me > ol > li {
+        padding:5px;
+        /* width:10px; */
+    }
+
+    .footer-external-links > ol {
+        height: 90px;
+        width:240px;
+        display:flex;
+        align-content: space-between;
+        }
+
+        .footer-external-links> ol > a {
+            /* color:red; */
+           font-size: 40px;
+           margin:10px;
+            }
+    
+
+    .footer-bar{
+        position: absolute;
+        width: 95%;
+        border-bottom: 1px solid #BBBBBB;
+        bottom: 60px
+    }

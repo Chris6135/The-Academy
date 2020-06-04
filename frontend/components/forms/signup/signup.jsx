@@ -42,60 +42,66 @@ class SignUpForm extends React.Component {
     return (
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit} className="signup-form-box">
-          Sign Up
-          <br/>
+
           {this.renderErrors()}
+
           <div className="signup-form">
-            <br/>
-            <label>Username:
+            <label>
               <input type="text"
+                placeholder="Username"
                 value={this.state.username}
                 onChange={this.update('username')}
                 className="signup-input"
                 />
             </label>
-            <br/>
-            <label>Password:
+            <label>
               <input type="password"
+                placeholder="Password"
                 value={this.state.password}
                 onChange={this.update('password')}
                 className="signup-input"
                 />
             </label>
-            <br/>
-            <label>Email:
+            <label>
               <input type="text"
+                placeholder="Email"
                 value={this.state.email}
                 onChange={this.update('email')}
                 className="signup-input"
                 />
             </label>
-            <br/>
-            <label>user_info:
-            <select 
-                onChange={this.update('user_info')}
-                className="signup-input">
-                    <option default hidden >About you</option>
-                    {ListUtil.aboutYou.map((age,i) =>{
-                        return( <option key = {i}> {age}</option>)
-                    })}
-                </select>
-            </label>
-            <br/>
-            <label>country:
-              <select 
-                onChange={this.update('country')}
-                className="signup-input">
-                    <option default hidden >Choose your country</option>
-                    {ListUtil.countryList.map((country,i) =>{
-                        return( <option key = {i} className="country"> {country} </option>)
-                    })}
-                </select>
-            </label>
-            <br/>
-                {this.props.navLink}
-            <br/>
-            <input className="session-submit" type="submit" value={this.props.formType} />
+
+            <div className="signup-options">
+              <label>
+                <select 
+                    onChange={this.update('user_info')}
+                    className="signup-option"
+                    id="user-info-option">
+                        <option default hidden >About you</option>
+                        {ListUtil.aboutYou.map((age,i) =>{
+                            return( <option key = {i}> {age}</option>)
+                        })}
+                   </select>
+              </label>
+              <label>
+                <select 
+                  onChange={this.update('country')}
+                  className="signup-option"
+                  id="country-option">
+                      <option default hidden >Country</option>
+                      {ListUtil.countryList.map((country,i) =>{
+                          return( <option key = {i} className="country"> {country} </option>)
+                      })}
+                  </select>
+              </label>
+            </div>
+            <p>By clicking "Sign Me Up" you agree to look over my 
+              <a className="sign-up-link" href=" https://www.linkedin.com/in/christopher-simons-4184a6a0/"> Resume </a> 
+              and consider me for 
+              <a className="sign-up-link" href=" https://github.com/Chris6135"> Employment </a></p>
+            <button className="session-submit" type="submit" value={this.props.formType}>Sign Me Up! </button>
+            <p>Already enrolled? <span className="sign-up-link">{this.props.navLink} >> </span></p>
+
           </div>
         </form>
       </div>

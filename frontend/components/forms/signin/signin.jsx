@@ -59,7 +59,7 @@ class SignInForm extends React.Component {
             </label>
             
               <div >{this.renderErrors()}</div>
-            <input className="session-submit" type="submit" value="Login" />
+            <button className="session-submit" type="submit" value="Login">Login</button>
                <p>Not enrolled? Feel free to <span className="sign-up-link">{this.props.navLink} >> </span></p>
           </div>
         </form>
