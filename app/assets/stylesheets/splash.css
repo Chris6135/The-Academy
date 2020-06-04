@@ -7,14 +7,12 @@ blurb-content*/
 
 .splash-banner{
     display:flex;
-    background: black;
-    /* height:450px; */
+    background-image: image-url('thisisengineering-raeng-H4ClLKv3pqw-unsplash.jpg');
     height: 50vh;
     position: relative;
 }
 
 .splash-banner-content{
-    /* background: black; */
     position:absolute;
     top:140px;
     left: 100px;

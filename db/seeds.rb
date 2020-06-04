@@ -8,12 +8,12 @@
 
 
 
-User.create!(id: 7,
-     username: 'Guest',
-      email:'Guest@guest.guest',
+User.create!(id: 8,
+     username: 'Demo',
+      email:'Demo@guest.guest',
        user_info: 'Possible Employer', 
        country: 'United States', 
-       password_digest: '$2a$12$jdonW3txkwWKDps4reyMfOKgrAWSLV78TH8JeuBAINw9Aalg9Wuse', 
+       password_digest: '$2a$12$yEDByIza09ah2SIVwXY67uhuwduSNQOUch9pfVnCI55DtA54TqPGy', 
        session_token: 'dummy', 
        created_at: DateTime.new(1992,6,12,2),
        updated_at: DateTime.new(2020,6,4,17))

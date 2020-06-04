@@ -8,7 +8,18 @@ class SignInForm extends React.Component {
       password: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this)
+
   }
+
+
+  demoLogin(e){
+    e.preventDefault();
+    const demo = {username:"Demo", password: "LemonWedge"}
+
+    this.props.processForm(demo)
+  }
+
 
   update(field) {
     return e => this.setState({
@@ -40,7 +51,7 @@ class SignInForm extends React.Component {
 
         <form onSubmit={this.handleSubmit} className="signin-form-box">
           <div className="signin-form">
-        <button className="demo-submit" type="submit" value="Login"> Demo Login</button>
+          <button className="demo-submit" type="submit" value="Login" onClick={this.demoLogin}> Demo Login</button>
 
         <div className="demo-line">
             <div />
@@ -67,6 +78,7 @@ class SignInForm extends React.Component {
             </label>
             
               <div >{this.renderErrors()}</div>
+              
             <button className="session-submit" type="submit" value="Login">Login</button>
                <p>Not enrolled? Feel free to <span className="sign-up-link">{this.props.navLink} >> </span></p>
           </div>

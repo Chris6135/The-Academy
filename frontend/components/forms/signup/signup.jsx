@@ -12,6 +12,14 @@ class SignUpForm extends React.Component {
       user_info: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this)
+  }
+
+  demoLogin(e){
+    e.preventDefault();
+    const demo = {username:"Demo", password: "LemonWedge"}
+
+    this.props.demoForm(demo)
   }
 
   update(field) {
@@ -39,6 +47,8 @@ class SignUpForm extends React.Component {
   }
 
   render() {
+    console.log("props")
+    console.log(this.props)
     return (
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit} className="signup-form-box">
@@ -46,7 +56,7 @@ class SignUpForm extends React.Component {
           {this.renderErrors()}
 
           <div className="signup-form">
-        <button className="demo-submit" type="submit" value="Login"> Demo Login</button>
+        <button className="demo-submit" type="submit" value="Login" onClick={this.demoLogin}> Demo Login</button>
 
             <div className="demo-line">
                 <div />
