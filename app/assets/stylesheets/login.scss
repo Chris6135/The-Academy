@@ -1,0 +1,131 @@
+/* 
+     signin-form-container background images goes here
+      signin-form-box opaque banner box
+       signin-form actual signin box
+         signin-username
+            signin-input
+         signin-password
+          signin-input
+          sign-up-link
+          session-submit */
+
+.signin-form-container{
+   background-image: image-url('black-and-white-car-vehicle-vintage-474.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+   }
+
+.signin-form-box{
+   background: inherit;
+   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+   width:45vh;
+   height:100vh;
+   margin-left: 40px;
+   display:flex;
+   justify-content:center;
+   backdrop-filter: blur(15px) ;
+   position: relative;
+   overflow: hidden;
+}
+
+.signin-form-box:before{
+   content: "";
+   position: absolute;
+   height: 10000px;
+   top: -100px;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   box-shadow: inset 0 0 20px #555;
+   background:inherit; 
+   filter: blur(15px);
+   z-index: -1;
+
+
+
+}
+
+.demo-line{
+   color:#FFFFFF;
+   display:flex;
+}
+.demo-line > div{
+   position: relative;
+   top:50%;
+   width:45%;
+   border-top: 1px solid #FFFFFF;
+}
+
+.demo-line > span{
+   margin: 10px
+}
+
+.demo-submit{
+   padding:14px;
+   background: #6218f7;
+   color: white;
+}
+
+
+.signin-form{
+   display:flex;
+   flex-direction: column;
+   padding-top:80px;
+   width:90%
+}
+
+.signin-form > *{
+   width:100%;
+   margin:5px;
+   border-radius: 5px;
+}
+
+.session-submit{
+   padding:14px;
+   background: #F7AC18;
+   color: white;
+}
+
+.signin-form > p {
+   text-align: center;
+   color: #FFFFFF;
+   font-size: 11px;
+   font-weight: lighter;
+}
+
+.error-container{
+   position: relative;
+}
+.error-message{
+   background: #B94A48;
+   border-radius: 5px;
+   font-size:12px;
+   color: #FFFFFF;
+   font-weight: 700;
+   padding: 4px;
+   overflow: hidden;
+   animation-name: arise;
+   animation-duration: .5s;
+   position: relative;
+   bottom:0
+}
+
+.error-message:empty{
+   height: 0px;
+   display:none;
+}
+@keyframes arise {
+   from {height: 0px; margin-top: 0px}
+   to {height:30px; margin-top: 0px}
+ }
+.signin-input{
+   width: inherit;
+   margin-top: 5px;
+   margin-bottom: 5px;
+   margin-right: 5px;
+   border-radius: 5px;
+   font-size: 15px;
+   padding: 10px;
+   box-sizing:border-box;
+
+}

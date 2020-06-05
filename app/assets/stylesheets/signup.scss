@@ -1,0 +1,184 @@
+// signup-form-container
+// signup-form-box
+// signup-form
+// signup-input
+// session-submit
+
+
+.hidden{
+   display:none;
+}
+   .signup-form-container{
+      background-image: image-url('mahir-uysal-cjuncrZO5to-unsplash.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+   }
+   
+//  .signup-form-box{
+//     background: #8C7D6B;
+//     width:45vh;
+//     height:100vh;
+//     margin-left: 40px;
+//     display:flex;
+//     justify-content:center;
+//     backdrop-filter: blur(5px);
+//  }
+
+ .signup-form-box{
+   background: inherit;
+   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+   width:45vh;
+   height:100vh;
+   margin-left: 40px;
+   display:flex;
+   justify-content:center;
+   backdrop-filter: blur(15px) ;
+   position: relative;
+   overflow: hidden;
+}
+
+.signup-form-box:before{
+   content: "";
+   position: absolute;
+   height: 10000px;
+   top: -100px;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   box-shadow: inset 0 0 20px #555;
+   background:inherit; 
+   filter: blur(15px);
+   z-index: -1;
+
+
+
+}
+ 
+ 
+ .signup-form{
+    display:flex;
+    flex-direction: column;
+    padding-top:80px;
+    width:90%
+ }
+ 
+ .signup-form > *{
+    width:100%;
+    margin:5px;
+    border-radius: 5px;
+ }
+ 
+ .session-submit{
+    padding:14px;
+    background: #F7AC18;
+    color: white;
+ }
+ 
+ .signup-form > p {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: lighter;
+ }
+ .error-message{
+    background: #B94A48;
+    border-radius: 5px;
+    font-size:12px;
+    color: #FFFFFF;
+    font-weight: 500;
+    padding: 4px;
+ }
+ 
+ .error-message:empty{
+    display:none;
+ }
+ .signup-input{
+    width: inherit;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 10px;
+    box-sizing:border-box;
+ 
+ }
+
+ .signup-options{
+     display:flex;
+     width:90%;
+ }
+
+ .signup-option{
+   border-radius: 5px;
+   font-size: 15px;
+   margin-top: 5px;
+   margin-bottom: 5px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   box-sizing:border-box;
+   background: #f6f6f6;
+   color: #777;
+ }
+
+ #user-info-option{
+    margin-right:20px;
+ }
+
+ #country-option{
+    position:relative;
+
+ }
+
+ .signup-option{
+    width: 180px;
+ }
+
+ label{
+    position: relative;
+    display:flex;
+
+ }
+
+ .input-error{
+    position: absolute;
+    bottom:54px;
+    right:0px;
+    font-size:12px;
+    color: #FFFFFF;
+    animation: fade .5s ease;
+
+ }
+ 
+ .error-bubble {
+	position: relative;
+	background: #CE4128;
+   border-radius: .4em;
+   padding: 10px;
+   z-index: 2;
+   
+
+}
+ .error-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 9px solid transparent;
+	border-top-color: #CE4128;
+	border-bottom: 0;
+	margin-left: -9px;
+   margin-bottom: -9px;
+   z-index: 2;
+}
+
+@keyframes fade{
+   from{opacity: 0;}
+   to{opacity: 1;}
+}
+
+.signup-options .input-error{
+   right:40px;
+}

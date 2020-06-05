@@ -16,7 +16,11 @@ class User < ApplicationRecord
     attr_reader :password
 
     validates :username, :email, :user_info, :country, :password_digest, :session_token, presence: true
+<<<<<<< HEAD
     validates :username, :email, uniqueness: true
+=======
+    validates :username, :email,  uniqueness: true
+>>>>>>> auth
     validates :password, length: { minimum: 6}, allow_nil: true
 
     after_initialize :ensure_session_token 
@@ -24,7 +28,7 @@ class User < ApplicationRecord
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
         return nil unless user 
-        user.is_passowrd?(password) ? user : nil
+        user.is_password?(password) ? user : nil
     end
     
     def self.generate_session_token
@@ -33,16 +37,16 @@ class User < ApplicationRecord
 
     def password=(password)
         @password = password
-        self.password_digest = BCrpyt::Password.create(password)
+        self.password_digest = BCrypt::Password.create(password)
     end
 
     def is_password?(password)
-        BCrypt::password.new(self.password_digest).is_password?(password)
+        BCrypt::Password.new(self.password_digest).is_password?(password)
     end
 
     
     def reset_session_token! 
-        generate_session_token
+        User.generate_session_token
         save!
         self.session_token
     end
@@ -50,7 +54,7 @@ class User < ApplicationRecord
     private
     
     def ensure_session_token
-        User.generate_session_token unless self.session_token
+       self.session_token ||= User.generate_session_token
     end
 
 
