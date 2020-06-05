@@ -102,7 +102,6 @@ componentDidMount(){
 
   clearBubs(){
     this.setState({errorClass:'hidden'})
-    console.log('bub clearin')
   }
 
   render() {

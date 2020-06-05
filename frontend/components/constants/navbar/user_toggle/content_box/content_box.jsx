@@ -28,8 +28,6 @@ class ContentBox extends React.Component {
       }
 
     render(){
-        console.log("content box render")
-        console.log(this.props)
         return(
         <div
           ref = {this.outerRef}

@@ -392,8 +392,6 @@ var ContentBox = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log("content box render");
-      console.log(this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         ref: this.outerRef,
         onFocus: this.clicker,
@@ -750,7 +748,6 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
       this.setState({
         errorClass: 'hidden'
       });
-      console.log('bub clearin');
     }
   }, {
     key: "render",
