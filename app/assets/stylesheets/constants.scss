@@ -155,6 +155,9 @@
     margin:5px;  
 }
 
+.logo-text:hover{
+    text-decoration: none;
+}
 .logo-pic{
     background-image: url(logo3.png);
     height: 75px;
@@ -176,9 +179,6 @@
     text-transform: capitalize;
 }
 
-.nav-logo-link:hover{
-    text-decoration: none;
-}
 
 
 
