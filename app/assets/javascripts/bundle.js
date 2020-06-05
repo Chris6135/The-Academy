@@ -301,7 +301,7 @@ var navBar = function navBar(props) {
     className: "home-button"
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-university"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "catagory"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "catacory")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_toggle_user_toggle_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "category")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_toggle_user_toggle_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (navBar);
@@ -642,25 +642,40 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       username: '',
-      password: ''
+      password: '',
+      errorClass: 'hidden'
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.demoLogin = _this.demoLogin.bind(_assertThisInitialized(_this));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
+    _this.clear = _this.clear.bind(_assertThisInitialized(_this));
     return _this;
-  } //transition hieght 0 to hight
-
+  }
 
   _createClass(SignInForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.state.errorClass !== 'hidden') {
+        this.setState({
+          errorClass: 'hidden'
+        });
+      }
+    }
+  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      console.log("unmount");
-      console.log(this.props);
       this.props.clearErrors();
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      console.log("update");
+      var _this2 = this;
+
+      if (this.state.errorClass !== 'hidden') {
+        setTimeout(function () {
+          _this2.clearBubs();
+        }, 3000);
+      }
     }
   }, {
     key: "demoLogin",
@@ -675,10 +690,11 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "update",
     value: function update(field) {
-      var _this2 = this;
+      var _this3 = this;
 
+      // this.clear() //for some reason this stops the error from rendering. dont quite know why. 
       return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+        return _this3.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
@@ -687,17 +703,54 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
       this.props.processForm(user);
+      this.state.errorClass = "input-error";
     }
   }, {
     key: "renderErrors",
     value: function renderErrors() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "error-message"
-      }, this.props.errors.map(function (error, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: "error-".concat(i)
-        }, error);
-      }));
+      if (this.state.username !== '' && this.state.password !== '') {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "error-message"
+        }, this.props.errors.map(function (error, i) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: "error-".concat(i)
+          }, error);
+        }));
+      } else {
+        this.clear();
+      }
+    }
+  }, {
+    key: "stringErrors",
+    value: function stringErrors() {
+      var errors = this.props.errors.map(function (error) {
+        return error;
+      });
+      return errors;
+    }
+  }, {
+    key: "ifError",
+    value: function ifError(field, string) {
+      if (field === '') {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: this.state.errorClass
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "error-bubble"
+        }, string));
+      }
+    }
+  }, {
+    key: "clear",
+    value: function clear() {
+      this.props.clearErrors();
+    }
+  }, {
+    key: "clearBubs",
+    value: function clearBubs() {
+      this.setState({
+        errorClass: 'hidden'
+      });
+      console.log('bub clearin');
     }
   }, {
     key: "render",
@@ -718,7 +771,7 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
         className: "demo-line"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "OR"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "signin-username"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, this.ifError(this.state.username, "Please type your password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.username,
         onChange: this.update('username'),
@@ -726,13 +779,15 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
         className: "signin-input"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "signin-password"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, this.ifError(this.state.password, "Please type your password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         value: this.state.password,
         onChange: this.update('password'),
         placeholder: "Password",
         className: "signin-input"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error-container"
+      }, this.renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "session-submit",
         type: "submit",
         value: "Login"
@@ -855,13 +910,13 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.demoLogin = _this.demoLogin.bind(_assertThisInitialized(_this));
+    _this.clear = _this.clear.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(SignUpForm, [{
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      console.log("unmounting");
       this.props.clearErrors();
     }
   }, {
@@ -914,20 +969,25 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
       var errors = this.stringErrors();
 
       if (errors.includes(error)) {
+        {
+          setTimeout(this.clear, 3000);
+        }
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "input-error"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "error-bubble"
-        }, string, "setTimeout()"));
+        }, string));
       }
     }
   }, {
-    key: "removeBubbles",
-    value: function removeBubbles() {}
+    key: "clear",
+    value: function clear() {
+      this.props.clearErrors();
+    }
   }, {
     key: "render",
     value: function render() {
-      console.log(this.stringErrors());
+      console.log("im rendering");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {

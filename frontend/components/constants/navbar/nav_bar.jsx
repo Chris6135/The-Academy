@@ -7,8 +7,8 @@ const navBar = (props)=>{
             <nav className="nav-bar">
                 <ol className="cat-nav">
                    <li> <Link to="/" className="home-button"> <i className="fas fa-university" /></Link></li>
-                   <li>catagory</li>
-                   <li>catacory</li>
+                   <li>category</li>
+                   <li>category</li>
 
                 </ol>
                 <span>

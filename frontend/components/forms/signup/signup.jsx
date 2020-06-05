@@ -9,15 +9,15 @@ class SignUpForm extends React.Component {
       password: '',
       email: '',
       country: '',
-      user_info: ''
+      user_info: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoLogin = this.demoLogin.bind(this)
+    this.clear = this.clear.bind(this)
   }
 
   
   componentWillUnmount(){
-    console.log("unmounting")
     this.props.clearErrors()
   }
 
@@ -67,23 +67,27 @@ class SignUpForm extends React.Component {
     const errors = this.stringErrors()
 
    if(errors.includes(error)){
+
+
+    {setTimeout(this.clear, 3000)}
+  
      return <div className="input-error">
           <div className="error-bubble"> 
               {string} 
-              setTimeout()
           </div>
        </div>
     }
   }
 
-  removeBubbles(){
-    
+
+  clear(){
+    this.props.clearErrors()
   }
 
 
   render(){
 
-    console.log(this.stringErrors())
+    console.log("im rendering")
     return (
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit} className="signup-form-box">

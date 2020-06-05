@@ -92,18 +92,32 @@
    font-size: 11px;
    font-weight: lighter;
 }
+
+.error-container{
+   position: relative;
+}
 .error-message{
    background: #B94A48;
    border-radius: 5px;
    font-size:12px;
    color: #FFFFFF;
-   font-weight: 500;
+   font-weight: 700;
    padding: 4px;
+   overflow: hidden;
+   animation-name: arise;
+   animation-duration: .5s;
+   position: relative;
+   bottom:0
 }
 
 .error-message:empty{
+   height: 0px;
    display:none;
 }
+@keyframes arise {
+   from {height: 0px; margin-top: 0px}
+   to {height:30px; margin-top: 0px}
+ }
 .signin-input{
    width: inherit;
    margin-top: 5px;

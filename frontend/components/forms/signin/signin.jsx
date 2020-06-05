@@ -6,23 +6,33 @@ class SignInForm extends React.Component {
     this.state = {
       username: '',
       password: '',
+      errorClass: 'hidden'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoLogin = this.demoLogin.bind(this)
+    this.renderErrors = this.renderErrors.bind(this)
+    this.clear = this.clear.bind(this)
+    
 
   }
 
-  //transition hieght 0 to hight
+
+componentDidMount(){
+    if(this.state.errorClass !== 'hidden' ){
+      this.setState({errorClass:'hidden'})
+    }
+  } 
 
   componentWillUnmount(){
-    console.log("unmount")
-    console.log(this.props)
     this.props.clearErrors()
   }
 
   componentDidUpdate(){
-    console.log("update")
-  }
+    if(this.state.errorClass !== 'hidden' ){
+          setTimeout( ()=> {this.clearBubs()}, 3000)
+        }
+    }
+  
 
 
   demoLogin(e){
@@ -33,7 +43,9 @@ class SignInForm extends React.Component {
   }
 
 
-  update(field) {
+  update(field) 
+  {
+    // this.clear() //for some reason this stops the error from rendering. dont quite know why. 
     return e => this.setState({
       [field]: e.currentTarget.value
     });
@@ -43,24 +55,60 @@ class SignInForm extends React.Component {
     e.preventDefault();
     const user = Object.assign({}, this.state);
     this.props.processForm(user);
+    this.state.errorClass = "input-error"
+
   }
 
   renderErrors() {
-    return(
-      <ul className="error-message">
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
+  
+    if ((this.state.username !== '') && (this.state.password !== ''))
+    {
+      return(
+        <ul className="error-message">
+          {this.props.errors.map((error, i) => (
+            <li key={`error-${i}`}>
+              {error}
+            </li>
+          ))}
+        </ul>
+      );
+    }else{
+      this.clear()
+    }
+  }
+
+  stringErrors(){
+    const errors = this.props.errors.map((error) =>{
+      return error
+    })
+    return errors
+  }
+
+
+  ifError(field, string){
+   if(field === ''){
+     return <div className={this.state.errorClass}>
+          <div className="error-bubble"> 
+              {string} 
+          </div>
+       </div>
+    }
+  }
+
+
+  clear(){
+    this.props.clearErrors()
+  }
+
+  clearBubs(){
+    this.setState({errorClass:'hidden'})
+    console.log('bub clearin')
   }
 
   render() {
+
     return (
       <div className="signin-form-container">
-
         <form onSubmit={this.handleSubmit} className="signin-form-box">
           <div className="signin-form">
           <button className="demo-submit" type="submit" value="Login" onClick={this.demoLogin}> Demo Login</button>
@@ -72,6 +120,7 @@ class SignInForm extends React.Component {
           </div>
           
             <label className="signin-username">
+            {this.ifError(this.state.username, "Please type your password")}
               <input type="text"
                 value={this.state.username}
                 onChange={this.update('username')}
@@ -81,6 +130,7 @@ class SignInForm extends React.Component {
             </label>
        
             <label className="signin-password">
+            {this.ifError(this.state.password, "Please type your password")}
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
@@ -89,7 +139,7 @@ class SignInForm extends React.Component {
                 />
             </label>
             
-              <div >{this.renderErrors()}</div>
+              <div className="error-container" >{this.renderErrors()}</div>
               
             <button className="session-submit" type="submit" value="Login">Login</button>
                <p>Not enrolled? Feel free to <span className="sign-up-link">{this.props.navLink} >> </span></p>
