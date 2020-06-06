@@ -1,0 +1,1 @@
+json.partial! "api/lessons/lessson", lesson: @lesson
