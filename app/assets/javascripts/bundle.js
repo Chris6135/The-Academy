@@ -90,7 +90,7 @@
 /*!****************************************************!*\
   !*** ./frontend/actions/lessons/lesson_actions.js ***!
   \****************************************************/
-/*! exports provided: RECEIVE_CATEGORIES, RECEIVE_LESSONS, RECEIVE_SINGLE_LESSON, DELETE_LESSON, receiveAllCategories, fetchCategories */
+/*! exports provided: RECEIVE_CATEGORIES, RECEIVE_LESSONS, RECEIVE_SINGLE_LESSON, DELETE_LESSON, receiveAllCategories, receiveLessons, receiveSingleLesson, deleteLesson, fetchCategories, fetchUserLessons, fetchAllLessons, fetchSingleLesson, destroyLesson, createLesson, updateLesson */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100,25 +100,99 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SINGLE_LESSON", function() { return RECEIVE_SINGLE_LESSON; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_LESSON", function() { return DELETE_LESSON; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllCategories", function() { return receiveAllCategories; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveLessons", function() { return receiveLessons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSingleLesson", function() { return receiveSingleLesson; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLesson", function() { return deleteLesson; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategories", function() { return fetchCategories; });
-/* harmony import */ var _util_category_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util/category_api_util */ "./frontend/util/category_api_util.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserLessons", function() { return fetchUserLessons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllLessons", function() { return fetchAllLessons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSingleLesson", function() { return fetchSingleLesson; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyLesson", function() { return destroyLesson; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLesson", function() { return createLesson; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLesson", function() { return updateLesson; });
+/* harmony import */ var _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util/lesson_api_util */ "./frontend/util/lesson_api_util.js");
+/* harmony import */ var _util_category_api_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/category_api_util */ "./frontend/util/category_api_util.js");
+
 
 var RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
-var RECEIVE_LESSONS = "RECIEVE_LESSONS";
-var RECEIVE_SINGLE_LESSON = "RECEIVE_SINGLE_LESSON";
-var DELETE_LESSON = "DELETE_LESSON";
+var RECEIVE_LESSONS = "RECEIVE_LESSONS"; //changes state to all lessons
+
+var RECEIVE_SINGLE_LESSON = "RECEIVE_SINGLE_LESSON"; //adds a full lesson lessons slice
+
+var DELETE_LESSON = "DELETE_LESSON"; //removes a lesson from lesson slice
+
 var receiveAllCategories = function receiveAllCategories(categories) {
-  debugger;
   return {
     type: RECEIVE_CATEGORIES,
     categories: categories
   };
 };
+var receiveLessons = function receiveLessons(lessons) {
+  return {
+    type: RECEIVE_LESSONS,
+    lessons: lessons
+  };
+};
+var receiveSingleLesson = function receiveSingleLesson(lesson) {
+  return {
+    type: RECEIVE_SINGLE_LESSON,
+    lesson: lesson
+  };
+};
+var deleteLesson = function deleteLesson(lesson) {
+  return {
+    type: DELETE_LESSON,
+    lesson: lesson
+  };
+};
 var fetchCategories = function fetchCategories() {
   return function (dispatch) {
-    debugger;
-    return _util_category_api_util__WEBPACK_IMPORTED_MODULE_0__["getCategories"]().then(function (categories) {
+    return Object(_util_category_api_util__WEBPACK_IMPORTED_MODULE_1__["getCategories"])().then(function (categories) {
       return dispatch(receiveAllCategories(categories));
+    });
+  };
+};
+var fetchUserLessons = function fetchUserLessons(user_id) {
+  return function (dispatch) {
+    return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["getUserLessons"](user_id).then(function (lessons) {
+      return dispatch(receiveLessons(lessons));
+    });
+  };
+};
+var fetchAllLessons = function fetchAllLessons() {
+  return function (dispatch) {
+    return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["getAllLessons"]().then(function (lessons) {
+      return dispatch(receiveLessons(lessons));
+    });
+  };
+};
+var fetchSingleLesson = function fetchSingleLesson(id) {
+  return function (dispatch) {
+    console.log("fetching lesson");
+    return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["getSingleLesson"](id).then(function (lesson) {
+      return dispatch(receiveSingleLesson(lesson));
+    });
+  };
+};
+var destroyLesson = function destroyLesson(id) {
+  return function (dispatch) {
+    //not sure if this will work
+    return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteLesson"](id).then(function (lesson) {
+      return dispatch(deleteLesson(lesson));
+    });
+  };
+};
+var createLesson = function createLesson(lesson) {
+  return function (dispatch) {
+    return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["createLesson"](lesson).then(function (lesson) {
+      return dispatch(receiveSingleLesson(lesson));
+    });
+  };
+};
+var updateLesson = function updateLesson(lesson) {
+  return function (dispatch) {
+    return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["updateLesson"](lesson).then(function (lesson) {
+      return dispatch(receiveSingleLesson(lesson));
     });
   };
 };
@@ -1432,7 +1506,6 @@ var categoriesReducer = function categoriesReducer() {
 
   switch (action.type) {
     case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CATEGORIES"]:
-      debugger;
       return Object.assign({}, action.categories);
 
     default:
@@ -1456,11 +1529,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _categories_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./categories_reducer */ "./frontend/reducers/categories_reducer.js");
+/* harmony import */ var _lessons_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lessons_reducer */ "./frontend/reducers/lessons_reducer.js");
+
 
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  lessons: _lessons_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   categories: _categories_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
@@ -1521,6 +1597,46 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (sessionErrorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/lessons_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/lessons_reducer.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/lessons/lesson_actions */ "./frontend/actions/lessons/lesson_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var lessonsReducer = function lessonsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LESSONS"]:
+      return Object.assign({}, state, action.lessons);
+
+    case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SINGLE_LESSON"]:
+      return Object.assign({}, state, _defineProperty({}, action.lesson.id, action.lesson));
+
+    case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_LESSON"]:
+      var newState = Object.assign({}, state);
+      delete newState[action.lesson.id];
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (lessonsReducer);
 
 /***/ }),
 
@@ -1694,6 +1810,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(preloadedState);
   debugger;
   window.store = store;
+  console.log("fetching lesson");
+  store.dispatch(Object(_actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_4__["fetchSingleLesson"])(1));
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
   }), root);
@@ -1720,6 +1838,66 @@ var getCategories = function getCategories() {
 var getLessonsByCategory = function getLessonsByCategory() {
   return $.ajax({
     url: "/api/categories/:id"
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/lesson_api_util.js":
+/*!******************************************!*\
+  !*** ./frontend/util/lesson_api_util.js ***!
+  \******************************************/
+/*! exports provided: getUserLessons, getAllLessons, getSingleLesson, deleteLesson, createLesson, updateLesson */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserLessons", function() { return getUserLessons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllLessons", function() { return getAllLessons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSingleLesson", function() { return getSingleLesson; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLesson", function() { return deleteLesson; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLesson", function() { return createLesson; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLesson", function() { return updateLesson; });
+var getUserLessons = function getUserLessons(user_id) {
+  return $.ajax({
+    url: "/api/".concat(user_id, "/lessons"),
+    method: "GET"
+  });
+};
+var getAllLessons = function getAllLessons() {
+  return $.ajax({
+    url: "/api/lessons",
+    method: "GET"
+  });
+};
+var getSingleLesson = function getSingleLesson(id) {
+  return $.ajax({
+    url: "/api/lessons/".concat(id),
+    method: "GET"
+  });
+};
+var deleteLesson = function deleteLesson(id) {
+  return $.ajax({
+    url: "/api/lessons/".concat(id),
+    method: "DELETE"
+  });
+};
+var createLesson = function createLesson(lesson) {
+  return $.ajax({
+    url: "/api/lessons",
+    method: "POST",
+    data: {
+      lesson: lesson
+    }
+  });
+};
+var updateLesson = function updateLesson(lesson) {
+  return $.ajax({
+    url: "/api/lessons/".concat(lesson.id),
+    method: "POST",
+    data: {
+      lesson: lesson
+    }
   });
 };
 

@@ -2,7 +2,7 @@ import React from "react"
 import ReactDOM from 'react-dom';
 import configureStore from "./store/store"
 import Root from "./components/root"
-import {fetchCategories} from "./actions/lessons/lesson_actions"
+import {fetchSingleLesson} from "./actions/lessons/lesson_actions"
 
 
 document.addEventListener('DOMContentLoaded', ()=> {
@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const store = configureStore(preloadedState)
     debugger
     window.store = store
+    console.log("fetching lesson")
+    store.dispatch(fetchSingleLesson(1))
  
   
   ReactDOM.render(<Root store = {store}/>, root);

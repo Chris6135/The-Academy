@@ -21,10 +21,8 @@ class Lesson < ApplicationRecord
     class_name: :User
 
 
-    has_many :steps,
-    primary_key: :id,
-    foreign_key: :lesson_id,
-    class_name:  :Steps
+    has_many :steps
+
 
 
 end

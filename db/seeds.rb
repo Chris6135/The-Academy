@@ -24,3 +24,8 @@ Category.create!(id: 2, title: 'Living', icon:'fas fa-home')
 Category.create!(id: 3, title: 'Crafts', icon:'fas fa-palette')
 Category.create!(id: 4, title: 'Workshop', icon:'fas fa-hammer')
 Category.create!(id: 5, title: 'Games', icon:'fas fa-gamepad')
+
+Lesson.create!(id: 1, title:"test", author_id: 8)
+
+Step.create!(id: 1, title: "test", body: "test", lesson_id: 1)
+Step.create!(id: 2, title: "test", body: "test", lesson_id: 1)
