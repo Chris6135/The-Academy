@@ -1,19 +1,34 @@
 import React from "react"
 
-export default (props)=>{
+export default class Footer extends React.Component{
+    constructor(props){
+        super(props);
+        this.props.fetchCategories()
+
+    }
+
+    buildCategories(){
+        if(this.props.categories !== {}){
+           return  Object.keys(this.props.categories).map((id) =>{
+                return(
+                <div className="fas fa-exclamation-circle"><li>{this.props.categories[id].title}</li> </div>
+                )
+                })
+            }
+
+    }
+
+    render(){
+        console.log('rendering')
+        console.log(this.props)
     return(
     <div className="footer-box">
         <div className="footer-logo"></div>
         <div className="footer-catagories"> 
             <h2 className="footer-title">Categories</h2>
             <ol>
-                <div className="fas fa-exclamation-circle"><li>dummy</li> </div>
-                <div className="fas fa-exclamation-circle"><li>dummy</li> </div>
-                <div className="fas fa-exclamation-circle"><li>dummy</li> </div>
-                <div className="fas fa-exclamation-circle"><li>dummy</li> </div>
-                <div className="fas fa-exclamation-circle"><li>dummy</li> </div>
+                { this.buildCategories()}
 
-              
             </ol>
         </div>
         {/* <div className ="footer-spacer-div" /> */}
@@ -41,4 +56,6 @@ export default (props)=>{
         <div className="footer-bar"></div>
 
     </div>)
+    }
 }
+

@@ -5,7 +5,6 @@
 #  id          :bigint           not null, primary key
 #  lesson_id   :integer          not null
 #  category_id :integer          not null
-#  keywords    :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

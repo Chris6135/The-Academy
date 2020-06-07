@@ -1,5 +1,5 @@
 @lessons.each do |lesson|
-    json.set! bench.id do
+    json.set! lesson.id do
       json.partial! "api/lessons/lessson", lesson: lesson
     end
   end

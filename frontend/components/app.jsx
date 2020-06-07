@@ -5,8 +5,9 @@ import Signin from "./forms/signin/signin_container"
 import NavBar from "./constants/navbar/nav_bar"
 import Splash from "./splash/splash"
 import SearchNav from "./constants/searchbar/searchbar_nav"
-import Footer from "./constants/footer/footer"
+import Footer from "./constants/footer/footer_container"
 import {AuthRoute} from "../util/route_util"
+
 
 import {
     Route,
@@ -26,7 +27,6 @@ const App = () => (
 
     <footer>
         <Footer/>
-        {/* <NavBoxContainer />  */}
     </footer>
   </div>
 );

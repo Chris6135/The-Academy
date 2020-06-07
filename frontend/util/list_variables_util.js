@@ -248,13 +248,13 @@ export const countryList = [
 
 export const aboutYou = [
     `Student`,
+    `Teacher (Ages 5-7 yrs.)`,
     `Teacher (Ages 8-10 yrs.)`,
     `Teacher (Ages 11-13 yrs.)`,
     `Teacher (Ages 14-17 yrs.)`,
     `Teacher (Ages 18+ yrs.)`,
-    `Teacher (Ages 5-7 yrs.)`,
     `Hobbyist`,
     `Professional`,
     `Parent`,
-   `Robot`
+  	`Goat`
 ]

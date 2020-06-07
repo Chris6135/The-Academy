@@ -16,4 +16,11 @@ User.create!(id: 8,
        password_digest: '$2a$12$yEDByIza09ah2SIVwXY67uhuwduSNQOUch9pfVnCI55DtA54TqPGy', 
        session_token: 'dummy', 
        created_at: DateTime.new(1992,6,12,2),
-       updated_at: DateTime.new(2020,6,4,17))
+       updated_at: DateTime.new(2020,6,4,17)
+)
+
+Category.create!(id: 1, title: 'Cooking')
+Category.create!(id: 2, title: 'Living')
+Category.create!(id: 3, title: 'Cooking')
+Category.create!(id: 4, title: 'Workshop')
+Category.create!(id: 5, title: 'Games')
