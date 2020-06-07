@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+
 
 class ContentBox extends React.Component {
     constructor(props){
@@ -40,7 +42,7 @@ class ContentBox extends React.Component {
               <div className = {this.state.menu} > 
                 <div className="user-icon-dropdown-user-catagories">
                     <ol>
-                        <li></li>
+                    <Link to="/new/lesson">lesson</Link>
                         <li></li>
                         <li></li>
                         <li></li>

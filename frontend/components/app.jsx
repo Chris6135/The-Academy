@@ -6,6 +6,7 @@ import NavBar from "./constants/navbar/nav_bar_container"
 import Splash from "./splash/splash"
 import SearchNav from "./constants/searchbar/searchbar_nav"
 import Footer from "./constants/footer/footer_container"
+import Modal from "./lessons/modal_placeholder_container"
 import {AuthRoute} from "../util/route_util"
 
 
@@ -24,6 +25,8 @@ const App = () => (
             <AuthRoute exact path="/signup" component={Signup} />
             <AuthRoute exact path="/signin" component={Signin} />
             <Route exact path="/" component={Splash} /> 
+            <Route exact path="/new/lesson" component={Modal} /> 
+
 
     <footer>
         <Footer/>

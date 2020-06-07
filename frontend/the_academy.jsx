@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const store = configureStore(preloadedState)
     debugger
     window.store = store
-    console.log("fetching lesson")
     store.dispatch(fetchSingleLesson(1))
  
   
