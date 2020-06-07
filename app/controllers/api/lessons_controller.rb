@@ -14,6 +14,7 @@ class Api::LessonsController < ApplicationController
 
     def show
         @lesson = Lesson.find(params[:id])
+        render :show
     end
 
     def create
@@ -29,7 +30,7 @@ class Api::LessonsController < ApplicationController
 
     def update
         @lesson = Lesson.find(params[:id])
-        if @Lesson.update(lessons_params)
+        if @lesson.update(lessons_params)
           render :show
         else
           render json: @lesson.errors.full_messages, status: 422
