@@ -2,18 +2,30 @@
 #
 # Table name: lessons
 #
-#  id          :bigint           not null, primary key
-#  title       :string           not null
-#  body        :text             not null
-#  author_id   :integer          not null
-#  category_id :integer          not null
-#  published   :boolean          not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id         :bigint           not null, primary key
+#  title      :string           not null
+#  body       :string
+#  author_id  :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 class Lesson < ApplicationRecord
+
+    has_one :product,
+    primary_key: :id,
+    foreign_key: :lesson_id,
+    class_name:  :Product
+
     belongs_to :author,
+    primary_key: :id,
+    foreign_key: :author_id,
     class_name: :User
-    
-    belongs_to :category
+
+
+    has_many :steps,
+    primary_key: :id,
+    foreign_key: :lesson_id,
+    class_name:  :Steps
+
+
 end

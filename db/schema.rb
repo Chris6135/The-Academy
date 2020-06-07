@@ -10,38 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_06_205533) do
+ActiveRecord::Schema.define(version: 2020_06_07_003402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string "title", null: false
-    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "lessons", force: :cascade do |t|
     t.string "title", null: false
-    t.string "body"
     t.integer "author_id", null: false
-    t.integer "category_id", null: false
-    t.string "published", default: "f"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_lessons_on_author_id"
-    t.index ["category_id"], name: "index_lessons_on_category_id"
   end
 
-  create_table "publishes", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.integer "lesson_id", null: false
     t.integer "category_id", null: false
-    t.string "keywords", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_publishes_on_category_id"
-    t.index ["lesson_id"], name: "index_publishes_on_lesson_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["lesson_id"], name: "index_products_on_lesson_id"
+  end
+
+  create_table "steps", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "lesson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

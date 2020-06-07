@@ -7,7 +7,11 @@ Rails.application.routes.draw do
       resources :lessons, only: [:index]
     end
     
-    resources :lessons, only: [:index, :show, :create, :destory, :update] 
+    resources :lessons, only: [:index, :show, :create, :destory, :update] do 
+      resources :steps, only: [:create]
+    end
+
+    resources :steps, only: [:show, :destroy, :update] 
 
     resources :splash, only: [:index]
     resources :categories, only: [:show]

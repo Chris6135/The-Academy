@@ -9,5 +9,15 @@
 #  updated_at :datetime         not null
 #
 class Category < ApplicationRecord
-    has_many :lessons
+
+
+    has_many :products,
+    primary_key: :id,
+    foreign_key: :product_id,
+    class_name: :Product
+
+    has_many :lessons,
+    through: :products,
+    source: :lesson
+
 end

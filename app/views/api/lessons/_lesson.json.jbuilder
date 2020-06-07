@@ -1,1 +1,1 @@
-json.extract! lesson, :id, :title, :body, :author_id, :category_id, :published, :created_at, :updated_at
+json.extract! lesson, :id, :title, :author_id, :created_at, :updated_at
