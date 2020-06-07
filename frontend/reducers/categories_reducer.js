@@ -6,12 +6,6 @@ const categoriesReducer = (state ={}, action) => {
     switch(action.type){
         case RECEIVE_CATEGORIES:
             debugger
-            // const categories = {}
-            // console.log(action)
-            // const titles = action.categories.titles.values
-            //  titles.forEach((category) =>
-            //   categories[category.id] = action.category
-            //   )
               return Object.assign({},action.categories);
         default:
             return state

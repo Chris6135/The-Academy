@@ -2,7 +2,7 @@ import React from "react";
 import UserToggleContainer from "./constants/navbar/user_toggle/user_toggle_container"
 import Signup from "./forms/signup/signup_container"
 import Signin from "./forms/signin/signin_container"
-import NavBar from "./constants/navbar/nav_bar"
+import NavBar from "./constants/navbar/nav_bar_container"
 import Splash from "./splash/splash"
 import SearchNav from "./constants/searchbar/searchbar_nav"
 import Footer from "./constants/footer/footer_container"

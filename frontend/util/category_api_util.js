@@ -11,9 +11,3 @@ export const getLessonsByCategory = () =>{
     })
 
 };
-
-export const categoryIdArr = (object) =>{
-    console.log(object)
-    console.log(object.keys)
-   return object.keys
-}

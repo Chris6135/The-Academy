@@ -19,8 +19,8 @@ User.create!(id: 8,
        updated_at: DateTime.new(2020,6,4,17)
 )
 
-Category.create!(id: 1, title: 'Cooking')
-Category.create!(id: 2, title: 'Living')
-Category.create!(id: 3, title: 'Cooking')
-Category.create!(id: 4, title: 'Workshop')
-Category.create!(id: 5, title: 'Games')
+Category.create!(id: 1, title: 'Cooking', icon:'fas fa-hamburger')
+Category.create!(id: 2, title: 'Living', icon:'fas fa-home')
+Category.create!(id: 3, title: 'Crafts', icon:'fas fa-palette')
+Category.create!(id: 4, title: 'Workshop', icon:'fas fa-hammer')
+Category.create!(id: 5, title: 'Games', icon:'fas fa-gamepad')
