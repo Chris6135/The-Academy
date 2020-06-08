@@ -1560,10 +1560,8 @@ var LessonShow = /*#__PURE__*/function (_React$Component) {
   _createClass(LessonShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.requestLesson(this.props.match.params.lessonId); // console.log(this.props.requestLesson)
-      // console.log('steps')
-      // this.props.fetchLessonSteps(this.props.match.params.lessonId)
-      //  console.log(lorrie)
+      this.props.requestLesson(this.props.match.params.lessonId);
+      this.props.fetchLessonSteps(this.props.match.params.lessonId);
     }
   }, {
     key: "render",
@@ -1611,7 +1609,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    lesson: state.entities.lessons[ownProps.match.params.lessonId]
+    lesson: state.entities.lessons[ownProps.match.params.lessonId],
+    steps: state.entities.steps
   };
 };
 

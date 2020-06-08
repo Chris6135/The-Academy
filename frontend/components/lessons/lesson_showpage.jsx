@@ -8,10 +8,7 @@ import { withRouter } from "react-router-dom";
 
     componentDidMount(){
     this.props.requestLesson(this.props.match.params.lessonId);
-    // console.log(this.props.requestLesson)
-    // console.log('steps')
-    // this.props.fetchLessonSteps(this.props.match.params.lessonId)
-    //  console.log(lorrie)
+    this.props.fetchLessonSteps(this.props.match.params.lessonId)
     }
 
 

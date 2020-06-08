@@ -7,7 +7,8 @@ import {fetchLessonSteps, fetchSingleStep, createStep} from "../../actions/lesso
 
 const mapStateToProps = (state,ownProps) => {
   return {
-    lesson : state.entities.lessons[ownProps.match.params.lessonId]
+    lesson : state.entities.lessons[ownProps.match.params.lessonId],
+    steps: state.entities.steps
 
   };
 };
