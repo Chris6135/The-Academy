@@ -41,13 +41,13 @@ export const fetchLessonSteps = (lesson_id) => dispatch => {
   }
 
 
-  export const destroyStep = (id) => dispatch => { //not sure if this will work
-    return APIUtil.deleteStep(id)
+  export const destroyStep = (step) => dispatch => { //not sure if this will work
+    return APIUtil.deleteStep(step.id)
       .then(step => dispatch(deleteStep(step)));
   }
 
-  export const createStep = (step) => dispatch => {
-    return APIUtil.createStep(setp)
+  export const createStep = (lessonId) => dispatch => {
+    return APIUtil.createStep(lessonId)
       .then(step => dispatch(receiveSingleStep(step)));
   }
 

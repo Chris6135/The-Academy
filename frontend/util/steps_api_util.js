@@ -8,7 +8,7 @@ export const getLessonSteps = (lesson_id) =>{
 
 export const getSingleStep = (id) =>{
     return $.ajax({
-        url:`/api/step/${id}`,
+        url:`/api/steps/${id}`,
         method:"GET",
     })
 
@@ -16,18 +16,17 @@ export const getSingleStep = (id) =>{
 
 export const deleteStep = (id) =>{
     return $.ajax({
-        url:`/api/step/${id}`,
+        url:`/api/steps/${id}`,
         method:"DELETE",
     })
 
 };
 
-export const createStep = (step) =>{
+export const createStep = (lesson_id) =>{
     return $.ajax({
-        url:`/api/steps`,
-        method:"POST",
-        data:{step}
-    })
+        url:`/api/lessons/${lesson_id}/steps`,
+        method:"POST"
+        })
 
 };
 

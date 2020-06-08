@@ -9,7 +9,6 @@ export default class Footer extends React.Component{
 
     buildCategories(){
         if(this.props.categories !== {}){
-            console.log(this.props)
            return  Object.keys(this.props.categories).map((id) =>{
                 return(
                 <div className={this.props.categories[id].icon}><li>{this.props.categories[id].title}</li> </div>

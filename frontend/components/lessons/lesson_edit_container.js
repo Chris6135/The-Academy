@@ -1,8 +1,8 @@
 import {fetchSingleLesson} from "../../actions/lessons/lesson_actions"
 import React from 'react';
-import lesson_showpage from './lesson_showpage'
+import lesson_showpage from './lesson_edit'
 import { connect } from 'react-redux';
-import {fetchLessonSteps, fetchSingleStep, createStep} from "../../actions/lessons/step_actions"
+import {fetchLessonSteps, fetchSingleStep, createStep,destroyStep} from "../../actions/lessons/step_actions"
 
 
 const mapStateToProps = (state,ownProps) => {
@@ -14,12 +14,12 @@ const mapStateToProps = (state,ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => {
-    debugger
   return {
     requestLesson: (id => dispatch(fetchSingleLesson(id))),
     fetchLessonSteps: (lessonId => dispatch(fetchLessonSteps(lessonId))),
     fetchSingleStep: (id => dispatch(fetchSingleStep(id))),
-    createStep: (step => dispatch(createStep(step)))
+    createStep: (step => dispatch(createStep(step))),
+    deleteStep: (step => dispatch(destroyStep(step)))
   };
 };
 

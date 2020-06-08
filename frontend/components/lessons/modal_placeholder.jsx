@@ -25,7 +25,7 @@ export default class modalPlaceholder extends React.Component{
 
         this.props
         .createLesson(lesson)
-        .then(data => this.props.history.push(`/lesson/${data.lesson.id}`));
+        .then(data => this.props.history.push(`/lesson/edit/${data.lesson.id}`));
     }
     
     

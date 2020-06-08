@@ -15,6 +15,7 @@ class Api::StepsController < ApplicationController
         #as long as the step is added to the lesson's setps array then the 
         #comonent should be able to handle grabbing the lesson info.
         @step.save
+        render :show
     end
 
     def update
@@ -28,6 +29,7 @@ class Api::StepsController < ApplicationController
     
     def destroy
         @step=Step.find(params[:id])
+        render :show
         @step.destroy
     end
 
