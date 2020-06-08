@@ -1,1 +1,1 @@
-json.extract! setp, :id, :title, :body, :lesson_id, :created_at, :updated_at
+json.extract! step, :id, :title, :body, :lesson_id, :created_at, :updated_at

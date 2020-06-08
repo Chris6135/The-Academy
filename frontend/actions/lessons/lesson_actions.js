@@ -53,8 +53,6 @@ export const fetchUserLessons = (user_id) => dispatch => {
   }
 
   export const fetchSingleLesson = (id) => dispatch => {
-    console.log("fetching lesson")
-
     return APIUtil.getSingleLesson(id)
       .then(lesson => dispatch(receiveSingleLesson(lesson)));
   }

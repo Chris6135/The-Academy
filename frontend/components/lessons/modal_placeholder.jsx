@@ -7,14 +7,45 @@ export default class modalPlaceholder extends React.Component{
             title: '',
             author_id: this.props.state.session.id
         }
+
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+    update(field) {
+        return e => this.setState({
+          [field]: e.currentTarget.value
+        });
+      }
+
+      handleSubmit(e) {
+        e.preventDefault();
+        const lesson = Object.assign({}, this.state);
+        console.log('clicked')
+        console.log(lesson.id)
+
+        this.props
+        .createLesson(lesson)
+        .then(data => this.props.history.push(`/lesson/${data.lesson.id}`));
+    }
+    
+    
+
     render(){
-        console.log('info')
-        console.log(this.props)
-        console.log(this.state)
+ 
         return(
-            <div>hello</div>
+            <div>
+
+                <h1>placeholder</h1>
+                <form onSubmit={this.handleSubmit}>
+                <label> Please Enter Title 
+                    <input type="text"
+                    value={this.state.title}
+                    onChange={this.update('title')}
+                    />
+                     </label>
+                     <button >submit</button>
+                     </form>
+            </div>
         )
     }
 }

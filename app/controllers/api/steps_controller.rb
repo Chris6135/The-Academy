@@ -1,4 +1,9 @@
 class Api::StepsController < ApplicationController 
+
+    def index
+        @steps= Lesson.find(params[:lesson_id]).steps 
+        render :index
+    end
     def show
         @step = Step.find(params[:id])
         render :show

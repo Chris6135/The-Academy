@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
     
     resources :lessons, only: [:index, :show, :create, :destory, :update] do 
-      resources :steps, only: [:create]
+      resources :steps, only: [ :index, :create]
     end
 
     resources :steps, only: [:show, :destroy, :update] 
