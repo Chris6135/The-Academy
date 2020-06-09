@@ -6,8 +6,6 @@ const usersReducer = (state = {}, action) => {
     switch(action.type){
         case RECEIVE_CURRENT_USER:
             return Object.assign({},state,{[action.user.id]: action.user})
-        // case RECEIVE_SINGLE_LESSON:
-        //     return Object.assign({},state, {[action.payload.user.id]: action.payload.user })
         case LOGOUT_CURRENT_USER: 
             const newState = Object.assign({},state)
             delete newState[action.user.id]
