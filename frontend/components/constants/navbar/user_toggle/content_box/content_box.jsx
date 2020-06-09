@@ -45,14 +45,17 @@ class ContentBox extends React.Component {
                         <li>dummy</li>
                         <li>dummy</li>
                         <li>dummy</li>
+                        <li>dummy</li>
+
+
                     </ol>
 
                     <div className = "lower-div">
                       <div className="lower-div-links">
-                        <li>dummy</li>
+                        <li>Longdummy</li>
                         <li>dummy</li>
                       </div>
-                    <Link to="/lesson/new" className="new-lesson">lesson</Link>
+                    <Link to="/lesson/new" className="new-lesson">New Lesson</Link>
                     </div>
                 <button className="logout-button" onClick={this.props.logOut}>Log Out</button>
               </div>
