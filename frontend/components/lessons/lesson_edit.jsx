@@ -10,6 +10,7 @@ import {Link} from "react-router-dom"
 
         this.createStep = this.createStep.bind(this)
         this.deleteStep = this.deleteStep.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     
@@ -63,6 +64,11 @@ import {Link} from "react-router-dom"
         }
 
 
+    handleDelete(){ //FIX
+        this.props.history.push(`/`)
+        this.props.destroyLesson(this.props.lesson)
+    }
+
     render() {
         console.log('render lesson')
   
@@ -84,10 +90,10 @@ import {Link} from "react-router-dom"
                         <ol>{this.props.lesson.title}
                             <li>{this.props.lesson.title}</li>
                             {this.listSteps()}
-                            {/* <StepEditIndex props= {this.props}/> */}
                         </ol>
 
                         <button onClick={()=>{this.createStep()}}>createStep</button>
+                        <button onClick={()=> this.handleDelete()}>Delete This Lesson</button>
                         
                     </div>
                 )

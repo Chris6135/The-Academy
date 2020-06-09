@@ -173,10 +173,10 @@ var fetchSingleLesson = function fetchSingleLesson(id) {
     });
   };
 };
-var destroyLesson = function destroyLesson(id) {
+var destroyLesson = function destroyLesson(lesson) {
   return function (dispatch) {
     //not sure if this will work
-    return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteLesson"](id).then(function (lesson) {
+    return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteLesson"](lesson.id).then(function (lesson) {
       return dispatch(deleteLesson(lesson));
     });
   };
@@ -1583,6 +1583,7 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.createStep = _this.createStep.bind(_assertThisInitialized(_this));
     _this.deleteStep = _this.deleteStep.bind(_assertThisInitialized(_this));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1651,6 +1652,13 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "handleDelete",
+    value: function handleDelete() {
+      //FIX
+      this.props.history.push("/");
+      this.props.destroyLesson(this.props.lesson);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -1668,7 +1676,11 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           _this3.createStep();
         }
-      }, "createStep"));
+      }, "createStep"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this3.handleDelete();
+        }
+      }, "Delete This Lesson"));
     }
   }]);
 
@@ -1723,6 +1735,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchLessonSteps: function fetchLessonSteps(lessonId) {
       return dispatch(Object(_actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_4__["fetchLessonSteps"])(lessonId));
+    },
+    destroyLesson: function destroyLesson(id) {
+      return dispatch(Object(_actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["destroyLesson"])(id));
     },
     fetchSingleStep: function fetchSingleStep(id) {
       return dispatch(Object(_actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_4__["fetchSingleStep"])(id));
@@ -2298,7 +2313,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       console.log("userShow");
       console.log(this.props);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderDrafts());
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderDrafts()));
     }
   }]);
 

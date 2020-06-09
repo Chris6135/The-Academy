@@ -1,4 +1,4 @@
-import {fetchSingleLesson} from "../../actions/lessons/lesson_actions"
+import {fetchSingleLesson, destroyLesson} from "../../actions/lessons/lesson_actions"
 import React from 'react';
 import lesson_showpage from './lesson_edit'
 import { connect } from 'react-redux';
@@ -25,6 +25,7 @@ const mapDispatchToProps = dispatch => {
   return {
     requestLesson: (id => dispatch(fetchSingleLesson(id))),
     fetchLessonSteps: (lessonId => dispatch(fetchLessonSteps(lessonId))),
+    destroyLesson:(id => dispatch(destroyLesson(id))),
     fetchSingleStep: (id => dispatch(fetchSingleStep(id))),
     createStep: (step => dispatch(createStep(step))),
     deleteStep: (step => dispatch(destroyStep(step))),

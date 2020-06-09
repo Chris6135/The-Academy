@@ -58,9 +58,9 @@ export const fetchUserLessons = (user_id) => dispatch => {
   }
 
 
-  export const destroyLesson = (id) => dispatch => { //not sure if this will work
-    return APIUtil.deleteLesson(id)
-      .then(lesson => dispatch(deleteLesson(lesson)));
+  export const destroyLesson = (lesson) => dispatch => { //not sure if this will work
+    return APIUtil.deleteLesson(lesson.id)
+      .then((lesson) => dispatch(deleteLesson(lesson)));
   }
 
   export const createLesson = (lesson) => dispatch => {

@@ -18,7 +18,10 @@ class UserShow extends React.Component{
         console.log("userShow")
         console.log(this.props)
         return(
-        <div>{this.renderDrafts()}</div>
+            <div> 
+                <div>{this.props.user.username}</div>
+                <div>{this.renderDrafts()}</div>
+            </div>
         )
     }
 
