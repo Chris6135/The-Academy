@@ -41,12 +41,19 @@ class ContentBox extends React.Component {
 
               <div className = {this.state.menu} > 
                 <div className="user-icon-dropdown-user-catagories">
-                    <ol>
-                    <Link to="/new/lesson">lesson</Link>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                    <ol className="dropdown-category">
+                        <li>dummy</li>
+                        <li>dummy</li>
+                        <li>dummy</li>
                     </ol>
+
+                    <div className = "lower-div">
+                      <div className="lower-div-links">
+                        <li>dummy</li>
+                        <li>dummy</li>
+                      </div>
+                    <Link to="/lesson/new" className="new-lesson">lesson</Link>
+                    </div>
                 <button className="logout-button" onClick={this.props.logOut}>Log Out</button>
               </div>
           </div>

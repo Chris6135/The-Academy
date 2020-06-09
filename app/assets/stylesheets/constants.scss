@@ -86,7 +86,9 @@
 /* dropdown */
 
 .user-icon-dropdown{
-    position: absolute;;
+    display:flex;
+    color: red;
+    position: absolute;
     background: #FFF;
     padding:10px;
     top:24px;
@@ -120,6 +122,39 @@
     cursor: pointer;
     border-radius: 5px;
     font-size: 14px;
+}
+
+.user-icon-dropdown-user-catagories{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+   width: 100%
+}
+
+.lower-div{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.lower-div-links{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+}
+
+.new-lesson{
+    // justify-self: center;
+    // align-self: center;
+    // width: 80%;
+    margin:18px;
+    padding:10px;
+    padding-left: 80px;
+    padding-right:80px;
+    background:yellow;
 }
 
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
+import StepEditIndex from"./step/step_edit_index"
 
- class LessonShow extends React.Component{
+ class LessonEdit extends React.Component{
     constructor(props){
         super(props)
 
         this.state = {
-            trigger: true,
-            stepCount: 0
+            trigger: false
         }
 
         this.createStep = this.createStep.bind(this)
@@ -16,22 +16,22 @@ import { withRouter } from "react-router-dom";
 
     
     componentDidMount(){
-        this.props.requestLesson(this.props.match.params.lessonId);
-        this.props.fetchLessonSteps(this.props.match.params.lessonId)
+       this.props.requestLesson(this.props.match.params.lessonId)
     }
-    
-    // flipTrigger(){
-    //     if(this.state.trigger){
-    //         this.setState({trigger: false})
-    //     }else{
-    //     this.setState({trigger: true})
-    //     }
 
-    // }
+//     componentDidUpdate(prevProps){
+//         if (this.props.steps !== prevProps.steps) {
+//             this.props.requestLesson(this.props.match.params.lessonId)
+//          console.log('userId changed ');
+//      }
+//    }
+    
     createStep(){
         this.props.createStep(this.props.lesson.id)
-        const newStep = this.state.stepCount += 1
-        this.setState({setCount: newStep})
+        console.log('click')
+        let trig = this.state.trigger
+        this.setState({trigger:!trig})
+        console.log(this.state.trigger)
     }
 
     deleteStep(fullStep){
@@ -39,50 +39,59 @@ import { withRouter } from "react-router-dom";
 
     }
 
-    listSteps(){
-        console.log('listSteps')
-        return(
-        Object.keys(this.props.steps).map((id)=> {
-            const step = this.props.steps[id].title
-            const fullStep = this.props.steps[id]
-            const num =this.props.lesson.stepIds.indexOf(parseInt([id])) + 1
-            return ( <div>
-                <li key={[id]}>Step {num}:{step}</li>
-                <button onClick={()=>{this.deleteStep(fullStep)}}>delete</button>
-                </div>)
-        }))
-    }
+    // listSteps(){
+    //     console.log('listSteps')
+    //     console.log(this.props.steps)
+    //        return this.props.steps.map((step) =>{
+    //         if(step === undefined){
+    //             return 7
+    //         }
+    //            return <div>
+    //             <li>{step.id}</li>
+    //             <button onClick={()=>{this.deleteStep(step)}}>delete</button>
+    //             </div>
+    //        })
+    //     }
+
 
     render() {
         console.log('render lesson')
-        // console.log('state')
-        // console.log(this.state)
+  
         console.log(this.props)
-        // console.log(this.props.fetchLessonSteps(9999))
-
+        console.log(this.state)
    
     
-        if (!this.props.lesson){
+        if (this.props.lesson === undefined){
+            console.log("gate1")
             return (
-            <div>no load</div>)
+            <div>no lesson</div>)
         }
+        
+        let tired = "false"
 
-        return( 
-            <div> dummy
-                <ol>
-                    <li>{this.props.lesson.title}</li>
-                    {this.listSteps()}
-                </ol>
+        if(this.state.trigger){
+            tired = "true"
+        }
+      
+            return( 
 
-                <button onClick={()=>{this.createStep()}}>createStep</button>
-                
-            </div>
-        )
-    }
+                    <div> 
+                        <ol>{this.props.lesson.title}
+                            <li>{this.props.lesson.title}</li>
+                            {/* {this.listSteps()} */}
+                            <StepEditIndex props= {this.props}/>
+                        </ol>
+
+                        <button onClick={()=>{this.createStep()}}>createStep</button>
+                        
+                    </div>
+                )
+            }
+    // }
     
 
     
 }
 
 
-export default withRouter(LessonShow);
+export default withRouter(LessonEdit);

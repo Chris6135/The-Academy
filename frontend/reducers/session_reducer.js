@@ -17,3 +17,8 @@ const sessionReducer = (state = _nullUser, action) =>{
 };
 
 export default sessionReducer
+
+//fetch the pokemon index.
+//you grab form the poken is the pokemon their names nad hteir images
+//when you grab a pokemon show
+//you grab the pokemon, all of their info, and all of their items. 

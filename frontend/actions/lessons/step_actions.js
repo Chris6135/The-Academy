@@ -51,7 +51,7 @@ export const fetchLessonSteps = (lesson_id) => dispatch => {
       .then(step => dispatch(receiveSingleStep(step)));
   }
 
-  export const updatestep = (step) => dispatch => {
+  export const updateStep = (step) => dispatch => {
     return APIUtil.updateStep(step)
       .then(step => dispatch(receiveSingleStep(step)));
   }

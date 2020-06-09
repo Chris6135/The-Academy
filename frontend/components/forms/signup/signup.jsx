@@ -87,7 +87,6 @@ class SignUpForm extends React.Component {
 
   render(){
 
-    console.log("im rendering")
     return (
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit} className="signup-form-box">

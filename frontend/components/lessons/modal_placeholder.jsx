@@ -20,12 +20,11 @@ export default class modalPlaceholder extends React.Component{
       handleSubmit(e) {
         e.preventDefault();
         const lesson = Object.assign({}, this.state);
-        console.log('clicked')
-        console.log(lesson.id)
+   
 
         this.props
         .createLesson(lesson)
-        .then(data => this.props.history.push(`/lesson/edit/${data.lesson.id}`));
+        .then(data => this.props.history.push(`/lesson/edit/${data.payload.lesson.id}`));
     }
     
     

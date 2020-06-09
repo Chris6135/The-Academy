@@ -2,13 +2,21 @@ import {fetchSingleLesson} from "../../actions/lessons/lesson_actions"
 import React from 'react';
 import lesson_showpage from './lesson_edit'
 import { connect } from 'react-redux';
-import {fetchLessonSteps, fetchSingleStep, createStep,destroyStep} from "../../actions/lessons/step_actions"
+import {fetchLessonSteps, fetchSingleStep, createStep, destroyStep, updateStep} from "../../actions/lessons/step_actions"
 
 
 const mapStateToProps = (state,ownProps) => {
+  const lesson = state.entities.lessons[ownProps.match.params.lessonId];
+  let steps = []
+  if(lesson){
+    steps = lesson.stepIds.map((stepId)=> {
+         return state.entities.steps[stepId]
+    })
+  }
+
   return {
-    lesson : state.entities.lessons[ownProps.match.params.lessonId],
-    steps: state.entities.steps
+    lesson : lesson,
+    steps: steps
 
   };
 };
@@ -19,7 +27,8 @@ const mapDispatchToProps = dispatch => {
     fetchLessonSteps: (lessonId => dispatch(fetchLessonSteps(lessonId))),
     fetchSingleStep: (id => dispatch(fetchSingleStep(id))),
     createStep: (step => dispatch(createStep(step))),
-    deleteStep: (step => dispatch(destroyStep(step)))
+    deleteStep: (step => dispatch(destroyStep(step))),
+    updateStep: (step => dispatch(updateStep(step)))
   };
 };
 

@@ -21,10 +21,10 @@ export const receiveLessons = (lessons) =>{
     }
 }
 
-export const receiveSingleLesson = (lesson) =>{
+export const receiveSingleLesson = (payload) =>{
     return{
         type: RECEIVE_SINGLE_LESSON,
-        lesson
+        payload
     }
 }
 
