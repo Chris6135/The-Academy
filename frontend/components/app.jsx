@@ -9,6 +9,7 @@ import Footer from "./constants/footer/footer_container"
 import LessonEdit from "./lessons/lesson_edit_container"
 import Modal from "./lessons/modal_placeholder_container"
 import {AuthRoute} from "../util/route_util"
+import StepEditPage from "../components/lessons/step/step_edit_page_container"
 
 
 import {
@@ -27,7 +28,8 @@ const App = () => (
             <AuthRoute exact path="/signin" component={Signin} />
             <Route exact path="/" component={Splash} /> 
             <Route exact path="/lesson/new" component={Modal} /> 
-            <Route path="/lesson/edit/:lessonId" component={LessonEdit}
+            <Route exact path="/lesson/edit/:lessonId" component={LessonEdit}/>
+            <Route exact path="/step/:id" component={StepEditPage}/>
         />
 
 

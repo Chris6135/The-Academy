@@ -20,7 +20,7 @@ class Api::StepsController < ApplicationController
 
     def update
         @step = Step.find(params[:id])
-        if @step.update(step_params)
+        if @step.update(steps_params)
           render :show
         else
           render json: @step.errors.full_messages, status: 422

@@ -232,10 +232,10 @@ var receiveSteps = function receiveSteps(steps) {
     steps: steps
   };
 };
-var receiveSingleStep = function receiveSingleStep(step) {
+var receiveSingleStep = function receiveSingleStep(payload) {
   return {
     type: RECEIVE_SINGLE_STEP,
-    step: step
+    paylod: paylod
   };
 };
 var deleteStep = function deleteStep(step) {
@@ -386,7 +386,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lessons_lesson_edit_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./lessons/lesson_edit_container */ "./frontend/components/lessons/lesson_edit_container.js");
 /* harmony import */ var _lessons_modal_placeholder_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./lessons/modal_placeholder_container */ "./frontend/components/lessons/modal_placeholder_container.js");
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _components_lessons_step_step_edit_page_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/lessons/step/step_edit_page_container */ "./frontend/components/lessons/step/step_edit_page_container.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 
@@ -409,18 +411,23 @@ var App = function App() {
     exact: true,
     path: "/signin",
     component: _forms_signin_signin_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Route"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__["Route"], {
     exact: true,
     path: "/",
     component: _splash_splash__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Route"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__["Route"], {
     exact: true,
     path: "/lesson/new",
     component: _lessons_modal_placeholder_container__WEBPACK_IMPORTED_MODULE_9__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__["Route"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__["Route"], {
+    exact: true,
     path: "/lesson/edit/:lessonId",
     component: _lessons_lesson_edit_container__WEBPACK_IMPORTED_MODULE_8__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_constants_footer_footer_container__WEBPACK_IMPORTED_MODULE_7__["default"], null)));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__["Route"], {
+    exact: true,
+    path: "/step/:id",
+    component: _components_lessons_step_step_edit_page_container__WEBPACK_IMPORTED_MODULE_11__["default"]
+  }), "/>", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_constants_footer_footer_container__WEBPACK_IMPORTED_MODULE_7__["default"], null)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -1554,6 +1561,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var LessonEdit = /*#__PURE__*/function (_React$Component) {
   _inherits(LessonEdit, _React$Component);
 
@@ -1565,9 +1573,6 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, LessonEdit);
 
     _this = _super.call(this, props);
-    _this.state = {
-      trigger: false
-    };
     _this.createStep = _this.createStep.bind(_assertThisInitialized(_this));
     _this.deleteStep = _this.deleteStep.bind(_assertThisInitialized(_this));
     return _this;
@@ -1577,13 +1582,15 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.requestLesson(this.props.match.params.lessonId);
-    } //     componentDidUpdate(prevProps){
-    //         if (this.props.steps !== prevProps.steps) {
-    //             this.props.requestLesson(this.props.match.params.lessonId)
-    //          console.log('userId changed ');
-    //      }
-    //    }
-
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.steps !== prevProps.steps) {
+        // this.props.requestLesson(this.props.match.params.lessonId)
+        console.log('userId changed ');
+      }
+    }
   }, {
     key: "createStep",
     value: function createStep() {
@@ -1599,24 +1606,54 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
     key: "deleteStep",
     value: function deleteStep(fullStep) {
       this.props.deleteStep(fullStep);
-    } // listSteps(){
-    //     console.log('listSteps')
-    //     console.log(this.props.steps)
-    //        return this.props.steps.map((step) =>{
-    //         if(step === undefined){
-    //             return 7
-    //         }
-    //            return <div>
-    //             <li>{step.id}</li>
-    //             <button onClick={()=>{this.deleteStep(step)}}>delete</button>
-    //             </div>
-    //        })
-    //     }
+    }
+  }, {
+    key: "listSteps",
+    value: function listSteps() {
+      var _this2 = this;
 
+      console.log('listSteps');
+      console.log(this.props.steps);
+      return this.props.steps.map(function (step) {
+        if (step === undefined) {
+          return 7;
+        }
+
+        var stepNum = _this2.props.steps.indexOf(step) + 1;
+        var titleDef = "(click-to-edit)";
+        var link = "/step/".concat(step.id);
+
+        if (step.title) {
+          titleDef = step.title;
+        }
+
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "step-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "image drag box"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "step-info"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "icon"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "title-body-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: link
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "step-edit-title"
+        }, "Step ", stepNum, ": ", titleDef), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "step-edit-body"
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "step-edit-delete"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            _this2.deleteStep(step);
+          }
+        }, "delete"))));
+      });
+    }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       console.log('render lesson');
       console.log(this.props);
@@ -1627,21 +1664,12 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "no lesson");
       }
 
-      var tired = "false";
-
-      if (this.state.trigger) {
-        tired = "true";
-      }
-
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", null, this.props.lesson.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, this.props.lesson.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_step_step_edit_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        props: this.props
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", null, this.props.lesson.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, this.props.lesson.title), this.listSteps()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          _this2.createStep();
+          _this3.createStep();
         }
       }, "createStep"));
-    } // }
-
+    }
   }]);
 
   return LessonEdit;
@@ -1949,6 +1977,187 @@ var StepEditIndex = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
+/***/ "./frontend/components/lessons/step/step_edit_page.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/lessons/step/step_edit_page.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+ // import { withRouter } from "react-router-dom";
+
+var StepEditPage = /*#__PURE__*/function (_React$Component) {
+  _inherits(StepEditPage, _React$Component);
+
+  var _super = _createSuper(StepEditPage);
+
+  function StepEditPage(props) {
+    var _this;
+
+    _classCallCheck(this, StepEditPage);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      title: '',
+      body: ''
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(StepEditPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log(this.props);
+      this.props.fetchSingleStep(this.props.match.params.id);
+
+      if (this.props.state !== undefined) {
+        this.setState({
+          title: this.props.step.title,
+          body: this.props.step.body
+        });
+      }
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var step = Object.assign({}, this.props.step, this.state);
+      console.log(step);
+      this.props.updateStep(step);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.props.step === undefined) {
+        console.log("gate1");
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "no step");
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "step-edit-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "image-bar"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-toolbar"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "utility-buttons"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "submit-buttons"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "session-submit",
+        type: "submit",
+        form: "edit-step"
+      }, "save! ")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        className: "step-edit-form",
+        id: "edit-step"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        placeholder: "Type your Title",
+        value: this.state.title,
+        onChange: this.update('title'),
+        className: "step-title-input"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        rows: "4",
+        cols: "50",
+        value: this.state.body,
+        onChange: this.update('body'),
+        className: "step-body-input"
+      }))));
+    }
+  }]);
+
+  return StepEditPage;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(StepEditPage));
+
+/***/ }),
+
+/***/ "./frontend/components/lessons/step/step_edit_page_container.js":
+/*!**********************************************************************!*\
+  !*** ./frontend/components/lessons/step/step_edit_page_container.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _step_edit_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./step_edit_page */ "./frontend/components/lessons/step/step_edit_page.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/lessons/step_actions */ "./frontend/actions/lessons/step_actions.js");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var step = state.entities.steps[ownProps.match.params.id];
+  return {
+    step: step
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchSingleStep: function fetchSingleStep(id) {
+      return dispatch(Object(_actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_3__["fetchSingleStep"])(id));
+    },
+    updateStep: function updateStep(step) {
+      return dispatch(Object(_actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_3__["updateStep"])(step));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(_step_edit_page__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/root.jsx":
 /*!**************************************!*\
   !*** ./frontend/components/root.jsx ***!
@@ -2147,48 +2356,9 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
   !*** ./frontend/reducers/lessons_reducer.js ***!
   \**********************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/lessons/lesson_actions */ "./frontend/actions/lessons/lesson_actions.js");
-/* harmony import */ var _actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/lessons/step_actions */ "./frontend/actions/lessons/step_actions.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
-var lessonsReducer = function lessonsReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state);
-  var newState = Object.assign({}, state);
-
-  switch (action.type) {
-    case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LESSONS"]:
-      return Object.assign({}, state, action.lessons);
-
-    case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SINGLE_LESSON"]:
-      var lesson = action.payload.lesson;
-      return Object.assign({}, state, _defineProperty({}, lesson.id, lesson));
-
-    case _actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_SINGLE_STEP"]:
-      console.log("WITNESS ME");
-      console.log(newState);
-      console.log(newState[action.step.lesson_id]);
-      newState[action.step.lesson_id].stepIds.push(action.step.id);
-      return newState;
-
-    case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_LESSON"]:
-      delete newState[action.lesson.id];
-      return newState;
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (lessonsReducer);
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/chris/Desktop/The_Academy/frontend/reducers/lessons_reducer.js: Identifier 'newState' has already been declared (22:18)\n\n\u001b[0m \u001b[90m 20 | \u001b[39m            \u001b[36mreturn\u001b[39m newState\u001b[0m\n\u001b[0m \u001b[90m 21 | \u001b[39m        \u001b[36mcase\u001b[39m \u001b[33mDELETE_LESSON\u001b[39m\u001b[33m:\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 22 | \u001b[39m            \u001b[36mconst\u001b[39m newState \u001b[33m=\u001b[39m \u001b[33mObject\u001b[39m\u001b[33m.\u001b[39massign({}\u001b[33m,\u001b[39mstate)\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 23 | \u001b[39m            \u001b[36mdelete\u001b[39m newState[action\u001b[33m.\u001b[39mlesson\u001b[33m.\u001b[39mid]\u001b[0m\n\u001b[0m \u001b[90m 24 | \u001b[39m            \u001b[36mreturn\u001b[39m newState\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 25 | \u001b[39m        \u001b[36mdefault\u001b[39m\u001b[33m:\u001b[39m\u001b[0m\n    at Object._raise (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:746:17)\n    at Object.raiseWithData (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:739:17)\n    at Object.raise (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:733:17)\n    at ScopeHandler.checkRedeclarationInScope (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:4793:12)\n    at ScopeHandler.declareName (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:4759:12)\n    at Object.checkLVal (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:9261:22)\n    at Object.parseVarId (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11837:10)\n    at Object.parseVar (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11812:12)\n    at Object.parseVarStatement (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11624:10)\n    at Object.parseStatementContent (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11223:21)\n    at Object.parseStatement (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11156:17)\n    at Object.parseSwitchStatement (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11561:36)\n    at Object.parseStatementContent (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11207:21)\n    at Object.parseStatement (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11156:17)\n    at Object.parseBlockOrModuleBlockBody (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11731:25)\n    at Object.parseBlockBody (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11717:10)\n    at Object.parseBlock (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11701:10)\n    at Object.parseFunctionBody (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:10708:24)\n    at Object.parseArrowExpression (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:10677:10)\n    at Object.parseParenAndDistinguishExpression (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:10295:12)\n    at Object.parseExprAtom (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:10007:21)\n    at Object.parseExprAtom (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:4638:20)\n    at Object.parseExprSubscripts (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:9656:23)\n    at Object.parseMaybeUnary (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:9636:21)\n    at Object.parseExprOps (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:9506:23)\n    at Object.parseMaybeConditional (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:9479:23)\n    at Object.parseMaybeAssign (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:9434:21)\n    at Object.parseVar (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11815:26)\n    at Object.parseVarStatement (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11624:10)\n    at Object.parseStatementContent (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11223:21)");
 
 /***/ }),
 
@@ -2270,13 +2440,14 @@ var sessionReducer = function sessionReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/lessons/step_actions */ "./frontend/actions/lessons/step_actions.js");
 /* harmony import */ var _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/lessons/lesson_actions */ "./frontend/actions/lessons/lesson_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
 var StepsReducer = function StepsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log(action);
   Object.freeze(state);
 
   switch (action.type) {
@@ -2286,6 +2457,11 @@ var StepsReducer = function StepsReducer() {
     case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_SINGLE_LESSON"]:
       var steps = action.payload.steps;
       return Object.assign({}, state, steps);
+
+    case _actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SINGLE_STEP"]:
+      console.log("step received");
+      console.log(action);
+      return Object.assign({}, state, _defineProperty({}, action.payload.step.id, action.payload.step));
 
     case _actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_STEP"]:
       var newState = Object.assign({}, state);
@@ -2642,7 +2818,7 @@ var createStep = function createStep(lesson_id) {
 var updateStep = function updateStep(step) {
   return $.ajax({
     url: "/api/steps/".concat(step.id),
-    method: "POST",
+    method: "PATCH",
     data: {
       step: step
     }

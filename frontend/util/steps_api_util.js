@@ -33,7 +33,7 @@ export const createStep = (lesson_id) =>{
 export const updateStep = (step) =>{
     return $.ajax({
         url:`/api/steps/${step.id}`,
-        method:"POST",
+        method:"PATCH",
         data:{step}
     })
 

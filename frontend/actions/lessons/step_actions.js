@@ -13,10 +13,10 @@ export const receiveSteps = (steps) =>{
     }
 }
 
-export const receiveSingleStep = (step) =>{
+export const receiveSingleStep = (payload) =>{
     return{
         type: RECEIVE_SINGLE_STEP,
-        step
+        paylod
     }
 }
 

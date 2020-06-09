@@ -1,60 +1,101 @@
-// import React from 'react';
+import React from 'react';
+import {Link} from "react-router-dom"
+import { withRouter } from "react-router-dom";
+
+
 // import { withRouter } from "react-router-dom";
 
-//  class StepEditIndex extends React.Component{
-//     constructor(props){
-//         super(props)
-//     }
+ class StepEditPage extends React.Component{
+    constructor(props){
+        super(props)
 
+        this.state = {
+            title: '',
+            body: ''
+        }
+
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+        componentDidMount(){
+            console.log(this.props)
+            this.props.fetchSingleStep(this.props.match.params.id)
+            
+            if(this.props.state !== undefined){
+                this.setState({
+                    title: this.props.step.title, 
+                    body: this.props.step.body})
+
+
+            }
+        }
+
+    update(field) {
+        return e => this.setState({
+          [field]: e.currentTarget.value
+        });
+      }
+
+      handleSubmit(e) {
+        e.preventDefault();
+        const step = Object.assign({},this.props.step, this.state);
+        console.log(step)
+        this.props.updateStep(step);
+      }
     
-//     componentDidMount(){
-//        this.props.props.requestLesson(this.props.props.match.params.lessonId)
-//     }
 
-//     componentDidUpdate(prevProps){
-//         // const {steps, requestLesson} = this.props
+    render() {
 
-//         if (this.props.props.steps !== prevProps.props.steps) {
-//             requestLesson(this.props.props.match.params.lessonId)
-//          console.log('userId changed ');
-//      }
-//    }
+        if (this.props.step === undefined){
+            console.log("gate1")
+            return (
+            <div>no step</div>)
+        } 
 
-//     listSteps(){
-//         // const {steps} = this.props
-//         console.log('listSteps')
-//         console.log(steps)
-//            return this.props.props.steps.map((step) =>{
-//             if(this.props.props.step === undefined){
-//                 return 7
-//             }
-//                return <div>
-//                 <li>{step.id}</li>
-//                 <button onClick={()=>{this.deleteStep(step)}}>delete</button>
-//                 </div>
-//            })
-//         }
+        return(
+        <div className="step-edit-container">
 
+            <div className = "form-header">
+            <div className="image-bar"></div>
+            <div className="edit-toolbar">
+                <div className ="utility-buttons">
+                </div>
+                <div className = "submit-buttons">
+                    <button className="session-submit" type="submit" form ="edit-step">save! </button>
+                </div>
 
-//     render() {
-//     if (this.props.lesson === undefined){
-//         console.log("gate1")
-//         return (
-//         <div>no lesson</div>)
-//     }
+            </div>
 
-//         return( 
+            </div>
 
-//                 <div> 
-//                     <ol>
-//                         {this.listSteps()}
-//                     </ol>
-//                     <button onClick={()=>{this.createStep()}}>createStep</button>
-//                 </div>
-//             )
-//         }
-// }
+            <form onSubmit={this.handleSubmit} 
+            className="step-edit-form"
+            id= "edit-step">
+
+                <label>
+                        <input type="text"
+                        placeholder="Type your Title"
+                        value={this.state.title}
+                        onChange={this.update('title')}
+                        className="step-title-input"/>
+                    </label>
 
 
-// export default withRouter(StepEditIndex);
+                    <label>
+                        <textarea  
+                                rows="4" 
+                                cols="50"
+                                value={this.state.body}
+                                onChange={this.update('body')}
+                                className="step-body-input">
+                        </textarea>
+                    </label>
+                </form>
+        </div>
+        )
+    }
+}
+
+
+export default withRouter(StepEditPage);
 

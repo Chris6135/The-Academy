@@ -4,7 +4,6 @@ import {RECEIVE_SINGLE_STEP} from "../actions/lessons/step_actions"
 
 const lessonsReducer = (state ={}, action) => {
     Object.freeze (state)
-    const newState = Object.assign({},state)
 
     switch(action.type){
         case RECEIVE_LESSONS:
@@ -16,9 +15,11 @@ const lessonsReducer = (state ={}, action) => {
             console.log("WITNESS ME")
             console.log(newState)
             console.log(newState[action.step.lesson_id])
-            newState[action.step.lesson_id].stepIds.push(action.step.id)
+            const newState = Object.assign({},state, {[action.payload.lesson.id]: action.payload.lesson})
+            newState[action.payload.lesson.lesson_id].stepIds.push(action.payload.step.id)
             return newState
         case DELETE_LESSON:
+            const newState = Object.assign({},state)
             delete newState[action.lesson.id]
             return newState;
         default:
