@@ -16,14 +16,14 @@ export const receiveSteps = (steps) =>{
 export const receiveSingleStep = (payload) =>{
     return{
         type: RECEIVE_SINGLE_STEP,
-        paylod
+        payload
     }
 }
 
-export const deleteStep = (step) =>{
+export const deleteStep = (payload) =>{
     return {
         type: DELETE_STEP,
-        step
+        payload
     }
 }
 

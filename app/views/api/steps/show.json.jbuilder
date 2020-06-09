@@ -3,5 +3,7 @@ json.step do
 end
 
 json.lesson do
-    json.partial! "api/lessons/lesson", lesson: @step.lesson_id
+    json.partial! "api/lessons/lesson", lesson: @step.lesson
+    json.stepIds @step.lesson.steps.pluck(:id)
+
 end

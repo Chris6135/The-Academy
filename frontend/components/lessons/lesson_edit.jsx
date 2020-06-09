@@ -17,19 +17,15 @@ import {Link} from "react-router-dom"
        this.props.requestLesson(this.props.match.params.lessonId)
     }
 
-    componentDidUpdate(prevProps){
-        if (this.props.steps !== prevProps.steps) {
-            // this.props.requestLesson(this.props.match.params.lessonId)
-         console.log('userId changed ');
-     }
-   }
+//     componentDidUpdate(prevProps){
+//         if (this.props.steps !== prevProps.steps) {
+//             // this.props.requestLesson(this.props.match.params.lessonId)
+//          console.log('userId changed ');
+//      }
+//    }
     
     createStep(){
         this.props.createStep(this.props.lesson.id)
-        console.log('click')
-        let trig = this.state.trigger
-        this.setState({trigger:!trig})
-        console.log(this.state.trigger)
     }
 
     deleteStep(fullStep){

@@ -1,9 +1,11 @@
 import {RECEIVE_LESSONS,RECEIVE_SINGLE_LESSON,DELETE_LESSON} from "../actions/lessons/lesson_actions"
-import {RECEIVE_SINGLE_STEP} from "../actions/lessons/step_actions"
+import {RECEIVE_SINGLE_STEP, DELETE_STEP} from "../actions/lessons/step_actions"
 
 
 const lessonsReducer = (state ={}, action) => {
     Object.freeze (state)
+    let newState = Object.assign({},state)
+    let stepIds =[]
 
     switch(action.type){
         case RECEIVE_LESSONS:
@@ -12,14 +14,19 @@ const lessonsReducer = (state ={}, action) => {
             const lesson = action.payload.lesson
             return Object.assign({},state,{[lesson.id]: lesson})
         case RECEIVE_SINGLE_STEP:
-            console.log("WITNESS ME")
-            console.log(newState)
-            console.log(newState[action.step.lesson_id])
-            const newState = Object.assign({},state, {[action.payload.lesson.id]: action.payload.lesson})
-            newState[action.payload.lesson.lesson_id].stepIds.push(action.payload.step.id)
+            stepIds = newState[action.payload.lesson.id].stepIds
+            newState = Object.assign({},state, {[action.payload.lesson.id]: action.payload.lesson})
+            stepIds.push(action.payload.step.id)
             return newState
+        case DELETE_STEP:
+            newState = Object.assign({},state, {[action.payload.lesson.id]: action.payload.lesson})
+            stepIds = newState[action.payload.lesson.id].stepIds
+            const index = stepIds.indexOf(action.payload.step.id);     
+            if (index > -1) {
+                stepIds.splice(index, 1);
+            }
+            return newState;
         case DELETE_LESSON:
-            const newState = Object.assign({},state)
             delete newState[action.lesson.id]
             return newState;
         default:

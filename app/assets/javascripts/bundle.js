@@ -235,13 +235,13 @@ var receiveSteps = function receiveSteps(steps) {
 var receiveSingleStep = function receiveSingleStep(payload) {
   return {
     type: RECEIVE_SINGLE_STEP,
-    paylod: paylod
+    payload: payload
   };
 };
-var deleteStep = function deleteStep(step) {
+var deleteStep = function deleteStep(payload) {
   return {
     type: DELETE_STEP,
-    step: step
+    payload: payload
   };
 };
 var fetchLessonSteps = function fetchLessonSteps(lesson_id) {
@@ -1582,25 +1582,17 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.requestLesson(this.props.match.params.lessonId);
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      if (this.props.steps !== prevProps.steps) {
-        // this.props.requestLesson(this.props.match.params.lessonId)
-        console.log('userId changed ');
-      }
-    }
+    } //     componentDidUpdate(prevProps){
+    //         if (this.props.steps !== prevProps.steps) {
+    //             // this.props.requestLesson(this.props.match.params.lessonId)
+    //          console.log('userId changed ');
+    //      }
+    //    }
+
   }, {
     key: "createStep",
     value: function createStep() {
       this.props.createStep(this.props.lesson.id);
-      console.log('click');
-      var trig = this.state.trigger;
-      this.setState({
-        trigger: !trig
-      });
-      console.log(this.state.trigger);
     }
   }, {
     key: "deleteStep",
@@ -2356,9 +2348,59 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
   !*** ./frontend/reducers/lessons_reducer.js ***!
   \**********************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/chris/Desktop/The_Academy/frontend/reducers/lessons_reducer.js: Identifier 'newState' has already been declared (22:18)\n\n\u001b[0m \u001b[90m 20 | \u001b[39m            \u001b[36mreturn\u001b[39m newState\u001b[0m\n\u001b[0m \u001b[90m 21 | \u001b[39m        \u001b[36mcase\u001b[39m \u001b[33mDELETE_LESSON\u001b[39m\u001b[33m:\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 22 | \u001b[39m            \u001b[36mconst\u001b[39m newState \u001b[33m=\u001b[39m \u001b[33mObject\u001b[39m\u001b[33m.\u001b[39massign({}\u001b[33m,\u001b[39mstate)\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 23 | \u001b[39m            \u001b[36mdelete\u001b[39m newState[action\u001b[33m.\u001b[39mlesson\u001b[33m.\u001b[39mid]\u001b[0m\n\u001b[0m \u001b[90m 24 | \u001b[39m            \u001b[36mreturn\u001b[39m newState\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 25 | \u001b[39m        \u001b[36mdefault\u001b[39m\u001b[33m:\u001b[39m\u001b[0m\n    at Object._raise (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:746:17)\n    at Object.raiseWithData (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:739:17)\n    at Object.raise (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:733:17)\n    at ScopeHandler.checkRedeclarationInScope (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:4793:12)\n    at ScopeHandler.declareName (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:4759:12)\n    at Object.checkLVal (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:9261:22)\n    at Object.parseVarId (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11837:10)\n    at Object.parseVar (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11812:12)\n    at Object.parseVarStatement (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11624:10)\n    at Object.parseStatementContent (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11223:21)\n    at Object.parseStatement (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11156:17)\n    at Object.parseSwitchStatement (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11561:36)\n    at Object.parseStatementContent (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11207:21)\n    at Object.parseStatement (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11156:17)\n    at Object.parseBlockOrModuleBlockBody (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11731:25)\n    at Object.parseBlockBody (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11717:10)\n    at Object.parseBlock (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11701:10)\n    at Object.parseFunctionBody (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:10708:24)\n    at Object.parseArrowExpression (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:10677:10)\n    at Object.parseParenAndDistinguishExpression (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:10295:12)\n    at Object.parseExprAtom (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:10007:21)\n    at Object.parseExprAtom (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:4638:20)\n    at Object.parseExprSubscripts (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:9656:23)\n    at Object.parseMaybeUnary (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:9636:21)\n    at Object.parseExprOps (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:9506:23)\n    at Object.parseMaybeConditional (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:9479:23)\n    at Object.parseMaybeAssign (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:9434:21)\n    at Object.parseVar (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11815:26)\n    at Object.parseVarStatement (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11624:10)\n    at Object.parseStatementContent (/home/chris/Desktop/The_Academy/node_modules/@babel/parser/lib/index.js:11223:21)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/lessons/lesson_actions */ "./frontend/actions/lessons/lesson_actions.js");
+/* harmony import */ var _actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/lessons/step_actions */ "./frontend/actions/lessons/step_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var lessonsReducer = function lessonsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState = Object.assign({}, state);
+  var stepIds = [];
+
+  switch (action.type) {
+    case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LESSONS"]:
+      return Object.assign({}, state, action.lessons);
+
+    case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SINGLE_LESSON"]:
+      var lesson = action.payload.lesson;
+      return Object.assign({}, state, _defineProperty({}, lesson.id, lesson));
+
+    case _actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_SINGLE_STEP"]:
+      stepIds = newState[action.payload.lesson.id].stepIds;
+      newState = Object.assign({}, state, _defineProperty({}, action.payload.lesson.id, action.payload.lesson));
+      stepIds.push(action.payload.step.id);
+      return newState;
+
+    case _actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_1__["DELETE_STEP"]:
+      newState = Object.assign({}, state, _defineProperty({}, action.payload.lesson.id, action.payload.lesson));
+      stepIds = newState[action.payload.lesson.id].stepIds;
+      var index = stepIds.indexOf(action.payload.step.id);
+
+      if (index > -1) {
+        stepIds.splice(index, 1);
+      }
+
+      return newState;
+
+    case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_LESSON"]:
+      delete newState[action.lesson.id];
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (lessonsReducer);
 
 /***/ }),
 
@@ -2465,7 +2507,7 @@ var StepsReducer = function StepsReducer() {
 
     case _actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_STEP"]:
       var newState = Object.assign({}, state);
-      delete newState[action.step.id];
+      delete newState[action.payload.step.id];
       return newState;
 
     default:
