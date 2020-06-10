@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :steps, only: [:show, :destroy, :update] 
 
     resources :splash, only: [:index]
-    resources :categories, only: [:index, :show]
+    resources :categories, only: [:index, :show, :create ,:update, :destroy]
   end
   root "static_pages#root"
 

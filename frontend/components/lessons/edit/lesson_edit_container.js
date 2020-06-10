@@ -1,11 +1,15 @@
-import {fetchSingleLesson, destroyLesson} from "../../actions/lessons/lesson_actions"
+import {fetchSingleLesson, destroyLesson} from "../../../actions/lessons/lesson_actions"
 import React from 'react';
 import lesson_showpage from './lesson_edit'
 import { connect } from 'react-redux';
-import {fetchLessonSteps, fetchSingleStep, createStep, destroyStep, updateStep} from "../../actions/lessons/step_actions"
+import {fetchLessonSteps, fetchSingleStep, createStep, destroyStep, updateStep} from "../../../actions/lessons/step_actions"
 
 
 const mapStateToProps = (state,ownProps) => {
+  console.log("TEST CHEKCK ME")
+  console.log(state)
+  console.log(ownProps)
+
   const lesson = state.entities.lessons[ownProps.match.params.lessonId];
   let steps = []
   if(lesson){

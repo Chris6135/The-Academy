@@ -1,0 +1,103 @@
+// step-box
+// edit-header-box
+// image-add-box
+// util-box
+// left-util
+// right-util
+// step-info
+// title-body-box
+// step-edit-title
+// step-edit-body
+// step-edit-delete
+
+
+.parent-box{
+    width: 100%;
+    height: 100%;
+    background:red;
+    display: flex;
+    justify-content: center;}
+.step-box{
+    // width: 1200px;
+    align-self: center;
+    background:blue;
+    display: flex;
+    flex-direction: column;
+    width:80%;
+    padding:30px;
+}
+
+.edit-header-box{
+    background: yellow;
+    display:flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.image-add-box{
+    background: red;
+    padding: 30px;
+
+}
+
+.util-box{
+    background: blue;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.right-util{
+    background: yellow;
+    padding: 30px;
+
+}
+
+.left-util{
+    background: green;
+    padding: 30px;
+
+}
+
+.step-info{
+    background: green;
+}
+
+.title-body-box{
+    padding:30px;
+    background:yellow
+}
+
+.step-edit-icon{
+    padding:30px;
+    background:green;
+}
+.step-edit-title{
+    padding:30px;
+    background:red
+}
+
+.step-edit-link{
+    background:orange;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.step-edit-body{    
+    padding:30px;
+    background:blue}
+.step-edit-body:empty{
+    display:none;
+}
+
+.step-edit-delete{
+    padding:30px;
+    background:purple
+}
+
+.create-step{
+    padding: 30px;
+    background: green
+}

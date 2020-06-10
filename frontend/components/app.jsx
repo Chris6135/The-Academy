@@ -6,11 +6,13 @@ import NavBar from "./constants/navbar/nav_bar_container"
 import Splash from "./splash/splash"
 import SearchNav from "./constants/searchbar/searchbar_nav"
 import Footer from "./constants/footer/footer_container"
-import LessonEdit from "./lessons/lesson_edit_container"
-import Modal from "./lessons/modal_placeholder_container"
-import {AuthRoute, ProtectedRoute} from "../util/route_util"
+import LessonEdit from "./lessons/edit/lesson_edit_container"
+import CreateLesson from "./lessons/edit/new_lesson_page_container"
+import {AuthRoute, ProtectedRoute,PrivateRoute} from "../util/route_util"
 import StepEditPage from "../components/lessons/step/step_edit_page_container"
 import UserDrafts from "../components/user/user_show_container"
+import Modal from "./constants/modal/modal"
+import LessonDraftShow from "./lessons/lesson/draft_lesson_show_container"
 
 
 import {
@@ -20,6 +22,7 @@ import {
 
 const App = () => (
   <div>
+    <Modal />
     <header>
         <NavBar />
         <SearchNav />
@@ -28,10 +31,12 @@ const App = () => (
             <AuthRoute exact path="/signup" component={Signup} />
             <AuthRoute exact path="/signin" component={Signin} />
             <Route exact path="/" component={Splash} /> 
-            <ProtectedRoute exact path="/lesson/new" component={Modal} /> 
+            <ProtectedRoute exact path="/lesson/new" component={CreateLesson} /> 
             <ProtectedRoute exact path="/lesson/edit/:lessonId" component={LessonEdit}/>
             <ProtectedRoute exact path="/step/:id" component={StepEditPage}/>
             <ProtectedRoute exact path="/user/drafts" component={UserDrafts}/>
+            <ProtectedRoute exact path="/lesson/show/draft/:lessonId" component={LessonDraftShow}/>
+
 
 
     <footer>

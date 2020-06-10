@@ -13,15 +13,38 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
 );
 
 
-const Protected = ({ component: Component, path, loggedIn, exact }) => (
+const Protected = ({ component: Component, path, loggedIn, exact, user }) => {
+  return(
+
   <Route path={path} exact={exact} render={(props) => (
      loggedIn ? (
       <Component {...props} />
     ) : (
       <Redirect to="/signin" />
     )
-  )} />
-);
+  )} />)}
+;
+
+// class PRoute extends React.Componet{
+//   constructor(props){
+//     super(props)
+//   }
+  
+//   render(){
+
+//     return(
+      
+//     <Route path={path} exact={exact} render={(props) => (
+//       loggedIn ? (
+//         <Component {...props} />
+//         ) : (
+//           <Redirect to="/signin" />
+//           )
+//           )} />
+//         )
+//      }
+// }
+
 
 const mapStateToProps = state => (
     {loggedIn: Boolean(state.session.id)}
@@ -29,6 +52,8 @@ const mapStateToProps = state => (
   
 
 export const AuthRoute = withRouter(connect(mapStateToProps)(Auth));
+
+// export const PrivateRoute = withRouter(connect(mapStateToProps)(PRoute));
 
 export const ProtectedRoute = withRouter(connect(mapStateToProps)(Protected));
 

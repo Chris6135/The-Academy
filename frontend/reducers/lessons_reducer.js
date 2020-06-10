@@ -1,5 +1,6 @@
 import {RECEIVE_LESSONS,RECEIVE_SINGLE_LESSON,DELETE_LESSON} from "../actions/lessons/lesson_actions"
 import {RECEIVE_SINGLE_STEP, DELETE_STEP} from "../actions/lessons/step_actions"
+import {RECEIVE_CURRENT_USER} from "../actions/session/session_actions"
 
 
 const lessonsReducer = (state ={}, action) => {
@@ -29,8 +30,11 @@ const lessonsReducer = (state ={}, action) => {
         case DELETE_LESSON:
             delete newState[action.lesson.id]
             return newState;
+        case RECEIVE_CURRENT_USER: 
+            newState = Object.assign({},action.payload.lessons)
+            return newState
         default:
-            return state
+            return state;
     }
 }
 

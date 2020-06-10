@@ -1,18 +1,21 @@
-import {createLesson} from "../../actions/lessons/lesson_actions"
+import {createLesson} from "../../../actions/lessons/lesson_actions"
 import React from 'react';
 import modal_placeholder from './modal_placeholder'
 import { connect } from 'react-redux';
+import {closeModal} from '../../../actions/util/modal_actions'
 
 
 const mapStateToProps = (state) => {
   return {
-      state
+      state,
+      formType:'newLesson'
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     createLesson: (lesson) => dispatch(createLesson(lesson)),
+    closeModal: ()=> dispatch(closeModal())
 
   };
 };

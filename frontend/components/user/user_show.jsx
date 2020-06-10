@@ -5,11 +5,27 @@ class UserShow extends React.Component{
     constructor(props){
         super(props)
     }
+    componentDidMount(){
+        this.props.getInfo(this.props.user.id)
+    }
+
 
     renderDrafts(){
-        return this.props.user.lessons.map((lesson) =>{
-            const link = `/lesson/edit/${lesson}`
-            return <li><Link to={link}>{lesson}</Link></li>
+        console.log(Object.keys(this.props.lessons).length)
+        console.log(this.props.user.lessons.length)
+
+        if(Object.keys(this.props.lessons).length !== this.props.user.lessons.length){
+            return (<p>loading</p>)
+        }
+
+        return this.props.user.lessons.map((lessonId) =>{
+            const link = `/lesson/edit/${lessonId}`
+            return <Link className="draft-box" to={link}>
+                    <div className="user-draft-photo"></div>
+                    <div className="user-draft-name">
+                        {this.props.lessons[lessonId].title}
+                    </div>
+                </Link>
         })
 
     }
@@ -18,10 +34,24 @@ class UserShow extends React.Component{
         console.log("userShow")
         console.log(this.props)
         return(
-            <div> 
-                <div>{this.props.user.username}</div>
-                <div>{this.renderDrafts()}</div>
+            <div className= "page-container"> 
+                <div className="user-header">
+                    <div className="user-info-container">
+                        <div className ="user-photo"></div>
+                        <div className= "user-info">
+                            <div className= "username">{this.props.user.username}</div>
+                            <div className="user-edit-buttons"></div>
+                            <div className="user-timestamp"></div>
+                         </div>
+                    </div>
+                    <div className="user-toolbar"></div>
+                </div>
+                <div className="user-draft-container">
+                   {this.renderDrafts()}     
+                </div>
             </div>
+                
+            
         )
     }
 

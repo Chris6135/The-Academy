@@ -1,4 +1,6 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom'
+
 
 export default class modalPlaceholder extends React.Component{
     constructor(props){
@@ -11,6 +13,10 @@ export default class modalPlaceholder extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+    componentDidMount(){
+        console.log("subimt")
+        console.log(this.props)
+    }
     update(field) {
         return e => this.setState({
           [field]: e.currentTarget.value
@@ -24,7 +30,9 @@ export default class modalPlaceholder extends React.Component{
 
         this.props
         .createLesson(lesson)
-        .then(data => this.props.history.push(`/lesson/edit/${data.payload.lesson.id}`));
+        .then(data => this.props.history.push(`/lesson/edit/${data.payload.lesson.id}`))
+        .then(this.props.closeModal())
+        // .then(this.setRedirect(`/lesson/edit/${data.payload.lesson.id}`))
     }
     
     

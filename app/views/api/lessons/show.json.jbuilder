@@ -1,6 +1,5 @@
 json.lesson do
     json.partial! "api/lessons/lesson", lesson: @lesson
-    json.stepIds @lesson.steps.pluck(:id)
 end
 
 json.steps do
@@ -10,5 +9,10 @@ json.steps do
         end
     end
 end
+
+json.author do
+    json.partial! 'api/users/user', user: @lesson.author
+end
+    
 
 # json.user json.partial! 'api/user/user', user: @lesson.author

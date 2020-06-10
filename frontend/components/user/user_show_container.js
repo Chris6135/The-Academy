@@ -1,6 +1,7 @@
 import React from 'react';
 import UserShow from "./user_show"
 import {connect} from "react-redux"
+import {getInfo} from "../../actions/session/session_actions"
 const mapStateToProps = (state,ownProps) => {
     const user = state.entities.users[state.session.id];
     let steps = []
@@ -12,9 +13,16 @@ const mapStateToProps = (state,ownProps) => {
   
     return {
       user : user,
+      lessons: state.entities.lessons
     //   steps: steps
   
     };
   };
 
-  export default connect(mapStateToProps)(UserShow);
+
+  const mapDispatchToProps = dispatch => {
+    return {
+      getInfo: (id => dispatch(getInfo(id))),
+    };
+  };
+  export default connect(mapStateToProps,mapDispatchToProps)(UserShow);

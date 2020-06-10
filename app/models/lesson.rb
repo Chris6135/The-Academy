@@ -13,7 +13,8 @@ class Lesson < ApplicationRecord
     has_one :product,
     primary_key: :id,
     foreign_key: :lesson_id,
-    class_name:  :Product
+    class_name:  :Product,
+    dependent: :delete
 
     belongs_to :author,
     primary_key: :id,
@@ -21,7 +22,8 @@ class Lesson < ApplicationRecord
     class_name: :User
 
 
-    has_many :steps
+    has_many :steps,
+    :dependent => :delete_all
 
 
 
