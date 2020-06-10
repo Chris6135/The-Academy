@@ -16,13 +16,6 @@ import {Link} from "react-router-dom"
     componentDidMount(){
        this.props.requestLesson(this.props.match.params.lessonId)
     }
-
-//     componentDidUpdate(prevProps){
-//         if (this.props.steps !== prevProps.steps) {
-//             // this.props.requestLesson(this.props.match.params.lessonId)
-//          console.log('userId changed ');
-//      }
-//    }
     
     createStep(){
         this.props.createStep(this.props.lesson.id)
@@ -68,7 +61,6 @@ import {Link} from "react-router-dom"
     }
 
     render() {
-    
         if (this.props.lesson === undefined){
             console.log("gate1")
             return (
@@ -76,10 +68,9 @@ import {Link} from "react-router-dom"
         }
 
         let draftLink = `/lesson/show/draft/${this.props.lesson.id}`
+        let publishLink = `/lesson/publish/${this.props.lesson.id}`
 
-        
 
-      
             return( 
 
 
@@ -91,7 +82,10 @@ import {Link} from "react-router-dom"
                                     <div className="left-util">
                                     <button onClick={()=> this.handleDelete()}>Delete This Lesson</button>
                                     </div>
-                                    <div className="right-util"><Link to={draftLink}>See Preview</Link></div>
+                                    <div className="right-util">
+                                       <Link to={draftLink}>See Preview</Link>                                        
+                                        <Link to={publishLink}>Publish Lesson</Link>
+                                        </div>
                                 </div>
                         </div>
 

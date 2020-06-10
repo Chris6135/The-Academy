@@ -6,75 +6,34 @@ import {Link} from "react-router-dom"
  class NewLesson extends React.Component{
     constructor(props){
         super(props)
-
-        this.createStep = this.createStep.bind(this)
-        this.deleteStep = this.deleteStep.bind(this)
-        this.handleDelete = this.handleDelete.bind(this)
     }
 
     
     componentDidMount(){
-       this.props.openModal('newLesson')
+        let payload = {type: "newLesson", lock: true}
+       this.props.openModal(payload)
     }
     
-    createStep(){
-        this.props.createStep(this.props.lesson.id)
-    }
-
-    deleteStep(fullStep){
-        this.props.deleteStep(fullStep)
-
-    }
 
     listSteps(){
-        console.log('listSteps')
-        console.log(this.props.steps)
-           return this.props.steps.map((step) =>{
-            if(step === undefined){
-                return 7
-            }
-            const stepNum = this.props.steps.indexOf(step) + 1
-            let titleDef = "(click-to-edit)"
-            const link = `/step/${step.id}`
-            if(step.title){
-                titleDef = step.title
-            }
+        const dummyArr = [1]
+        return dummyArr.map((num) =>{
                return (
 
-                                <div className="title-body-box">
-                                    <div className="step-edit-icon">icon</div>
+                <div className="title-body-box">
+                    <div className="step-edit-icon">icon</div>
 
-                                    <Link className="step-edit-link" to={link}>
-                                        
-                                        <div className="step-edit-title">Step {stepNum}: {titleDef}</div>
-                                        <div className="step-edit-body"> {step.body} </div>    
-                                    </Link>
-                                       <div className="step-edit-delete"><button onClick={()=>{this.deleteStep(step)}}>delete</button></div>
-                                </div>
+                    <div className="step-edit-div">
+                        
+                        <div className="step-edit-title">Step {num}: dummy</div>
+                        <div className="step-edit-body"> dummy </div>    
+                    </div>
+                        <div className="step-edit-delete"><button >delete</button></div>
+                </div>
            )})
         }
 
-
-    handleDelete(){ //FIX
-        this.props.history.push(`/`)
-        this.props.destroyLesson(this.props.lesson)
-    }
-
     render() {
-        console.log('render lesson')
-  
-        console.log(this.props)
-        console.log(this.state)
-   
-    
-        if (this.props.lesson === undefined){
-            console.log("gate1")
-            return (
-            <div>no lesson</div>)
-        }
-        
-
-      
             return( 
 
 
@@ -84,7 +43,7 @@ import {Link} from "react-router-dom"
                                 <div className= "image-add-box"></div>
                                 <div className="util-box">
                                     <div className="left-util">
-                                    <button onClick={()=> this.handleDelete()}>Delete This Lesson</button>
+                                    <button >Delete This Lesson</button>
                                     </div>
                                     <div className="right-util"></div>
                                 </div>
@@ -95,7 +54,7 @@ import {Link} from "react-router-dom"
                                       {this.listSteps()}
                                 </div>
                         </div>
-                        <button className="create-step" onClick={()=>{this.createStep()}}>createStep</button>             
+                        <button className="create-step">createStep</button>             
                     </div>
                 </div>
                 )

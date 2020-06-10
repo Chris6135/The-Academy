@@ -1,0 +1,52 @@
+.lesson-container{
+    height: 100%;
+    width: 1250px;
+    background:blue;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.lesson-header{
+    padding:30px;
+    background:green
+
+
+}
+
+.lesson-title{
+    padding:30px;
+    background:yellow
+
+}
+
+.lesson-info{  
+      padding:30px;
+    background:red
+
+}
+
+.authorInfo{
+
+    padding:30px;
+    background:purple
+}
+
+.step-title{
+
+    padding:30px;
+    background:blue
+
+}
+
+.photo-box{
+    padding:30px;
+    background:green
+
+}
+
+.step-body{
+    padding:30px;
+    background:purple
+
+}

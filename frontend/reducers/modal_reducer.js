@@ -1,11 +1,14 @@
 import { OPEN_MODAL, CLOSE_MODAL } from '../actions/util/modal_actions';
 
-export default function modalReducer(state = null, action) {
+const defState = {info:{type: null, lock:false}}
+
+export default function modalReducer(state = defState, action) {
+    Object.freeze(state)
   switch (action.type) {
     case OPEN_MODAL:
-      return action.modal;
+      return action.payload;
     case CLOSE_MODAL:
-      return null;
+      return defState;
     default:
       return state;
   }

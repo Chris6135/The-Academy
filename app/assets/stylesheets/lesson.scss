@@ -17,65 +17,95 @@
     background:red;
     display: flex;
     justify-content: center;}
+
 .step-box{
-    // width: 1200px;
+    width: 980px;
+    margin-top:40px;
+    margin-bottom:40px;
     align-self: center;
     background:blue;
     display: flex;
     flex-direction: column;
-    width:80%;
-    padding:30px;
+    padding:1px;
+    border-radius: 5px;
+
 }
 
 .edit-header-box{
     background: yellow;
     display:flex;
     flex-direction: column;
-    padding: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 5px;
+
 }
 
 .image-add-box{
     background: red;
     padding: 30px;
+    border-radius: 5px;
+    margin-top:15px;
+    margin-bottom:15px;
+    height:55px;
+
 
 }
 
 .util-box{
     background: blue;
-    padding: 30px;
     display: flex;
     justify-content: space-between;
 
 }
 
+
+.util-box > *{
+  height:35px;
+  display:flex;
+  align-items: center;
+
+}
+
+
 .right-util{
-    background: yellow;
-    padding: 30px;
+    background: green;
+    // padding: 30px;
 
 }
 
 .left-util{
     background: green;
-    padding: 30px;
+    // padding: 30px;
 
 }
 
 .step-info{
-    background: green;
+    // background: green;
+    margin:20px;
+    // padding:15px
 }
 
 .title-body-box{
-    padding:30px;
-    background:yellow
+    padding:5px;
+    background:yellow;
+    position: relative;
 }
 
 .step-edit-icon{
-    padding:30px;
+    padding:5px;
     background:green;
+    display:inline-block;
+    position: relative;
+    left:870px;
+    top:30px;
+
 }
 .step-edit-title{
     padding:30px;
-    background:red
+    background:red;
+    font-size: 14px;
+    font-weight:1000;
 }
 
 .step-edit-link{
@@ -83,7 +113,8 @@
     width:100%;
     display:flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: center;
 }
 .step-edit-body{    
     padding:30px;
@@ -93,11 +124,18 @@
 }
 
 .step-edit-delete{
-    padding:30px;
-    background:purple
+    display:inline-block;
+    position:relative;
+    padding:5px;
+    background:purple;
+    left:870px;
+    bottom:30px
 }
 
 .create-step{
-    padding: 30px;
+  
+    align-self: center;
+    width:100px;
+    height: 100px;
     background: green
 }

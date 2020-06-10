@@ -38,7 +38,7 @@ class LessonDraftShow extends React.Component{
         }
 
         return(
-            <div>
+            <div className="parent-box">
                 <div className="lesson-container">
 
                     <div className="lesson-header">

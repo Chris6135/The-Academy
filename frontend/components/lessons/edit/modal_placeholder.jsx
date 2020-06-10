@@ -40,18 +40,21 @@ export default class modalPlaceholder extends React.Component{
     render(){
  
         return(
-            <div>
+            <div className="modal-container">
 
-                <h1>placeholder</h1>
-                <form onSubmit={this.handleSubmit}>
-                <label> Please Enter Title 
-                    <input type="text"
-                    value={this.state.title}
-                    onChange={this.update('title')}
-                    />
-                     </label>
-                     <button >submit</button>
-                     </form>
+                <div className="modal-header"></div>
+
+                <form onSubmit={this.handleSubmit} className="modal-form-container">
+                    <label> Im teaching a lesson called </label>
+
+                        <input
+                            type="text"
+                            className="modal-input"
+                            value={this.state.title}
+                            onChange={this.update('title')}
+                        />
+                        <button className="modal-submit" >submit</button>
+                </form>
             </div>
         )
     }

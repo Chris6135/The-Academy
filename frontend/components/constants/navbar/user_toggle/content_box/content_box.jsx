@@ -57,7 +57,7 @@ class ContentBox extends React.Component {
                       </div>
                     <Link to="/lesson/new" className="new-lesson">New Lesson</Link>
                     </div>
-                <button className="logout-button" onClick={this.props.logOut}>Log Out</button>
+                <button className="logout-button" onClick={this.props.logOut} >Log Out</button>
               </div>
           </div>
      </div>
