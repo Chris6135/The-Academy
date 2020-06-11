@@ -3,6 +3,8 @@ import React from 'react';
 import modal_placeholder from './modal_placeholder'
 import { connect } from 'react-redux';
 import {closeModal} from '../../../actions/util/modal_actions'
+import { withRouter } from "react-router-dom";
+
 
 
 const mapStateToProps = (state) => {
@@ -20,4 +22,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(modal_placeholder);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(modal_placeholder))

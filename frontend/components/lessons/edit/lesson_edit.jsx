@@ -27,11 +27,13 @@ import {Link} from "react-router-dom"
     }
 
     listSteps(){
-        console.log('listSteps')
-        console.log(this.props.steps)
+     
            return this.props.steps.map((step) =>{
             if(step === undefined){
-                return 7
+                console.log("errors")
+
+                console.log(this.props)
+                return <h1>something went wrong</h1>
             }
             const stepNum = this.props.steps.indexOf(step) + 1
             let titleDef = "(click-to-edit)"
@@ -62,7 +64,6 @@ import {Link} from "react-router-dom"
 
     render() {
         if (this.props.lesson === undefined){
-            console.log("gate1")
             return (
             <div>no lesson</div>)
         }
@@ -84,7 +85,7 @@ import {Link} from "react-router-dom"
                                     </div>
                                     <div className="right-util">
                                        <Link to={draftLink}>See Preview</Link>                                        
-                                        <Link to={publishLink}>Publish Lesson</Link>
+                                        <Link to={publishLink} id="publish-button">Publish Lesson</Link>
                                         </div>
                                 </div>
                         </div>

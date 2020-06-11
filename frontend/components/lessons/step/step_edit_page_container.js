@@ -6,9 +6,11 @@ import { fetchSingleStep,updateStep} from "../../../actions/lessons/step_actions
 
 const mapStateToProps = (state,ownProps) => {
   const step = state.entities.steps[ownProps.match.params.id];
+  const lesson = state.entities.lessons[step.lesson_id]
 
   return {
-    step: step
+    step: step,
+    lesson: lesson
 
   };
 };

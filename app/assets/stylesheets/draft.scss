@@ -1,52 +1,87 @@
 .lesson-container{
     height: 100%;
     width: 1250px;
-    background:blue;
+    background:#FFFFFF;
     display: flex;
     flex-direction: column;
 
 }
 
 .lesson-header{
-    padding:30px;
-    background:green
+    height:70px;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:20px;
+    margin-bottom:20px;
+    justify-content: space-between;;
+
 
 
 }
 
 .lesson-title{
-    padding:30px;
-    background:yellow
+    min-width: 365px;
+    height:45px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bolder;
 
 }
 
 .lesson-info{  
-      padding:30px;
-    background:red
+    
 
 }
 
 .authorInfo{
 
-    padding:30px;
-    background:purple
+    min-width: 220px;
+    height:20px;
+    text-align: center;
+
+}
+
+.step-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .step-title{
+    display: inline-block;
+    height:30px;
+    width:500px;
+    margin:20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bolder;
 
-    padding:30px;
-    background:blue
 
 }
 
 .photo-box{
-    padding:30px;
-    background:green
+    display:none; //remove when photos are in
+    height:540px;
+    width:100%;
+    margin:20px;
+
 
 }
 
 .step-body{
-    padding:30px;
-    background:purple
+    margin:20px;
+    min-height:150px;
+    width:820px;
+    text-align: center;
+
+}
+
+.step-border{
+    height: 20px;
+    width:100px;
+    border-bottom: solid 1px black;
+    margin:20px;
 
 }

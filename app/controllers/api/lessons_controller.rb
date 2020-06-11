@@ -2,13 +2,17 @@ class Api::LessonsController < ApplicationController
     def index 
         if params[:user_id]
             @lessons = Lesson.find(params[:user_id])
+
+        elsif params[:category_id]
+            category = Category.find(params[:cateogry_id])
+            @lessons = Lesson.all.where category: category
         else
             @lessons = []
              Category.all.each do |category|
                 @lessons << category.lessons
-             end 
-             @lessons.flatten
-            render :index   
+        end 
+        @lessons.flatten
+        render :index   
         end
     end
 
@@ -45,6 +49,6 @@ class Api::LessonsController < ApplicationController
     private
 
     def lessons_params
-        params.require(:lesson).permit(:title)
+        params.require(:lesson).permit(:title, :category, :published)
     end
 end

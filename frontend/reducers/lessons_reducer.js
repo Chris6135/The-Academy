@@ -15,14 +15,23 @@ const lessonsReducer = (state ={}, action) => {
             const lesson = action.payload.lesson
             return Object.assign({},state,{[lesson.id]: lesson})
         case RECEIVE_SINGLE_STEP:
-            stepIds = newState[action.payload.lesson.id].stepIds
             newState = Object.assign({},state, {[action.payload.lesson.id]: action.payload.lesson})
-           if(stepIds.includes(action.payload.step.id)){
-                return newState
+            let oldIds = state[action.payload.lesson.id].stepIds
+            stepIds = newState[action.payload.lesson.id].stepIds
+            let stepIdx = action.payload.step.id
+
+
+           if(oldIds.includes(stepIdx)){
+               console.log("edit")
+            //    let idx = stepIds.indexOf(stepIdx)
+            //    stepIds[idx] = action.payload.step
+                return state
             }else{
-                stepIds.push(action.payload.step.id)
+                console.log("push")
+                // stepIds.push(action.payload.step.id)
                 return newState
             }
+        
         case DELETE_STEP:
             newState = Object.assign({},state, {[action.payload.lesson.id]: action.payload.lesson})
             stepIds = newState[action.payload.lesson.id].stepIds

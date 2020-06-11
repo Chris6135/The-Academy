@@ -23,6 +23,7 @@ class LessonDraftShow extends React.Component{
                         <div className="step-title"> Step {stepNum}: {titleDef} </div>
                         <div className="photo-box"> picture here</div>
                         <div className="step-body"> {step.body} </div>
+                        <div className="step-border"> </div>
                     </div>
                   )
             }
@@ -31,8 +32,7 @@ class LessonDraftShow extends React.Component{
 
 
     render(){
-        console.log("show")
-        console.log(this.props)
+       
         if(!this.props.steps){
             return null
         }

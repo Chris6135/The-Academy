@@ -1776,11 +1776,11 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
     value: function listSteps() {
       var _this2 = this;
 
-      console.log('listSteps');
-      console.log(this.props.steps);
       return this.props.steps.map(function (step) {
         if (step === undefined) {
-          return 7;
+          console.log("errors");
+          console.log(_this2.props);
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "something went wrong");
         }
 
         var stepNum = _this2.props.steps.indexOf(step) + 1;
@@ -1824,7 +1824,6 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       if (this.props.lesson === undefined) {
-        console.log("gate1");
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "no lesson");
       }
 
@@ -1851,7 +1850,8 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: draftLink
       }, "See Preview"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: publishLink
+        to: publishLink,
+        id: "publish-button"
       }, "Publish Lesson")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "step-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1894,14 +1894,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  console.log("TEST CHEKCK ME");
-  console.log(state);
-  console.log(ownProps);
   var lesson = state.entities.lessons[ownProps.match.params.lessonId];
   var steps = [];
 
   if (lesson) {
-    steps = lesson.stepIds.map(function (stepId) {
+    var sorted = lesson.stepIds.sort();
+    steps = sorted.map(function (stepId) {
       return state.entities.steps[stepId];
     });
   }
@@ -1951,7 +1949,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return modalPlaceholder; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
@@ -1982,6 +1979,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var modalPlaceholder = /*#__PURE__*/function (_React$Component) {
   _inherits(modalPlaceholder, _React$Component);
 
@@ -2002,12 +2000,6 @@ var modalPlaceholder = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(modalPlaceholder, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      console.log("subimt");
-      console.log(this.props);
-    }
-  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -2034,24 +2026,26 @@ var modalPlaceholder = /*#__PURE__*/function (_React$Component) {
         className: "modal-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-header"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Share your knowledge with the world!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "modal-splash"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " Im teaching a lesson called"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "modal-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, " Im teaching a lesson called "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         className: "modal-input",
         value: this.state.title,
         onChange: this.update('title')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "modal-submit"
-      }, "submit")));
+      }, "Submit Lesson")));
     }
   }]);
 
   return modalPlaceholder;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(modalPlaceholder));
 
 /***/ }),
 
@@ -2070,6 +2064,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal_placeholder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modal_placeholder */ "./frontend/components/lessons/edit/modal_placeholder.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_util_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/util/modal_actions */ "./frontend/actions/util/modal_actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 
@@ -2094,7 +2090,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(_modal_placeholder__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(_modal_placeholder__WEBPACK_IMPORTED_MODULE_2__["default"])));
 
 /***/ }),
 
@@ -2197,7 +2193,7 @@ var NewLesson = /*#__PURE__*/function (_React$Component) {
         className: "step-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "title-body-box"
-      }, this.listSteps())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "create-step"
       }, "createStep")));
     }
@@ -2321,15 +2317,14 @@ var LessonDraftShow = /*#__PURE__*/function (_React$Component) {
           className: "photo-box"
         }, " picture here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "step-body"
-        }, " ", step.body, " "));
+        }, " ", step.body, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "step-border"
+        }, " "));
       });
     }
   }, {
     key: "render",
     value: function render() {
-      console.log("show");
-      console.log(this.props);
-
       if (!this.props.steps) {
         return null;
       }
@@ -2453,8 +2448,9 @@ var PublishLesson = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      title: _this.props.lessson.title,
-      category: ''
+      title: _this.props.lesson.title,
+      category: '',
+      published: true
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -2470,9 +2466,18 @@ var PublishLesson = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var lesson = Object.assign({}, this.props.lesson, this.state);
+      this.props.updateLesson(lesson);
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         placeholder: this.props.lesson.title,
         value: this.state.title,
@@ -2488,7 +2493,10 @@ var PublishLesson = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
           key: i
         }, " ", category);
-      })));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "session-submit",
+        onClick: this.handleSubmit
+      }, " publish! ")));
     }
   }]);
 
@@ -2519,9 +2527,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var categories = [];
+
+  if (state.entities.categories) {
+    categories = Object.keys(state.entities.categories).map(function (catId) {
+      return state.entities.categories[catId].title;
+    });
+  }
+
   return {
     lesson: state.entities.lessons[ownProps.match.params.lessonId],
-    categories: state.entities.categories
+    categories: categories
   };
 };
 
@@ -2575,7 +2591,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
- // import { withRouter } from "react-router-dom";
+ //lessson currently breaks on refres because when refreshing all steps and lessons are cleared from the sate. 
+//should tlak to josh about this. possible bootstrap. 
+// import { withRouter } from "react-router-dom";
 
 var StepEditPage = /*#__PURE__*/function (_React$Component) {
   _inherits(StepEditPage, _React$Component);
@@ -2599,14 +2617,14 @@ var StepEditPage = /*#__PURE__*/function (_React$Component) {
   _createClass(StepEditPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log(this.props);
-      this.props.fetchSingleStep(this.props.match.params.id);
+      // this.props.fetchSingleStep(this.props.match.params.id)
+      this.setState({
+        title: this.props.step.title,
+        body: this.props.step.body
+      });
 
       if (this.props.state !== undefined) {
-        this.setState({
-          title: this.props.step.title,
-          body: this.props.step.body
-        });
+        console.log("Mount Check");
       }
     }
   }, {
@@ -2623,50 +2641,68 @@ var StepEditPage = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var step = Object.assign({}, this.props.step, this.state);
-      console.log(step);
       this.props.updateStep(step);
     }
   }, {
     key: "render",
     value: function render() {
+      console.log(this.props);
+
       if (this.props.step === undefined) {
-        console.log("gate1");
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "no step");
       }
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "step-edit-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-header"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "image-bar"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-toolbar"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "utility-buttons"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "submit-buttons"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "session-submit",
-        type: "submit",
-        form: "edit-step"
-      }, "save! ")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit,
-        className: "step-edit-form",
-        id: "edit-step"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        placeholder: "Type your Title",
-        value: this.state.title,
-        onChange: this.update('title'),
-        className: "step-title-input"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        rows: "4",
-        cols: "50",
-        value: this.state.body,
-        onChange: this.update('body'),
-        className: "step-body-input"
-      }))));
+      var draftLink = "/lesson/show/draft/".concat(this.props.lesson.id);
+      var publishLink = "/lesson/publish/".concat(this.props.lesson.id);
+      return (
+        /*#__PURE__*/
+        // <div className="step-edit-container">
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "parent-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "step-box-edit"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "edit-header-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "image-add-box"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "util-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "left-util"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "right-util"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: draftLink
+        }, "See Preview"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "submit",
+          form: "edit-step"
+        }, "save! "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: publishLink,
+          id: "publish-button"
+        }, "Publish Lesson")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-holder"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          onSubmit: this.handleSubmit,
+          className: "step-edit-form",
+          id: "edit-step"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "photo-bar"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          classame: true
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          placeholder: "   Type your Title",
+          value: this.state.title,
+          onChange: this.update('title'),
+          className: "step-title-input"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+          rows: "4",
+          cols: "50",
+          value: this.state.body,
+          onChange: this.update('body'),
+          className: "step-body-input"
+        }))))))
+      );
     }
   }]);
 
@@ -2698,8 +2734,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var step = state.entities.steps[ownProps.match.params.id];
+  var lesson = state.entities.lessons[step.lesson_id];
   return {
-    step: step
+    step: step,
+    lesson: lesson
   };
 };
 
@@ -2760,6 +2798,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
  // import background from "../../../app/assets/images/annie-spratt-yD-raqkqqIw-unsplash.jpg"
+//got to set in category lists. This might requite a container since backend requests will need to be made at launch. 
 
 var splash = function splash() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2853,8 +2892,29 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
     value: function renderDrafts() {
       var _this = this;
 
-      console.log(Object.keys(this.props.lessons).length);
-      console.log(this.props.user.lessons.length);
+      if (Object.keys(this.props.lessons).length !== this.props.user.lessons.length) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "loading");
+      }
+
+      return this.props.user.lessons.map(function (lessonId) {
+        var link = "/lesson/edit/".concat(lessonId);
+
+        if (!_this.props.lessons[lessonId].published) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+            className: "draft-box",
+            to: link
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "user-draft-photo"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "user-draft-name"
+          }, _this.props.lessons[lessonId].title));
+        }
+      });
+    }
+  }, {
+    key: "renderPublished",
+    value: function renderPublished() {
+      var _this2 = this;
 
       if (Object.keys(this.props.lessons).length !== this.props.user.lessons.length) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "loading");
@@ -2862,21 +2922,22 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
 
       return this.props.user.lessons.map(function (lessonId) {
         var link = "/lesson/edit/".concat(lessonId);
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          className: "draft-box",
-          to: link
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "user-draft-photo"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "user-draft-name"
-        }, _this.props.lessons[lessonId].title));
+
+        if (_this2.props.lessons[lessonId].published) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+            className: "draft-box",
+            to: link
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "user-draft-photo"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "user-draft-name"
+          }, _this2.props.lessons[lessonId].title));
+        }
       });
     }
   }, {
     key: "render",
     value: function render() {
-      console.log("userShow");
-      console.log(this.props);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2885,7 +2946,9 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         className: "user-info-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-photo"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "fas fa-user-graduate"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "username"
@@ -2893,11 +2956,13 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         className: "user-edit-buttons"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-timestamp"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "timestamp"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-toolbar"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-draft-frame"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-draft-container"
-      }, this.renderDrafts()));
+      }, this.renderDrafts())));
     }
   }]);
 
@@ -3104,13 +3169,19 @@ var lessonsReducer = function lessonsReducer() {
       return Object.assign({}, state, _defineProperty({}, lesson.id, lesson));
 
     case _actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_SINGLE_STEP"]:
-      stepIds = newState[action.payload.lesson.id].stepIds;
       newState = Object.assign({}, state, _defineProperty({}, action.payload.lesson.id, action.payload.lesson));
+      var oldIds = state[action.payload.lesson.id].stepIds;
+      stepIds = newState[action.payload.lesson.id].stepIds;
+      var stepIdx = action.payload.step.id;
 
-      if (stepIds.includes(action.payload.step.id)) {
-        return newState;
+      if (oldIds.includes(stepIdx)) {
+        console.log("edit"); //    let idx = stepIds.indexOf(stepIdx)
+        //    stepIds[idx] = action.payload.step
+
+        return state;
       } else {
-        stepIds.push(action.payload.step.id);
+        console.log("push"); // stepIds.push(action.payload.step.id)
+
         return newState;
       }
 
@@ -3279,8 +3350,6 @@ var StepsReducer = function StepsReducer() {
       return Object.assign({}, state, steps);
 
     case _actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SINGLE_STEP"]:
-      console.log("step received");
-      console.log(action);
       return Object.assign({}, state, _defineProperty({}, action.payload.step.id, action.payload.step));
 
     case _actions_lessons_step_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_STEP"]:
@@ -3510,7 +3579,7 @@ var createLesson = function createLesson(lesson) {
 var updateLesson = function updateLesson(lesson) {
   return $.ajax({
     url: "/api/lessons/".concat(lesson.id),
-    method: "POST",
+    method: "PATCH",
     data: {
       lesson: lesson
     }

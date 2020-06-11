@@ -1,8 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 
 
-export default class modalPlaceholder extends React.Component{
+
+ class modalPlaceholder extends React.Component{
     constructor(props){
         super(props)
         this.state ={
@@ -13,10 +15,7 @@ export default class modalPlaceholder extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    componentDidMount(){
-        console.log("subimt")
-        console.log(this.props)
-    }
+
     update(field) {
         return e => this.setState({
           [field]: e.currentTarget.value
@@ -42,10 +41,10 @@ export default class modalPlaceholder extends React.Component{
         return(
             <div className="modal-container">
 
-                <div className="modal-header"></div>
+                <div className="modal-header"><p>Share your knowledge with the world!</p></div>
 
+                    <label className="modal-splash"><p> Im teaching a lesson called</p> </label>
                 <form onSubmit={this.handleSubmit} className="modal-form-container">
-                    <label> Im teaching a lesson called </label>
 
                         <input
                             type="text"
@@ -53,9 +52,11 @@ export default class modalPlaceholder extends React.Component{
                             value={this.state.title}
                             onChange={this.update('title')}
                         />
-                        <button className="modal-submit" >submit</button>
+                        <button className="modal-submit" >Submit Lesson</button>
                 </form>
             </div>
         )
     }
 }
+
+export default withRouter(modalPlaceholder);

@@ -6,14 +6,12 @@ import {fetchLessonSteps, fetchSingleStep, createStep, destroyStep, updateStep} 
 
 
 const mapStateToProps = (state,ownProps) => {
-  console.log("TEST CHEKCK ME")
-  console.log(state)
-  console.log(ownProps)
 
   const lesson = state.entities.lessons[ownProps.match.params.lessonId];
   let steps = []
   if(lesson){
-    steps = lesson.stepIds.map((stepId)=> {
+    let sorted = lesson.stepIds.sort()
+    steps = sorted.map((stepId)=> {
          return state.entities.steps[stepId]
     })
   }

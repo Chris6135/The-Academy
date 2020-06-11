@@ -3,12 +3,13 @@ import React from 'react'
 class PublishLesson extends React.Component{
     constructor(props){
 
+        
         super(props)
-
-
+        
         this.state = {
-            title: this.props.lessson.title,
-            category: ''
+            title: this.props.lesson.title,
+            category: '',
+            published: true
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -20,9 +21,18 @@ class PublishLesson extends React.Component{
         });
       }
 
+      handleSubmit(e) {
+        e.preventDefault();
+        const lesson = Object.assign({},this.props.lesson, this.state);
+        this.props.updateLesson(lesson);
+      
+      }
+
     render(){
         return(
             <div>
+
+        <form onSubmit={this.handleSubmit} >
 
             <label>
               <input type="text"
@@ -42,7 +52,10 @@ class PublishLesson extends React.Component{
                             return( <option key = {i}> {category}</option>)
                         })}
                 </select>
-            </div>
+
+                <button className="session-submit" onClick={this.handleSubmit}> publish! </button>
+             </form>
+        </div>
         )
     }
 }

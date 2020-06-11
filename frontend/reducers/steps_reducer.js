@@ -11,8 +11,7 @@ const StepsReducer = (state ={}, action) => {
             const steps = action.payload.steps
             return Object.assign({},state,steps)
         case RECEIVE_SINGLE_STEP:
-            console.log("step received")
-            console.log(action)
+    
             return Object.assign({},state,{[action.payload.step.id] : action.payload.step})
         case DELETE_STEP:
             const newState = Object.assign({},state)

@@ -1,6 +1,6 @@
 import React from "react";
 // import background from "../../../app/assets/images/annie-spratt-yD-raqkqqIw-unsplash.jpg"
-
+//got to set in category lists. This might requite a container since backend requests will need to be made at launch. 
 
 const splash = ()=>{
     return (

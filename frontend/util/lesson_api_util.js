@@ -42,7 +42,7 @@ export const createLesson = (lesson) =>{
 export const updateLesson = (lesson) =>{
     return $.ajax({
         url:`/api/lessons/${lesson.id}`,
-        method:"POST",
+        method:"PATCH",
         data:{lesson}
     })
 

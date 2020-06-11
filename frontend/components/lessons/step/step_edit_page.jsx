@@ -3,6 +3,10 @@ import {Link} from "react-router-dom"
 import { withRouter } from "react-router-dom";
 
 
+//lessson currently breaks on refres because when refreshing all steps and lessons are cleared from the sate. 
+//should tlak to josh about this. possible bootstrap. 
+
+
 // import { withRouter } from "react-router-dom";
 
  class StepEditPage extends React.Component{
@@ -18,13 +22,13 @@ import { withRouter } from "react-router-dom";
     }
 
         componentDidMount(){
-            console.log(this.props)
-            this.props.fetchSingleStep(this.props.match.params.id)
+            // this.props.fetchSingleStep(this.props.match.params.id)
+            this.setState({
+                title: this.props.step.title, 
+                body: this.props.step.body})
             
             if(this.props.state !== undefined){
-                this.setState({
-                    title: this.props.step.title, 
-                    body: this.props.step.body})
+                console.log("Mount Check")
 
 
             }
@@ -39,59 +43,70 @@ import { withRouter } from "react-router-dom";
       handleSubmit(e) {
         e.preventDefault();
         const step = Object.assign({},this.props.step, this.state);
-        console.log(step)
         this.props.updateStep(step);
       }
     
 
     render() {
+        console.log(this.props)
 
         if (this.props.step === undefined){
-            console.log("gate1")
             return (
             <div>no step</div>)
         } 
 
+        let draftLink = `/lesson/show/draft/${this.props.lesson.id}`
+        let publishLink = `/lesson/publish/${this.props.lesson.id}`
+
+
         return(
-        <div className="step-edit-container">
+        // <div className="step-edit-container">
 
-            <div className = "form-header">
-            <div className="image-bar"></div>
-            <div className="edit-toolbar">
-                <div className ="utility-buttons">
+           
+            <div className="parent-box">
+                    <div className = "step-box-edit">
+                        <div className="edit-header-box">
+                                <div className= "image-add-box"></div>
+                                <div className="util-box">
+                                    <div className="left-util">
+                                    {/* <button onClick={()=> this.handleDelete()}>Delete This Lesson</button> */}
+                                    </div>
+                                    <div className="right-util">
+                                       <Link to={draftLink}>See Preview</Link>      
+                                       <button  type="submit" form ="edit-step">save! </button>                                  
+                                        <Link to={publishLink} id="publish-button">Publish Lesson</Link>
+                                        </div>
+                                </div>
+                        </div>
+
+                    <div className="form-holder">
+
+
+                        <form onSubmit={this.handleSubmit} 
+                        className="step-edit-form"
+                        id= "edit-step">
+                            <div className="photo-bar"></div>
+
+                            <label classame>
+                                <input type="text"
+                                placeholder="   Type your Title"
+                                value={this.state.title}
+                                onChange={this.update('title')}
+                                className="step-title-input"/>
+                            </label>
+                                <label>
+                                    <textarea  
+                                            rows="4" 
+                                            cols="50"
+                                            value={this.state.body}
+                                            onChange={this.update('body')}
+                                            className="step-body-input">
+                                    </textarea>
+                              </label>
+                        </form>
+                    </div>
                 </div>
-                <div className = "submit-buttons">
-                    <button className="session-submit" type="submit" form ="edit-step">save! </button>
-                </div>
-
             </div>
-
-            </div>
-
-            <form onSubmit={this.handleSubmit} 
-            className="step-edit-form"
-            id= "edit-step">
-
-                <label>
-                        <input type="text"
-                        placeholder="Type your Title"
-                        value={this.state.title}
-                        onChange={this.update('title')}
-                        className="step-title-input"/>
-                    </label>
-
-
-                    <label>
-                        <textarea  
-                                rows="4" 
-                                cols="50"
-                                value={this.state.body}
-                                onChange={this.update('body')}
-                                className="step-body-input">
-                        </textarea>
-                    </label>
-                </form>
-        </div>
         )
     }
 }

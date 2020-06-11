@@ -4,9 +4,16 @@ import PublishLesson from "./publish_lesson"
 import {updateLesson} from "../../../actions/lessons/lesson_actions"
 
 const mapStateToProps = (state,ownProps) => {
+
+  let categories = []
+  if(state.entities.categories){
+    categories = Object.keys(state.entities.categories).map((catId)=> {
+         return state.entities.categories[catId].title
+    })
+  }
   return{
   lesson: state.entities.lessons[ownProps.match.params.lessonId],
-  categories: state.entities.categories
+  categories: categories
     }
 }
 
