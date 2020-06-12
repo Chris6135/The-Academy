@@ -11,7 +11,8 @@
 .modal-header{
     width:100%;
     height:150px;
-    background: red;
+    background-image: image-url('brick.jpg');
+    background-size: cover;
     text-transform: uppercase;
     display:flex;
     justify-content: center;

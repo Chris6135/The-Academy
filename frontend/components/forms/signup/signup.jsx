@@ -101,6 +101,22 @@ class SignUpForm extends React.Component {
             </div>
 
 
+
+            <label>
+            {this.ifError("Email can't be blank", "Please enter your username")}
+              <input type="text"
+                placeholder="Email"
+                value={this.state.email}
+                onChange={this.update('email')}
+                className="signup-input"
+                />
+            </label>
+
+
+
+
+
+
             <label>
             {this.ifError("Username can't be blank", "Please type your username")}
               <input type="text"
@@ -121,17 +137,6 @@ class SignUpForm extends React.Component {
                 className="signup-input"
                 />
             </label>
-
-            <label>
-            {this.ifError("Email can't be blank", "Please enter your username")}
-              <input type="text"
-                placeholder="Email"
-                value={this.state.email}
-                onChange={this.update('email')}
-                className="signup-input"
-                />
-            </label>
-
 
             <div className="signup-options">
 

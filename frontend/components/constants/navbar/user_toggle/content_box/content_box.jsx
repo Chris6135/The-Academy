@@ -52,7 +52,8 @@ class ContentBox extends React.Component {
 
                     <div className = "lower-div">
                       <div className="lower-div-links">
-                        <li>Longdummy</li>
+                      <Link to="/user/show">Published Lessons</Link>
+
                         <Link to="/user/drafts">Drafts</Link>
                       </div>
                     <Link to="/lesson/new" className="new-lesson">New Lesson</Link>

@@ -119,7 +119,7 @@ componentDidMount(){
           </div>
           
             <label className="signin-username">
-            {this.ifError(this.state.username, "Please type your password")}
+            {this.ifError(this.state.username, "Please type your username")}
               <input type="text"
                 value={this.state.username}
                 onChange={this.update('username')}

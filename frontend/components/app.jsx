@@ -15,6 +15,7 @@ import Modal from "./constants/modal/modal"
 import LessonDraftShow from "./lessons/lesson/draft_lesson_show_container"
 import PublishLesson from "./lessons/lesson/publish_lesson_container"
 import CategoryPage from "./lessons/categories/category_container"
+import UserPublished from "./user/user_published_container"
 
 
 import {
@@ -38,6 +39,7 @@ const App = () => (
             <ProtectedRoute exact path="/lesson/edit/:lessonId" component={LessonEdit}/>
             <ProtectedRoute exact path="/step/:id" component={StepEditPage}/>
             <ProtectedRoute exact path="/user/drafts" component={UserDrafts}/>
+            <ProtectedRoute exact path="/user/show" component={UserPublished}/>
             <ProtectedRoute exact path="/lesson/show/draft/:lessonId" component={LessonDraftShow}/>
             <ProtectedRoute exact path="/lesson/publish/:lessonId" component={PublishLesson}/>
 

@@ -44,7 +44,7 @@ import {Link} from "react-router-dom"
                return (
 
                                 <div className="title-body-box">
-                                    <div className="step-edit-icon">icon</div>
+                                    <div className="step-edit-icon"></div>
 
                                     <Link className="step-edit-link" to={link}>
                                         

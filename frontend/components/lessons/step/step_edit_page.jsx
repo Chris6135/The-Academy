@@ -54,7 +54,7 @@ import { withRouter } from "react-router-dom";
             return (
             <div>no step</div>)
         } 
-
+        let backLink = `/lesson/edit/${this.props.lesson.id}`
         let draftLink = `/lesson/show/draft/${this.props.lesson.id}`
         let publishLink = `/lesson/publish/${this.props.lesson.id}`
 
@@ -70,6 +70,7 @@ import { withRouter } from "react-router-dom";
                                 <div className="util-box">
                                     <div className="left-util">
                                     {/* <button onClick={()=> this.handleDelete()}>Delete This Lesson</button> */}
+                                    <Link to={backLink}>Back to Lesson</Link>                                        
                                     </div>
                                     <div className="right-util">
                                        <Link to={draftLink}>See Preview</Link>      

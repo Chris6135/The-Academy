@@ -11,7 +11,9 @@ end
 
   json.lessons do 
     Lesson.all.where(published: true).each do |lesson|
-      json.partial! "api/lessons/lesson", lesson: lesson 
-      json.stepIds lesson.steps.pluck(:id)
+        json.set! lesson.id do
+          json.partial! "api/lessons/lesson", lesson: lesson 
+          json.stepIds lesson.steps.pluck(:id)
+        end
     end
   end

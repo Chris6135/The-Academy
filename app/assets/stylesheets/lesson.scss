@@ -122,15 +122,15 @@
     position: relative;
 }
 
-.step-edit-icon{
-    padding:5px;
-    background:green;
-    display:inline-block;
-    position: relative;
-    left:870px;
-    top:30px;
+// .step-edit-icon{
+//     padding:5px;
+//     background:green;
+//     display:inline-block;
+//     position: relative;
+//     left:870px;
+//     top:30px;
 
-}
+// }
 .step-edit-title{
     width:45%;
     font-size: 16x;
@@ -156,6 +156,7 @@
 .step-edit-body{    
     width:45%;
     text-decoration: none;
+    overflow: hidden;
 
 
 }

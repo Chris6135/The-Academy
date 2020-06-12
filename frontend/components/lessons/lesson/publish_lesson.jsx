@@ -25,11 +25,14 @@ class PublishLesson extends React.Component{
       handleSubmit(e) {
         e.preventDefault();
         const lesson = Object.assign({},this.props.lesson, this.state);
-        this.props.updateLesson(lesson);
+        this.props.updateLesson(lesson)
+        .then(data => this.props.history.push(`/lesson/show/draft/${data.payload.lesson.id}`))
+
       
       }
 
     render(){
+        let backLink = `/lesson/edit/${this.props.lesson.id}`
         return(
             <div className="parent-box">
                   <div className = "step-box-edit">
@@ -37,10 +40,11 @@ class PublishLesson extends React.Component{
                         <div className="util-box">
                             <div className="left-util">
                             {/* <button onClick={()=> this.handleDelete()}>Delete This Lesson</button> */}
+                            <Link to={backLink}>Back to Lesson</Link>     
                             </div>
                             <div className="right-util">
-                               <button  type="submit" form ="edit-step">save! </button>                                  
-                                <div onClick={this.handleSubmit} id="publish-button">Publish Lesson</div>
+                               <button  type="submit" form ="edit-step" className = "publish">save! </button>                                  
+                                {/* <div onClick={this.handleSubmit} id="publish-button">Publish Lesson</div> */} 
                                 </div>
                         </div>
                 </div>
