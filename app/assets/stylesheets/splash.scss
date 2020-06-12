@@ -83,3 +83,70 @@ blurb-content */
     width: 95%;
     border-bottom:1px solid #ccc;
 }
+
+//categories
+.category-lessons-container{
+    width: 100%;
+    min-height: 600px;
+    display:flex;
+    justify-content: center;
+
+}
+.category-lessons-box{
+    width:90%;
+    display: flex;
+    flex-flow: row wrap;
+
+}
+
+
+.splash-banner-Cooking{
+    display:flex;
+    background-image: image-url('cook.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center -400px;
+    height: 50vh;
+    position: relative;
+}
+
+
+.splash-banner-Living{
+    display:flex;
+    background-image: image-url('living.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center -400px;
+    height: 50vh;
+    position: relative;
+}
+
+.splash-banner-Crafts{
+    display:flex;
+    background-image: image-url('craft.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center -400px;
+    height: 50vh;
+    position: relative;
+}
+
+.splash-banner-Workshop{
+    display:flex;
+    background-image: image-url('workshop.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center -400px;
+    height: 50vh;
+    position: relative;
+}
+
+.splash-banner-Games{
+    display:flex;
+    background-image: image-url('game.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center -400px;
+    height: 50vh;
+    position: relative;
+}

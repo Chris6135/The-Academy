@@ -14,6 +14,7 @@ import UserDrafts from "../components/user/user_show_container"
 import Modal from "./constants/modal/modal"
 import LessonDraftShow from "./lessons/lesson/draft_lesson_show_container"
 import PublishLesson from "./lessons/lesson/publish_lesson_container"
+import CategoryPage from "./lessons/categories/category_container"
 
 
 import {
@@ -32,6 +33,7 @@ const App = () => (
             <AuthRoute exact path="/signup" component={Signup} />
             <AuthRoute exact path="/signin" component={Signin} />
             <Route exact path="/" component={Splash} /> 
+            <Route exact path="/category/:categoryId" component={CategoryPage} /> 
             <ProtectedRoute exact path="/lesson/new" component={CreateLesson} /> 
             <ProtectedRoute exact path="/lesson/edit/:lessonId" component={LessonEdit}/>
             <ProtectedRoute exact path="/step/:id" component={StepEditPage}/>

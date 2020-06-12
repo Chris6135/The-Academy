@@ -12,7 +12,7 @@ class Category < ApplicationRecord
 
     has_many :products,
     primary_key: :id,
-    foreign_key: :product_id,
+    foreign_key: :category_id,
     class_name: :Product
 
     has_many :lessons,

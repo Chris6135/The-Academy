@@ -13,8 +13,9 @@ export default class Footer extends React.Component{
     buildCategories(){
         if(this.props.categories !== {}){
            return  Object.keys(this.props.categories).map((id) =>{
+            const link = `/category/${id}`
                 return(
-                <li>{this.props.categories[id].title}</li>
+                <Link to={link}>{this.props.categories[id].title}</Link>
                 )
                 })
             }

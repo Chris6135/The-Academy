@@ -1,6 +1,6 @@
 export const getUserLessons = (user_id) =>{
     return $.ajax({
-        url:`/api/${user_id}/lessons`,
+        url:`/api/categories/${user_id}/lessons`,
         method:"GET",
     })
 

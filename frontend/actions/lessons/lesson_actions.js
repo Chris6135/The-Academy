@@ -7,10 +7,10 @@ export const RECEIVE_SINGLE_LESSON = "RECEIVE_SINGLE_LESSON" //adds a full lesso
 export const DELETE_LESSON = "DELETE_LESSON" //removes a lesson from lesson slice
 
 
-export const receiveAllCategories = (categories) => {
+export const receiveAllCategories = (payload) => {
     return {
         type: RECEIVE_CATEGORIES,
-        categories
+        payload
     }
 }
 
@@ -44,6 +44,11 @@ export const fetchCategories = () => dispatch => {
 
 export const fetchUserLessons = (user_id) => dispatch => {
     return APIUtil.getUserLessons(user_id)
+      .then(lessons => dispatch(receiveLessons(lessons)));
+  }
+
+  export const fetchCategoryLessons = (category_id) => dispatch => {
+    return APIUtil.getUserLessons(category_id) //poorly named, but lazy
       .then(lessons => dispatch(receiveLessons(lessons)));
   }
 

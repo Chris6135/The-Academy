@@ -5,7 +5,7 @@ const categoriesReducer = (state ={}, action) => {
     Object.freeze (state)
     switch(action.type){
         case RECEIVE_CATEGORIES:
-              return Object.assign({},action.categories);
+              return Object.assign({},action.payload.categories);
         default:
             return state
     }

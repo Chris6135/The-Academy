@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 class PublishLesson extends React.Component{
     constructor(props){
@@ -30,33 +31,51 @@ class PublishLesson extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className="parent-box">
+                  <div className = "step-box-edit">
+                        <div className="edit-header-box">
+                        <div className="util-box">
+                            <div className="left-util">
+                            {/* <button onClick={()=> this.handleDelete()}>Delete This Lesson</button> */}
+                            </div>
+                            <div className="right-util">
+                               <button  type="submit" form ="edit-step">save! </button>                                  
+                                <div onClick={this.handleSubmit} id="publish-button">Publish Lesson</div>
+                                </div>
+                        </div>
+                </div>
 
-        <form onSubmit={this.handleSubmit} >
+            <div className="border-buffer">
+                <div className="publish-form-holder">
 
-            <label>
-              <input type="text"
-                placeholder={this.props.lesson.title}
-                value={this.state.title}
-                onChange={this.update('title')}
-                className="signup-input"
-                />
-            </label>
+                    <form onSubmit={this.handleSubmit} className="publish-submit">
+
+                        <div className="title-container">
+                            <div className="title-rename-label">title</div>
+                                <input type="text" 
+                                    placeholder={this.props.lesson.title}
+                                    value={this.state.title}
+                                    onChange={this.update('title')}
+                                    className="title-rename-input"
+                                    />
+                        </div>
 
 
-                <select 
-                    onChange={this.update('category')}
-                    className="signup-option">
-                        <option default hidden >Categories</option>
-                        {this.props.categories.map((category,i) =>{
-                            return( <option key = {i}> {category}</option>)
-                        })}
-                </select>
+                            <select 
+                                onChange={this.update('category')}
+                                className="signup-option">
+                                    <option default hidden >Categories</option>
+                                    {this.props.categories.map((category,i) =>{
+                                        return( <option key = {i}> {category}</option>)
+                                    })}
+                            </select>
 
-                <button className="session-submit" onClick={this.handleSubmit}> publish! </button>
-             </form>
+                            <button className="session-submit" onClick={this.handleSubmit}> publish! </button>
+                    </form>
+                </div>
+            </div>
         </div>
-        )
+     </div>)
     }
 }
 

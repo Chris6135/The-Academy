@@ -10,3 +10,85 @@
 // iterate through them and just grid them on the board. Dont have to worry about seperate content categories for these pages. 
 
 //for styling its just a straight rip of the splash. 
+
+
+import React from 'react';
+import { withRouter } from "react-router-dom";
+import {Link} from "react-router-dom"
+
+
+ class CategoryPage extends React.Component{
+    constructor(props){
+        super(props)
+    }
+
+    
+    componentDidMount(){
+        // console.log("mount")
+        // console.log(this.props)
+       this.props.fetchCategoryLessons(this.props.category.id)
+    }
+
+
+
+    listLessons(){ 
+        
+        return this.props.lessons.map((lesson) =>{
+
+         if(lesson === undefined){
+             console.log("error")
+
+             console.log(this.props)
+             return <h1>something went wrong</h1>
+            }
+            
+            const link = `/lesson/show/draft/${lesson.id}`
+            return ( <div className="lesson-box"> 
+                        <Link className="draft-box" to={link}>
+                            <div className="user-draft-photo"></div>
+                            <div className="user-draft-name">
+                                {lesson.title}
+                            </div>
+                        </Link>
+
+             </div>)
+        })
+    }
+
+
+    render (){
+        if(!this.props.lessons[0]){
+            <p>loading</p>
+        }
+        console.log("render")
+        console.log(this.props)
+
+        let bannerClass =`splash-banner-${this.props.category.title}`
+
+        return(
+            <div className="splash-container">
+                <section className ={bannerClass}> 
+
+                    <div className="splash-banner-content">
+                    <h2 className="splash-banner-title">Learn to love {this.props.category.title}</h2>
+                    <div className="splash-banner-text"> 
+                        <p>Here at the Academy, school is always in session!</p>
+                        <p> Pick any lesson that interests you and lets get started.  </p>     
+                    </div>
+                    </div>
+            </section>
+                 <div className="category-lessons-container"> 
+
+                    <div className="category-lessons-box"> 
+                        {this.listLessons()}
+                    </div>
+                </div>
+           </div>
+        )
+    }
+    
+
+}
+
+export default CategoryPage
+

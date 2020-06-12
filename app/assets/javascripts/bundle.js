@@ -90,7 +90,7 @@
 /*!****************************************************!*\
   !*** ./frontend/actions/lessons/lesson_actions.js ***!
   \****************************************************/
-/*! exports provided: RECEIVE_CATEGORIES, RECEIVE_LESSONS, RECEIVE_SINGLE_LESSON, DELETE_LESSON, receiveAllCategories, receiveLessons, receiveSingleLesson, deleteLesson, fetchCategories, fetchUserLessons, fetchAllLessons, fetchSingleLesson, destroyLesson, createLesson, updateLesson */
+/*! exports provided: RECEIVE_CATEGORIES, RECEIVE_LESSONS, RECEIVE_SINGLE_LESSON, DELETE_LESSON, receiveAllCategories, receiveLessons, receiveSingleLesson, deleteLesson, fetchCategories, fetchUserLessons, fetchCategoryLessons, fetchAllLessons, fetchSingleLesson, destroyLesson, createLesson, updateLesson */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -105,6 +105,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLesson", function() { return deleteLesson; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategories", function() { return fetchCategories; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserLessons", function() { return fetchUserLessons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCategoryLessons", function() { return fetchCategoryLessons; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllLessons", function() { return fetchAllLessons; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSingleLesson", function() { return fetchSingleLesson; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyLesson", function() { return destroyLesson; });
@@ -121,10 +122,10 @@ var RECEIVE_SINGLE_LESSON = "RECEIVE_SINGLE_LESSON"; //adds a full lesson lesson
 
 var DELETE_LESSON = "DELETE_LESSON"; //removes a lesson from lesson slice
 
-var receiveAllCategories = function receiveAllCategories(categories) {
+var receiveAllCategories = function receiveAllCategories(payload) {
   return {
     type: RECEIVE_CATEGORIES,
-    categories: categories
+    payload: payload
   };
 };
 var receiveLessons = function receiveLessons(lessons) {
@@ -155,6 +156,14 @@ var fetchCategories = function fetchCategories() {
 var fetchUserLessons = function fetchUserLessons(user_id) {
   return function (dispatch) {
     return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["getUserLessons"](user_id).then(function (lessons) {
+      return dispatch(receiveLessons(lessons));
+    });
+  };
+};
+var fetchCategoryLessons = function fetchCategoryLessons(category_id) {
+  return function (dispatch) {
+    return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["getUserLessons"](category_id) //poorly named, but lazy
+    .then(function (lessons) {
       return dispatch(receiveLessons(lessons));
     });
   };
@@ -430,7 +439,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants_modal_modal__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./constants/modal/modal */ "./frontend/components/constants/modal/modal.jsx");
 /* harmony import */ var _lessons_lesson_draft_lesson_show_container__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./lessons/lesson/draft_lesson_show_container */ "./frontend/components/lessons/lesson/draft_lesson_show_container.js");
 /* harmony import */ var _lessons_lesson_publish_lesson_container__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./lessons/lesson/publish_lesson_container */ "./frontend/components/lessons/lesson/publish_lesson_container.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _lessons_categories_category_container__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./lessons/categories/category_container */ "./frontend/components/lessons/categories/category_container.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 
@@ -458,10 +469,14 @@ var App = function App() {
     exact: true,
     path: "/signin",
     component: _forms_signin_signin_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__["Route"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__["Route"], {
     exact: true,
     path: "/",
     component: _splash_splash__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__["Route"], {
+    exact: true,
+    path: "/category/:categoryId",
+    component: _lessons_categories_category_container__WEBPACK_IMPORTED_MODULE_16__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
     exact: true,
     path: "/lesson/new",
@@ -505,6 +520,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Footer; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -526,6 +542,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -554,7 +571,9 @@ var Footer = /*#__PURE__*/function (_React$Component) {
       if (this.props.categories !== {}) {
         return Object.keys(this.props.categories).map(function (id) {
           var key = "foot cat ".concat(id);
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          var link = "/category/".concat(id);
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+            to: link,
             className: _this2.props.categories[id].icon
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: key
@@ -820,7 +839,10 @@ var Footer = /*#__PURE__*/function (_React$Component) {
 
       if (this.props.categories !== {}) {
         return Object.keys(this.props.categories).map(function (id) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, _this2.props.categories[id].title);
+          var link = "/category/".concat(id);
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+            to: link
+          }, _this2.props.categories[id].title);
         });
       }
     }
@@ -1701,6 +1723,178 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/lessons/categories/category.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/lessons/categories/category.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+//you've set up the routes so that ti will be /categoryId/lessons. 
+//that index action will make a request and get all the lessons of a given category. 
+// now what you need to do is just make a functional component that's prepared to occupy any category. 
+//go into each category and add a column with a tagline. stock text "learn to love {tagline}" will populate the banner.
+//set a class for each category in scss .show-banner-{category} this will let you dynamically swtich aroudn the banner. 
+//next step is to render all of the lessons. This should be easy enough as your call to the backend will grab all relevant data. 
+// iterate through them and just grid them on the board. Dont have to worry about seperate content categories for these pages. 
+//for styling its just a straight rip of the splash. 
+
+
+
+
+var CategoryPage = /*#__PURE__*/function (_React$Component) {
+  _inherits(CategoryPage, _React$Component);
+
+  var _super = _createSuper(CategoryPage);
+
+  function CategoryPage(props) {
+    _classCallCheck(this, CategoryPage);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(CategoryPage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // console.log("mount")
+      // console.log(this.props)
+      this.props.fetchCategoryLessons(this.props.category.id);
+    }
+  }, {
+    key: "listLessons",
+    value: function listLessons() {
+      var _this = this;
+
+      return this.props.lessons.map(function (lesson) {
+        if (lesson === undefined) {
+          console.log("error");
+          console.log(_this.props);
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "something went wrong");
+        }
+
+        var link = "/lesson/show/draft/".concat(lesson.id);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "lesson-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          className: "draft-box",
+          to: link
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "user-draft-photo"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "user-draft-name"
+        }, lesson.title)));
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (!this.props.lessons[0]) {
+        /*#__PURE__*/
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "loading");
+      }
+
+      console.log("render");
+      console.log(this.props);
+      var bannerClass = "splash-banner-".concat(this.props.category.title);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: bannerClass
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash-banner-content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "splash-banner-title"
+      }, "Learn to love ", this.props.category.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "splash-banner-text"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Here at the Academy, school is always in session!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " Pick any lesson that interests you and lets get started.  ")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-lessons-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "category-lessons-box"
+      }, this.listLessons())));
+    }
+  }]);
+
+  return CategoryPage;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (CategoryPage);
+
+/***/ }),
+
+/***/ "./frontend/components/lessons/categories/category_container.js":
+/*!**********************************************************************!*\
+  !*** ./frontend/components/lessons/categories/category_container.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../actions/lessons/lesson_actions */ "./frontend/actions/lessons/lesson_actions.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _category__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./category */ "./frontend/components/lessons/categories/category.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var category = state.entities.categories[ownProps.match.params.categoryId];
+  var lessons = [];
+
+  if (category) {
+    lessons = category.lessonIds.map(function (lessonId) {
+      return state.entities.lessons[lessonId];
+    });
+  }
+
+  return {
+    category: category,
+    lessons: lessons
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchCategoryLessons: function fetchCategoryLessons(categoryId) {
+      return dispatch(Object(_actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["fetchCategoryLessons"])(categoryId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(_category__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/lessons/edit/lesson_edit.jsx":
 /*!**********************************************************!*\
   !*** ./frontend/components/lessons/edit/lesson_edit.jsx ***!
@@ -2410,6 +2604,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2433,6 +2628,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -2475,14 +2671,41 @@ var PublishLesson = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "parent-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "step-box-edit"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-header-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "util-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "left-util"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "right-util"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        form: "edit-step"
+      }, "save! "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleSubmit,
+        id: "publish-button"
+      }, "Publish Lesson")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "border-buffer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "publish-form-holder"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        className: "publish-submit"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title-rename-label"
+      }, "title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         placeholder: this.props.lesson.title,
         value: this.state.title,
         onChange: this.update('title'),
-        className: "signup-input"
+        className: "title-rename-input"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         onChange: this.update('category'),
         className: "signup-option"
@@ -2496,7 +2719,7 @@ var PublishLesson = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "session-submit",
         onClick: this.handleSubmit
-      }, " publish! ")));
+      }, " publish! "))))));
     }
   }]);
 
@@ -3038,7 +3261,7 @@ var categoriesReducer = function categoriesReducer() {
 
   switch (action.type) {
     case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CATEGORIES"]:
-      return Object.assign({}, action.categories);
+      return Object.assign({}, action.payload.categories);
 
     default:
       return state;
@@ -3202,6 +3425,10 @@ var lessonsReducer = function lessonsReducer() {
 
     case _actions_session_session_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_CURRENT_USER"]:
       newState = Object.assign({}, action.payload.lessons);
+      return newState;
+
+    case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CATEGORIES"]:
+      newState = Object.assign({}, state, action.payload.lessons);
       return newState;
 
     default:
@@ -3495,8 +3722,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(preloadedState);
-  window.store = store;
-  store.dispatch(Object(_actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_4__["fetchSingleLesson"])(9999));
+  window.store = store; // store.dispatch(fetchSingleLesson(9999))
+
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_3__["default"], {
     store: store
   }), root);
@@ -3545,7 +3772,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLesson", function() { return updateLesson; });
 var getUserLessons = function getUserLessons(user_id) {
   return $.ajax({
-    url: "/api/".concat(user_id, "/lessons"),
+    url: "/api/categories/".concat(user_id, "/lessons"),
     method: "GET"
   });
 };

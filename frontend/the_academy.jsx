@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
          }
     const store = configureStore(preloadedState)
     window.store = store
-    store.dispatch(fetchSingleLesson(9999))
+    // store.dispatch(fetchSingleLesson(9999))
  
   
   ReactDOM.render(<Root store = {store}/>, root);

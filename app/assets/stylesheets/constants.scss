@@ -22,7 +22,16 @@
 .home-button:hover{
     color:white }
 
-.cat-nav > li {
+.cat-nav > a {
+    margin: 7px;
+    font-size: 12px;
+    text-transform: capitalize;
+    color: #ccc;
+    text-decoration: none;
+
+  }
+
+  .cat-nav > li {
     margin: 7px;
     font-size: 12px;
     text-transform: capitalize;
@@ -368,11 +377,13 @@ footer-about-me */
     }
 
     
-    .footer-catagories > ol > div {
+    .footer-catagories > ol > a {
         padding:5px;
+        z-index: 1; 
+
         /* width:10px; */
     }
-    .footer-catagories > ol > div >li {
+    .footer-catagories > ol > a >li {
         display: inline; 
         margin-left:10px;   
         font-size: 14px;
@@ -395,6 +406,7 @@ footer-about-me */
         font-size: 14px;
         font-weight: 400;
         text-transform: capitalize;
+        
         /* width:10px; */
     }
 
@@ -416,8 +428,8 @@ footer-about-me */
         position: absolute;
         width: 95%;
         border-bottom: 1px solid #BBBBBB;
-        bottom: 60px
-    }
+        bottom: 60px;
+   }
 
     // modal 
     

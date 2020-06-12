@@ -1,11 +1,12 @@
 class Api::LessonsController < ApplicationController 
     def index 
+
         if params[:user_id]
             @lessons = Lesson.find(params[:user_id])
 
         elsif params[:category_id]
-            category = Category.find(params[:cateogry_id])
-            @lessons = Lesson.all.where category: category
+            category = Category.find(params[:category_id])
+            @lessons = Lesson.all.where category: category.title
         else
             @lessons = []
              Category.all.each do |category|

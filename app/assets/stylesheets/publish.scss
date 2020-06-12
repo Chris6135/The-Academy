@@ -1,0 +1,45 @@
+.border-buffer{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.publish-form-holder{
+    width:90%;
+    margin: 20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background:#F6F6F6;
+    border:solid 1px #AAA
+}
+
+.publish-submit{
+    margin:20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-container{
+    display:flex;
+    justify-content: space-between;
+}
+
+.title-rename-label{
+    text-transform: capitalize;
+    font-weight: bolder;
+    margin:10px;
+}
+
+.signup-option{
+    margin:10px;
+
+}
+
+.session-submit{
+    margin:10px;
+
+}
