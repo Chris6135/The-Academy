@@ -24,8 +24,6 @@ import {Link} from "react-router-dom"
 
     
     componentDidMount(){
-        // console.log("mount")
-        // console.log(this.props)
        this.props.fetchCategoryLessons(this.props.category.id)
     }
 
@@ -36,9 +34,7 @@ import {Link} from "react-router-dom"
         return this.props.lessons.map((lesson) =>{
 
          if(lesson === undefined){
-             console.log("error")
 
-             console.log(this.props)
              return <h1>something went wrong</h1>
             }
 
@@ -62,8 +58,6 @@ import {Link} from "react-router-dom"
         if(!this.props.lessons[0]){
             <p>loading</p>
         }
-        console.log("render")
-        console.log(this.props)
 
         let bannerClass =`splash-banner-${this.props.category.title}`
 

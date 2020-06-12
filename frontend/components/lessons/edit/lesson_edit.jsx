@@ -30,9 +30,7 @@ import {Link} from "react-router-dom"
      
            return this.props.steps.map((step) =>{
             if(step === undefined){
-                console.log("errors")
 
-                console.log(this.props)
                 return <h1>something went wrong</h1>
             }
             const key = `draft ${step.id}`

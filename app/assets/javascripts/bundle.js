@@ -1792,19 +1792,13 @@ var CategoryPage = /*#__PURE__*/function (_React$Component) {
   _createClass(CategoryPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // console.log("mount")
-      // console.log(this.props)
       this.props.fetchCategoryLessons(this.props.category.id);
     }
   }, {
     key: "listLessons",
     value: function listLessons() {
-      var _this = this;
-
       return this.props.lessons.map(function (lesson) {
         if (lesson === undefined) {
-          console.log("error");
-          console.log(_this.props);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "something went wrong");
         }
 
@@ -1831,8 +1825,6 @@ var CategoryPage = /*#__PURE__*/function (_React$Component) {
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "loading");
       }
 
-      console.log("render");
-      console.log(this.props);
       var bannerClass = "splash-banner-".concat(this.props.category.title);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-container"
@@ -1983,8 +1975,6 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
 
       return this.props.steps.map(function (step) {
         if (step === undefined) {
-          console.log("errors");
-          console.log(_this2.props);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "something went wrong");
         }
 
@@ -2533,9 +2523,6 @@ var LessonDraftShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log('LOOOK HERERERERE');
-      console.log(this.props);
-
       if (this.props.steps[0] === undefined) {
         return null;
       }
@@ -2868,9 +2855,7 @@ var StepEditPage = /*#__PURE__*/function (_React$Component) {
         body: this.props.step.body
       });
 
-      if (this.props.state !== undefined) {
-        console.log("Mount Check");
-      }
+      if (this.props.state !== undefined) {}
     }
   }, {
     key: "update",
@@ -2891,8 +2876,6 @@ var StepEditPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props);
-
       if (this.props.step === undefined) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "no step");
       }
@@ -3612,13 +3595,11 @@ var lessonsReducer = function lessonsReducer() {
       var stepIdx = action.payload.step.id;
 
       if (oldIds.includes(stepIdx)) {
-        console.log("edit"); //    let idx = stepIds.indexOf(stepIdx)
+        //    let idx = stepIds.indexOf(stepIdx)
         //    stepIds[idx] = action.payload.step
-
         return state;
       } else {
-        console.log("push"); // stepIds.push(action.payload.step.id)
-
+        // stepIds.push(action.payload.step.id)
         return newState;
       }
 

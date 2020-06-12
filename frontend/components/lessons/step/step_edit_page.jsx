@@ -28,7 +28,6 @@ import { withRouter } from "react-router-dom";
                 body: this.props.step.body})
             
             if(this.props.state !== undefined){
-                console.log("Mount Check")
 
 
             }
@@ -48,7 +47,6 @@ import { withRouter } from "react-router-dom";
     
 
     render() {
-        console.log(this.props)
 
         if (this.props.step === undefined){
             return (

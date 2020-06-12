@@ -22,12 +22,10 @@ const lessonsReducer = (state ={}, action) => {
 
 
            if(oldIds.includes(stepIdx)){
-               console.log("edit")
             //    let idx = stepIds.indexOf(stepIdx)
             //    stepIds[idx] = action.payload.step
                 return state
             }else{
-                console.log("push")
                 // stepIds.push(action.payload.step.id)
                 return newState
             }
