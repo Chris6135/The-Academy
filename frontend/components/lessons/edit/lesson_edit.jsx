@@ -35,6 +35,8 @@ import {Link} from "react-router-dom"
                 console.log(this.props)
                 return <h1>something went wrong</h1>
             }
+            const key = `draft ${step.id}`
+
             const stepNum = this.props.steps.indexOf(step) + 1
             let titleDef = "(click-to-edit)"
             const link = `/step/${step.id}`
@@ -43,7 +45,7 @@ import {Link} from "react-router-dom"
             }
                return (
 
-                                <div className="title-body-box">
+                                <div className="title-body-box" key={key}>
                                     <div className="step-edit-icon"></div>
 
                                     <Link className="step-edit-link" to={link}>
@@ -51,7 +53,7 @@ import {Link} from "react-router-dom"
                                         <div className="step-edit-title">Step {stepNum}: {titleDef}</div>
                                         <div className="step-edit-body"> {step.body} </div>    
                                     </Link>
-                                       <div className="step-edit-delete"><button onClick={()=>{this.deleteStep(step)}}>delete</button></div>
+                                       <div id="step-edit-delete" ><button className="fas fa-times" onClick={()=>{this.deleteStep(step)}}></button></div>
                                 </div>
            )})
         }

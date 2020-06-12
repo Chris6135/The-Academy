@@ -3,7 +3,6 @@ import UserPublished from "./user_published"
 import {connect} from "react-redux"
 import {getInfo} from "../../actions/session/session_actions"
 const mapStateToProps = (state,ownProps) => {
-    debugger
     const user = state.entities.users[state.session.id];
     let steps = []
     // if(user){

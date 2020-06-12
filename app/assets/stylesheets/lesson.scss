@@ -164,13 +164,13 @@
     display:none;
 }
 
-.step-edit-delete{
+#step-edit-delete{
     display:inline-block;
     position:relative;
     padding:5px;
-    background:purple;
     left:870px;
-    bottom:30px
+    bottom:30px;
+    cursor: pointer;
 }
 
 .create-step{

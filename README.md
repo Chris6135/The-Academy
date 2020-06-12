@@ -1,7 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The Academy is a fullstack web application cloned off the pupluar do it yourself platform [Instructables](https://www.instructables.com/) 
 
 Things you may want to cover:
 

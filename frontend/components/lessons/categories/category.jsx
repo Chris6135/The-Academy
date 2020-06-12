@@ -41,9 +41,11 @@ import {Link} from "react-router-dom"
              console.log(this.props)
              return <h1>something went wrong</h1>
             }
-            
+
+            const key = `lesson key ${lesson.id}`
             const link = `/lesson/show/draft/${lesson.id}`
-            return ( <div className="lesson-box"> 
+            return ( <div className="lesson-box"
+                    key={key}> 
                         <Link className="draft-box" to={link}>
                             <div className="user-draft-photo"></div>
                             <div className="user-draft-name">

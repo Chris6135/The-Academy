@@ -576,14 +576,13 @@ var Footer = /*#__PURE__*/function (_React$Component) {
 
       if (this.props.categories !== {}) {
         return Object.keys(this.props.categories).map(function (id) {
-          var key = "foot cat ".concat(id);
+          var keyS = "foot cat ".concat(id);
           var link = "/category/".concat(id);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
             to: link,
-            className: _this2.props.categories[id].icon
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: key
-          }, _this2.props.categories[id].title), " ");
+            className: _this2.props.categories[id].icon,
+            key: keyS
+          }, _this2.props.categories[id].title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null), " ");
         });
       }
     }
@@ -846,7 +845,9 @@ var Footer = /*#__PURE__*/function (_React$Component) {
       if (this.props.categories !== {}) {
         return Object.keys(this.props.categories).map(function (id) {
           var link = "/category/".concat(id);
+          var keyN = "nav key ".concat(id);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+            key: keyN,
             to: link
           }, _this2.props.categories[id].title);
         });
@@ -1807,9 +1808,11 @@ var CategoryPage = /*#__PURE__*/function (_React$Component) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "something went wrong");
         }
 
+        var key = "lesson key ".concat(lesson.id);
         var link = "/lesson/show/draft/".concat(lesson.id);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "lesson-box"
+          className: "lesson-box",
+          key: key
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           className: "draft-box",
           to: link
@@ -1985,6 +1988,7 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "something went wrong");
         }
 
+        var key = "draft ".concat(step.id);
         var stepNum = _this2.props.steps.indexOf(step) + 1;
         var titleDef = "(click-to-edit)";
         var link = "/step/".concat(step.id);
@@ -1994,7 +1998,8 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
         }
 
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "title-body-box"
+          className: "title-body-box",
+          key: key
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "step-edit-icon"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -2005,12 +2010,13 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
         }, "Step ", stepNum, ": ", titleDef), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "step-edit-body"
         }, " ", step.body, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "step-edit-delete"
+          id: "step-edit-delete"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "fas fa-times",
           onClick: function onClick() {
             _this2.deleteStep(step);
           }
-        }, "delete")));
+        })));
       });
     }
   }, {
@@ -2527,7 +2533,10 @@ var LessonDraftShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (!this.props.steps) {
+      console.log('LOOOK HERERERERE');
+      console.log(this.props);
+
+      if (this.props.steps[0] === undefined) {
         return null;
       }
 
@@ -3136,12 +3145,14 @@ var UserPublished = /*#__PURE__*/function (_React$Component) {
       }
 
       return this.props.user.lessons.map(function (lessonId) {
+        var key = "draft ".concat(lessonId);
         var link = "/lesson/show/draft/".concat(lessonId);
 
         if (_this.props.lessons[lessonId].published) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
             className: "draft-box",
-            to: link
+            to: link,
+            key: key
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "user-draft-photo"
           }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3161,11 +3172,13 @@ var UserPublished = /*#__PURE__*/function (_React$Component) {
 
       return this.props.user.lessons.map(function (lessonId) {
         var link = "/lesson/edit/".concat(lessonId);
+        var keyN = "lessonKey".concat(lessonId);
 
         if (_this2.props.lessons[lessonId].published) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
             className: "draft-box",
-            to: link
+            to: link,
+            key: keyN
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "user-draft-photo"
           }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3177,7 +3190,6 @@ var UserPublished = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3233,7 +3245,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   var user = state.entities.users[state.session.id];
   var steps = []; // if(user){
   //   lessons = user.lessons.map((lessonId)=> {

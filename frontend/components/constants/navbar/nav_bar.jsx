@@ -14,8 +14,9 @@ export default class Footer extends React.Component{
         if(this.props.categories !== {}){
            return  Object.keys(this.props.categories).map((id) =>{
             const link = `/category/${id}`
+            const keyN = `nav key ${id}`
                 return(
-                <Link to={link}>{this.props.categories[id].title}</Link>
+                <Link key={keyN} to={link}>{this.props.categories[id].title}</Link>
                 )
                 })
             }

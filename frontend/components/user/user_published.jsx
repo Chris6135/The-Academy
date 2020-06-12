@@ -16,9 +16,11 @@ class UserPublished extends React.Component{
         }
 
         return this.props.user.lessons.map((lessonId) =>{
+            const key = `draft ${lessonId}`
             const link = `/lesson/show/draft/${lessonId}`
             if(this.props.lessons[lessonId].published){
-                return <Link className="draft-box" to={link}>
+                return <Link className="draft-box" to={link}
+                        key={key}>
                         <div className="user-draft-photo"></div>
                         <div className="user-draft-name">
                             {this.props.lessons[lessonId].title}
@@ -35,8 +37,10 @@ class UserPublished extends React.Component{
 
         return this.props.user.lessons.map((lessonId) =>{
             const link = `/lesson/edit/${lessonId}`
+            const keyN=`lessonKey${lessonId}`
             if(this.props.lessons[lessonId].published){
-                return <Link className="draft-box" to={link}>
+                return <Link className="draft-box" to={link}
+                        key={keyN}>
                         <div className="user-draft-photo"></div>
                         <div className="user-draft-name">
                             {this.props.lessons[lessonId].title}
@@ -47,7 +51,6 @@ class UserPublished extends React.Component{
     }
 
     render(){
-        debugger
 
         return(
             <div className= "page-container"> 

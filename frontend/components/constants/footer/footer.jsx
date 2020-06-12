@@ -11,10 +11,10 @@ export default class Footer extends React.Component{
     buildCategories(){
         if(this.props.categories !== {}){
            return  Object.keys(this.props.categories).map((id) =>{
-               const key = `foot cat ${id}`
+               const keyS = `foot cat ${id}`
                const link = `/category/${id}`
                 return(
-                <Link to={link} className={this.props.categories[id].icon}><li key ={key}>{this.props.categories[id].title}</li> </Link>
+                <Link to={link} className={this.props.categories[id].icon} key={keyS}>{this.props.categories[id].title}<li></li> </Link>
                 )
                 })
             }

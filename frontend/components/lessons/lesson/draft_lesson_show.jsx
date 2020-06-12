@@ -32,8 +32,10 @@ class LessonDraftShow extends React.Component{
 
 
     render(){
+        console.log('LOOOK HERERERERE')
+        console.log(this.props)
        
-        if(!this.props.steps){
+        if(this.props.steps[0] === undefined){
             return null
         }
 
