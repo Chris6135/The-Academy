@@ -2,6 +2,8 @@ json.lesson do
     json.partial! "api/lessons/lesson", lesson: @lesson
 end
 
+
+
 json.steps do
     @lesson.steps.each do |step|
         json.set! step.id do

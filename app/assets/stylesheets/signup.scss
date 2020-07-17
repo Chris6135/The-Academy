@@ -112,8 +112,9 @@
  .signup-option{
    border-radius: 5px;
    font-size: 15px;
-   margin-top: 5px;
-   margin-bottom: 5px;
+   margin: 5px 30px 5px 0px;
+   // margin-top: 5px;
+   // margin-bottom: 5px;
    padding-top: 10px;
    padding-bottom: 10px;
    box-sizing:border-box;
@@ -121,9 +122,9 @@
    color: #777;
  }
 
- #user-info-option{
-    margin-right:20px;
- }
+//  #user-info-option{
+//    //  margin-right:20px;
+//  }
 
  #country-option{
     position:relative;

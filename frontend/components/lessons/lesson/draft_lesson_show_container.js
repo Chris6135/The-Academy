@@ -7,6 +7,7 @@ const mapStateToProps = (state,ownProps) => {
 
   const lesson = state.entities.lessons[ownProps.match.params.lessonId]
   let steps = []
+  
   if(lesson){
     steps = lesson.stepIds.map((stepId)=> {
          return state.entities.steps[stepId]

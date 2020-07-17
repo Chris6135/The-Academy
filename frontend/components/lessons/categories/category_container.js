@@ -1,4 +1,5 @@
-import {fetchCategoryLessons} from "../../../actions/lessons/lesson_actions"
+import {fetchCategoryLessons,fetchCategories} from "../../../actions/lessons/lesson_actions"
+
 import React from 'react';
 import category from './category'
 import { connect } from 'react-redux';
@@ -23,6 +24,8 @@ const mapStateToProps = (state,ownProps) => {
   const mapDispatchToProps = dispatch => {
     return {
       fetchCategoryLessons: (categoryId => dispatch(fetchCategoryLessons(categoryId))),
+      fetchCategories : ()=> dispatch(fetchCategories()),
+
     };
   };
 

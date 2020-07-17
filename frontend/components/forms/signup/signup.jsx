@@ -14,6 +14,8 @@ class SignUpForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoLogin = this.demoLogin.bind(this)
     this.clear = this.clear.bind(this)
+    this.renderErrors = this.renderErrors.bind(this)
+    // this.errorBox = this.errorBox.bind(this)
   }
 
   
@@ -47,19 +49,41 @@ class SignUpForm extends React.Component {
     return errors
   }
 
+  // renderErrors() {
+  //   return(
+  //     <ul>
+  //       {this.props.errors.map((error, i) => (
+  //         <li key={`error-${i}`}>
+  //           {error}
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   );
+  // }
+
   renderErrors() {
-    return(
-      <ul>
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
+    const bubbleErrors =[    "Password is too short (minimum is 6 characters)",
+    "Username can't be blank",
+    "Email can't be blank",
+    "User info can't be blank",
+    "Country can't be blank"]
+    const e = [];
+
+    this.props.errors.forEach((error, i) => {
+      if(!bubbleErrors.includes(error)){
+        e.push(error)
+      }
+    })
+      return(
+        <ul className="error-message">
+          {e.map((error, i) => (
+            <li key={`error-${i}`}>
+              {error}
+            </li>
+          ))}
+        </ul>
+      );
   }
-
-
 
   //counter thought, put the timer on the submit. just factor in an extra second for load time. 
 
@@ -86,7 +110,6 @@ class SignUpForm extends React.Component {
 
 
   render(){
-
     return (
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit} className="signup-form-box">
@@ -99,8 +122,6 @@ class SignUpForm extends React.Component {
                 <span>OR</span>
                 <div />
             </div>
-
-
 
             <label>
             {this.ifError("Email can't be blank", "Please enter your username")}
@@ -126,7 +147,8 @@ class SignUpForm extends React.Component {
                 className="signup-input"
                 />
             </label>
-
+            
+            
 
             <label>
             {this.ifError("Password is too short (minimum is 6 characters)", "Please type your password")}
@@ -168,14 +190,14 @@ class SignUpForm extends React.Component {
                   </select>
               </label>
             </div>
+            <div className="error-container" >{this.renderErrors()}</div>
+
             <p>By clicking "Sign Me Up" you agree to look over my 
               <a className="sign-up-link" href=" https://www.linkedin.com/in/christopher-simons-4184a6a0/"> Resume </a> 
               and consider me for 
               <a className="sign-up-link" href=" https://github.com/Chris6135"> Employment </a></p>
             <button className="session-submit" type="submit" value={this.props.formType}>Sign Me Up! </button>
             <p>Already enrolled? <span className="sign-up-link">{this.props.navLink} >> </span></p>
-
-            {/* {this.renderErrors()} */}
 
           </div>
         </form>

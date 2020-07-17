@@ -499,7 +499,7 @@ var App = function App() {
     exact: true,
     path: "/user/show",
     component: _user_user_published_container__WEBPACK_IMPORTED_MODULE_17__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_10__["ProtectedRoute"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__["Route"], {
     exact: true,
     path: "/lesson/show/draft/:lessonId",
     component: _lessons_lesson_draft_lesson_show_container__WEBPACK_IMPORTED_MODULE_14__["default"]
@@ -582,7 +582,7 @@ var Footer = /*#__PURE__*/function (_React$Component) {
             to: link,
             className: _this2.props.categories[id].icon,
             key: keyS
-          }, _this2.props.categories[id].title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null), " ");
+          }, "  ", _this2.props.categories[id].title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null), " ");
         });
       }
     }
@@ -601,7 +601,7 @@ var Footer = /*#__PURE__*/function (_React$Component) {
         className: "footer-about-me"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "footer-title"
-      }, "About me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Hi I'm Chris"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "I might change this"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "might not"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "About me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Chris Simons"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Christopher.simons10@gmail.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "(484) 802-6281"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-external-links"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "footer-title"
@@ -611,6 +611,12 @@ var Footer = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "fab fa-linkedin",
         href: " https://www.linkedin.com/in/christopher-simons-4184a6a0/"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "fa fa-angellist",
+        href: "https://angel.co/u/chris-simons-2"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "fa fa-user",
+        href: "https://chris6135.github.io/"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "fas fa-paper-plane",
         href: "https://www.instructables.com/"
@@ -1189,21 +1195,9 @@ __webpack_require__.r(__webpack_exports__);
     className: "logo-pic"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "logo-text"
-  }, "the academy")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "search-nav-buttons"
-  }, "button1 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "search-nav-buttons"
-  }, "button2 ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  }, "the academy"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "right-searchbar-nav"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "search-nav-buttons"
-  }, "link1 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "search-nav-buttons"
-  }, "link2 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "search-nav-buttons"
-  }, "link3 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "search-bar"
-  }, "search bar dummy")));
+  }));
 });
 
 /***/ }),
@@ -1526,6 +1520,8 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.demoLogin = _this.demoLogin.bind(_assertThisInitialized(_this));
     _this.clear = _this.clear.bind(_assertThisInitialized(_this));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this)); // this.errorBox = this.errorBox.bind(this)
+
     return _this;
   }
 
@@ -1567,11 +1563,31 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
         return error;
       });
       return errors;
-    }
+    } // renderErrors() {
+    //   return(
+    //     <ul>
+    //       {this.props.errors.map((error, i) => (
+    //         <li key={`error-${i}`}>
+    //           {error}
+    //         </li>
+    //       ))}
+    //     </ul>
+    //   );
+    // }
+
   }, {
     key: "renderErrors",
     value: function renderErrors() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
+      var bubbleErrors = ["Password is too short (minimum is 6 characters)", "Username can't be blank", "Email can't be blank", "User info can't be blank", "Country can't be blank"];
+      var e = [];
+      this.props.errors.forEach(function (error, i) {
+        if (!bubbleErrors.includes(error)) {
+          e.push(error);
+        }
+      });
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "error-message"
+      }, e.map(function (error, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: "error-".concat(i)
         }, error);
@@ -1659,7 +1675,9 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
           key: i,
           className: "country"
         }, " ", country, " ");
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "By clicking \"Sign Me Up\" you agree to look over my", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error-container"
+      }, this.renderErrors()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "By clicking \"Sign Me Up\" you agree to look over my", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "sign-up-link",
         href: " https://www.linkedin.com/in/christopher-simons-4184a6a0/"
       }, " Resume "), "and consider me for", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -1723,7 +1741,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch(Object(_actions_session_session_actions__WEBPACK_IMPORTED_MODULE_1__["signIn"])(user));
     },
     clearErrors: function clearErrors() {
-      return dispatch(Object(_actions_session_session_actions__WEBPACK_IMPORTED_MODULE_1__["clearErrors"])());
+      dispatch(Object(_actions_session_session_actions__WEBPACK_IMPORTED_MODULE_1__["clearErrors"])());
     }
   };
 };
@@ -1784,15 +1802,24 @@ var CategoryPage = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(CategoryPage);
 
   function CategoryPage(props) {
+    var _this;
+
     _classCallCheck(this, CategoryPage);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    console.log(_this.props);
+
+    _this.props.fetchCategories();
+
+    return _this;
   }
 
   _createClass(CategoryPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchCategoryLessons(this.props.category.id);
+      var url = window.location.href;
+      var urlArr = url.split('');
+      this.props.fetchCategoryLessons(urlArr[urlArr.length - 1]);
     }
   }, {
     key: "listLessons",
@@ -1820,11 +1847,18 @@ var CategoryPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      debugger;
+
+      if (this.props.lessons[0] === undefined) {
+        return null;
+      }
+
       if (!this.props.lessons[0]) {
         /*#__PURE__*/
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "loading");
       }
 
+      debugger;
       var bannerClass = "splash-banner-".concat(this.props.category.title);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-container"
@@ -1890,6 +1924,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchCategoryLessons: function fetchCategoryLessons(categoryId) {
       return dispatch(Object(_actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["fetchCategoryLessons"])(categoryId));
+    },
+    fetchCategories: function fetchCategories() {
+      return dispatch(Object(_actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["fetchCategories"])());
     }
   };
 };
@@ -2490,7 +2527,14 @@ var LessonDraftShow = /*#__PURE__*/function (_React$Component) {
   _createClass(LessonDraftShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      console.log(this.props);
+      console.log(this.props.match.params.lessonId);
       this.props.requestLesson(this.props.match.params.lessonId);
+      console.log(this.props.requestLesson); // console.log(this.props.requestLesson)
+      // const url = window.location.href
+      // const urlArr = url.split('')
+      // console.log(urlArr[urlArr.length-1])
+      // this.props.requestLesson(urlArr[urlArr.length-1])
     }
   }, {
     key: "renderSteps",
@@ -2523,7 +2567,9 @@ var LessonDraftShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (this.props.steps[0] === undefined) {
+      if (this.props.steps === undefined) {
+        return null;
+      } else if (this.props.steps[0] === undefined) {
         return null;
       }
 
@@ -3490,8 +3536,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  lessons: _lessons_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   categories: _categories_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  lessons: _lessons_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   steps: _steps_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
@@ -3768,6 +3814,8 @@ var StepsReducer = function StepsReducer() {
       return Object.assign({}, state, action.steps);
 
     case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_SINGLE_LESSON"]:
+      console.log("in steps reducer");
+      console.log(action.payload);
       var steps = action.payload.steps;
       return Object.assign({}, state, steps);
 

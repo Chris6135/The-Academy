@@ -8,6 +8,9 @@ const StepsReducer = (state ={}, action) => {
         case RECEIVE_STEPS:
               return Object.assign({},state,action.steps)
         case RECEIVE_SINGLE_LESSON:
+            console.log("in steps reducer")
+            console.log(action.payload)
+
             const steps = action.payload.steps
             return Object.assign({},state,steps)
         case RECEIVE_SINGLE_STEP:

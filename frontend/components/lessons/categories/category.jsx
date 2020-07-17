@@ -20,11 +20,15 @@ import {Link} from "react-router-dom"
  class CategoryPage extends React.Component{
     constructor(props){
         super(props)
+        console.log(this.props)
+        this.props.fetchCategories()
     }
 
     
     componentDidMount(){
-       this.props.fetchCategoryLessons(this.props.category.id)
+       const url = window.location.href
+       const urlArr = url.split('')
+       this.props.fetchCategoryLessons(urlArr[urlArr.length-1])
     }
 
 
@@ -55,9 +59,17 @@ import {Link} from "react-router-dom"
 
 
     render (){
+
+        debugger
+        if(this.props.lessons[0] === undefined){
+            return null
+        }
+
         if(!this.props.lessons[0]){
             <p>loading</p>
+
         }
+        debugger
 
         let bannerClass =`splash-banner-${this.props.category.title}`
 

@@ -6,7 +6,16 @@ class LessonDraftShow extends React.Component{
     }
 
     componentDidMount(){
+        console.log(this.props)
+        console.log(this.props.match.params.lessonId)
         this.props.requestLesson(this.props.match.params.lessonId)
+        console.log(this.props.requestLesson)
+
+        // console.log(this.props.requestLesson)
+        // const url = window.location.href
+        // const urlArr = url.split('')
+        // console.log(urlArr[urlArr.length-1])
+        // this.props.requestLesson(urlArr[urlArr.length-1])
     }
 
 
@@ -33,7 +42,9 @@ class LessonDraftShow extends React.Component{
 
     render(){
        
-        if(this.props.steps[0] === undefined){
+        if(this.props.steps === undefined){
+            return null
+        }else if(this.props.steps[0] === undefined){
             return null
         }
 

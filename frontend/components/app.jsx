@@ -40,7 +40,7 @@ const App = () => (
             <ProtectedRoute exact path="/step/:id" component={StepEditPage}/>
             <ProtectedRoute exact path="/user/drafts" component={UserDrafts}/>
             <ProtectedRoute exact path="/user/show" component={UserPublished}/>
-            <ProtectedRoute exact path="/lesson/show/draft/:lessonId" component={LessonDraftShow}/>
+            <Route exact path="/lesson/show/draft/:lessonId" component={LessonDraftShow}/>
             <ProtectedRoute exact path="/lesson/publish/:lessonId" component={PublishLesson}/>
 
 

@@ -7,8 +7,8 @@ import stepsReducer from "./steps_reducer"
 
 const entitiesReducer = combineReducers({
     users: usersReducer,
-    lessons: lessonsReducer,
     categories: categoriesReducer,
+    lessons: lessonsReducer,
     steps: stepsReducer
 })
 
