@@ -1,8 +1,74 @@
-import React from "react";
+import React, { useEffect, useState }  from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {fetchAllLessons,fetchCategories} from "../../actions/lessons/lesson_actions"
+import {Link} from "react-router-dom"
+
+
 // import background from "../../../app/assets/images/annie-spratt-yD-raqkqqIw-unsplash.jpg"
 //got to set in category lists. This might requite a container since backend requests will need to be made at launch. 
 
 const splash = ()=>{
+
+    const categories = useSelector((state) => state.entities.categories);
+    const lessons = (useSelector((state) => state.entities.lessons))
+
+    // const dispatch = useDispatch();
+
+    // dispatch(fetchAllLessons)
+
+    function buildCategories() {
+        if(categories !== {}){
+            return  Object.keys(categories).map((id) =>{
+             const link = `/category/${id}`
+             const keyN = `nav splash key ${id}`
+             let lessArr = [] 
+
+             for(let i=0; i < 5; i++){
+                 const cat = categories[id]
+                 const lessonId = categories[id].lessonIds[i]
+                 lessArr.push(lessons[lessonId])
+                }
+
+             function buildLessons(){
+                return lessArr.map((less) =>{
+
+                    if(less === undefined){
+           
+                        return <h1>something went wrong</h1>
+                       }
+           
+                       const key = `lesson key ${less.id}`
+                       const link = `/lesson/show/draft/${less.id}`
+                       return ( <div className="lesson-box"
+                               key={key}> 
+                                   <div className="draft-box" to={link}>
+                                       <Link className="user-draft-photo" to={link}></Link>
+                                       <div className="user-draft-name">
+                                           {less.title} &nbsp;
+                                             
+                                           <div className="user-draft-subtitle"> by {less.author}</div>
+                                       </div>
+                                   </div>
+           
+                        </div>)
+                   })
+             }
+
+                 return(
+                        <ol>
+                            <div key={keyN} className ="vlah" >
+                            <li>
+                                <Link className="link-title" to={link}> {categories[id].title}</Link> 
+
+                                <div className="splashLessons">{buildLessons()} </div>
+                            </li>
+                            </div>
+                        </ol>
+                     )
+                 })
+             }
+    }
+
     return (
         <div className="splash-container">
              <section className ="splash-banner"> 
@@ -53,6 +119,13 @@ const splash = ()=>{
             </section>
 
             <div className="splash-line"></div>
+
+
+            <div className="proj"> 
+                <div className="blurb-title"> EXPLORE PROJECTS</div> 
+
+                {buildCategories()}
+            </div>
 
         </div>)
 }

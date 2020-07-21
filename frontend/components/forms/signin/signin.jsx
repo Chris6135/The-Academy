@@ -110,7 +110,7 @@ componentDidMount(){
       <div className="signin-form-container">
         <form onSubmit={this.handleSubmit} className="signin-form-box">
           <div className="signin-form">
-          <button className="demo-submit" type="submit" value="Login" onClick={this.demoLogin}> Demo Login</button>
+          <div className="demo-submit" value="Login"  onClick={this.demoLogin}> Demo Login</div>
 
         <div className="demo-line">
             <div />

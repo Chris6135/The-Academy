@@ -87,7 +87,9 @@
 }
 
 .user-draft-container{
-    width:980px;
+    // width:980px;
+    width:60%;
+    margin-left:5%;
     padding:30px;
     background:#F6F6F6;
     display: flex;
@@ -97,8 +99,8 @@
 }
 .draft-box{
     display: flex;
-    height: 260px;
-    width: 250px;
+    height: 300px;
+    width: 280px;
     display:flex;
     flex-direction: column;
     margin: 25px;
@@ -118,4 +120,5 @@
     background: #FFFFFF;
     text-decoration: none;
     font-weight:bolder;
+    align-items: baseline;
 }

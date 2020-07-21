@@ -21,14 +21,14 @@ import {Link} from "react-router-dom"
     constructor(props){
         super(props)
         console.log(this.props)
-        this.props.fetchCategories()
+        // this.props.fetchCategories()
     }
 
     
     componentDidMount(){
        const url = window.location.href
        const urlArr = url.split('')
-       this.props.fetchCategoryLessons(urlArr[urlArr.length-1])
+    //    this.props.fetchCategoryLessons(urlArr[urlArr.length-1])
     }
 
 
@@ -60,7 +60,6 @@ import {Link} from "react-router-dom"
 
     render (){
 
-        debugger
         if(this.props.lessons[0] === undefined){
             return null
         }
@@ -69,7 +68,7 @@ import {Link} from "react-router-dom"
             <p>loading</p>
 
         }
-        debugger
+        
 
         let bannerClass =`splash-banner-${this.props.category.title}`
 

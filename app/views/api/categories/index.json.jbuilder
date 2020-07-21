@@ -14,6 +14,7 @@ end
         json.set! lesson.id do
           json.partial! "api/lessons/lesson", lesson: lesson 
           json.stepIds lesson.steps.pluck(:id)
+          json.author User.find(lesson.author_id).username
         end
     end
   end

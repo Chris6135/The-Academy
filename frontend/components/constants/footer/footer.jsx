@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 export default class Footer extends React.Component{
     constructor(props){
         super(props);
-        this.props.fetchCategories()
+        // this.props.fetchCategories()
 
     }
 

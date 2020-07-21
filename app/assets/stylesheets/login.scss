@@ -40,9 +40,6 @@
    background:inherit; 
    filter: blur(15px);
    z-index: -1;
-
-
-
 }
 
 .demo-line{
@@ -64,6 +61,9 @@
    padding:14px;
    background: #6218f7;
    color: white;
+   width:94% !important;
+   text-align:center;
+   cursor: pointer;
 }
 
 
@@ -84,6 +84,7 @@
    padding:14px;
    background: #F7AC18;
    color: white;
+   cursor: pointer;
 }
 
 .signin-form > p {

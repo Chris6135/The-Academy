@@ -558,21 +558,15 @@ var Footer = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Footer);
 
   function Footer(props) {
-    var _this;
-
     _classCallCheck(this, Footer);
 
-    _this = _super.call(this, props);
-
-    _this.props.fetchCategories();
-
-    return _this;
+    return _super.call(this, props); // this.props.fetchCategories()
   }
 
   _createClass(Footer, [{
     key: "buildCategories",
     value: function buildCategories() {
-      var _this2 = this;
+      var _this = this;
 
       if (this.props.categories !== {}) {
         return Object.keys(this.props.categories).map(function (id) {
@@ -580,9 +574,9 @@ var Footer = /*#__PURE__*/function (_React$Component) {
           var link = "/category/".concat(id);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
             to: link,
-            className: _this2.props.categories[id].icon,
+            className: _this.props.categories[id].icon,
             key: keyS
-          }, "  ", _this2.props.categories[id].title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null), " ");
+          }, "  ", _this.props.categories[id].title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null), " ");
         });
       }
     }
@@ -1371,9 +1365,8 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
         className: "signin-form-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signin-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "demo-submit",
-        type: "submit",
         value: "Login",
         onClick: this.demoLogin
       }, " Demo Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1625,9 +1618,8 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
         className: "signup-form-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "signup-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "demo-submit",
-        type: "submit",
         value: "Login",
         onClick: this.demoLogin
       }, " Demo Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1807,9 +1799,7 @@ var CategoryPage = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, CategoryPage);
 
     _this = _super.call(this, props);
-    console.log(_this.props);
-
-    _this.props.fetchCategories();
+    console.log(_this.props); // this.props.fetchCategories()
 
     return _this;
   }
@@ -1818,8 +1808,7 @@ var CategoryPage = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var url = window.location.href;
-      var urlArr = url.split('');
-      this.props.fetchCategoryLessons(urlArr[urlArr.length - 1]);
+      var urlArr = url.split(''); //    this.props.fetchCategoryLessons(urlArr[urlArr.length-1])
     }
   }, {
     key: "listLessons",
@@ -1847,8 +1836,6 @@ var CategoryPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
-
       if (this.props.lessons[0] === undefined) {
         return null;
       }
@@ -1858,7 +1845,6 @@ var CategoryPage = /*#__PURE__*/function (_React$Component) {
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "loading");
       }
 
-      debugger;
       var bannerClass = "splash-banner-".concat(this.props.category.title);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-container"
@@ -3074,10 +3060,75 @@ var Root = function Root(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/lessons/lesson_actions */ "./frontend/actions/lessons/lesson_actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
  // import background from "../../../app/assets/images/annie-spratt-yD-raqkqqIw-unsplash.jpg"
 //got to set in category lists. This might requite a container since backend requests will need to be made at launch. 
 
 var splash = function splash() {
+  var categories = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
+    return state.entities.categories;
+  });
+  var lessons = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
+    return state.entities.lessons;
+  }); // const dispatch = useDispatch();
+  // dispatch(fetchAllLessons)
+
+  function buildCategories() {
+    if (categories !== {}) {
+      return Object.keys(categories).map(function (id) {
+        var link = "/category/".concat(id);
+        var keyN = "nav splash key ".concat(id);
+        var lessArr = [];
+
+        for (var i = 0; i < 5; i++) {
+          var cat = categories[id];
+          var lessonId = categories[id].lessonIds[i];
+          lessArr.push(lessons[lessonId]);
+        }
+
+        function buildLessons() {
+          return lessArr.map(function (less) {
+            if (less === undefined) {
+              return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "something went wrong");
+            }
+
+            var key = "lesson key ".concat(less.id);
+            var link = "/lesson/show/draft/".concat(less.id);
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "lesson-box",
+              key: key
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "draft-box",
+              to: link
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+              className: "user-draft-photo",
+              to: link
+            }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "user-draft-name"
+            }, less.title, " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "user-draft-subtitle"
+            }, " by ", less.author))));
+          });
+        }
+
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: keyN,
+          className: "vlah"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+          className: "link-title",
+          to: link
+        }, " ", categories[id].title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "splashLessons"
+        }, buildLessons(), " "))));
+      });
+    }
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "splash-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
@@ -3104,7 +3155,11 @@ var splash = function splash() {
     className: "blurb-content"
   }, "At The Academy we believe learning is it's own goal. That means that there are no grades, judgments, or compitition. Complete your lessons and build at your own rate by your own motivations. The only person who can judge your progress is you. Have confidence, have faith, have fun!")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "splash-line"
-  }));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "proj"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "blurb-title"
+  }, " EXPLORE PROJECTS"), buildCategories()));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (splash);

@@ -110,12 +110,13 @@ class SignUpForm extends React.Component {
 
 
   render(){
+
     return (
       <div className="signup-form-container">
         <form onSubmit={this.handleSubmit} className="signup-form-box">
 
           <div className="signup-form">
-        <button className="demo-submit" type="submit" value="Login" onClick={this.demoLogin}> Demo Login</button>
+        <div className="demo-submit" value="Login" onClick={this.demoLogin}> Demo Login</div>
 
             <div className="demo-line">
                 <div />
