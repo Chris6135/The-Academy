@@ -28,7 +28,13 @@ import {Link} from "react-router-dom"
     componentDidMount(){
        const url = window.location.href
        const urlArr = url.split('')
-    //    this.props.fetchCategoryLessons(urlArr[urlArr.length-1])
+       window.scrollTo(0, 0)
+        //    this.props.fetchCategoryLessons(urlArr[urlArr.length-1])
+    }
+
+    componentDidUpdate(){
+        window.scrollTo(0, 0)
+
     }
 
 
@@ -49,7 +55,9 @@ import {Link} from "react-router-dom"
                         <Link className="draft-box" to={link}>
                             <div className="user-draft-photo"></div>
                             <div className="user-draft-name">
-                                {lesson.title}
+                                {lesson.title} &nbsp;
+                                             
+                                <div className="user-draft-subtitle"> by {lesson.author}</div>
                             </div>
                         </Link>
 

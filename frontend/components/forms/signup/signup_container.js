@@ -14,6 +14,7 @@ const mapStateToProps = ({ errors }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchCategories : ()=> dispatch(fetchCategories()),
     processForm: (user) => dispatch(signUp(user)),
     demoForm: (user) => dispatch(signIn(user)),
     clearErrors: ()=> {

@@ -14,10 +14,12 @@ const mapStateToProps = ({ errors }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchCategories : ()=> dispatch(fetchCategories()),
     processForm: (user) => dispatch(signIn(user)),
     clearErrors: ()=> {
      dispatch(clearErrors())}
   };
+  
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(signinComponent);

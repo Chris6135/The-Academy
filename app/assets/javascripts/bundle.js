@@ -1269,6 +1269,7 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.props.clearErrors();
+      this.props.fetchCategories();
     }
   }, {
     key: "componentDidUpdate",
@@ -1440,6 +1441,19 @@ var mapStateToProps = function mapStateToProps(_ref) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchCategories: function (_fetchCategories) {
+      function fetchCategories() {
+        return _fetchCategories.apply(this, arguments);
+      }
+
+      fetchCategories.toString = function () {
+        return _fetchCategories.toString();
+      };
+
+      return fetchCategories;
+    }(function () {
+      return dispatch(fetchCategories());
+    }),
     processForm: function processForm(user) {
       return dispatch(Object(_actions_session_session_actions__WEBPACK_IMPORTED_MODULE_1__["signIn"])(user));
     },
@@ -1522,6 +1536,7 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.props.clearErrors();
+      this.props.fetchCategories();
     }
   }, {
     key: "demoLogin",
@@ -1726,6 +1741,19 @@ var mapStateToProps = function mapStateToProps(_ref) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchCategories: function (_fetchCategories) {
+      function fetchCategories() {
+        return _fetchCategories.apply(this, arguments);
+      }
+
+      fetchCategories.toString = function () {
+        return _fetchCategories.toString();
+      };
+
+      return fetchCategories;
+    }(function () {
+      return dispatch(fetchCategories());
+    }),
     processForm: function processForm(user) {
       return dispatch(Object(_actions_session_session_actions__WEBPACK_IMPORTED_MODULE_1__["signUp"])(user));
     },
@@ -1808,7 +1836,13 @@ var CategoryPage = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var url = window.location.href;
-      var urlArr = url.split(''); //    this.props.fetchCategoryLessons(urlArr[urlArr.length-1])
+      var urlArr = url.split('');
+      window.scrollTo(0, 0); //    this.props.fetchCategoryLessons(urlArr[urlArr.length-1])
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      window.scrollTo(0, 0);
     }
   }, {
     key: "listLessons",
@@ -1830,7 +1864,9 @@ var CategoryPage = /*#__PURE__*/function (_React$Component) {
           className: "user-draft-photo"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "user-draft-name"
-        }, lesson.title)));
+        }, lesson.title, " \xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "user-draft-subtitle"
+        }, " by ", lesson.author))));
       });
     }
   }, {
@@ -2527,6 +2563,12 @@ var LessonDraftShow = /*#__PURE__*/function (_React$Component) {
     value: function renderSteps() {
       var _this = this;
 
+      if (this.props.steps === undefined) {
+        return null;
+      } else if (this.props.steps[0] === undefined) {
+        return null;
+      }
+
       return this.props.steps.map(function (step) {
         var stepNum = _this.props.steps.indexOf(step) + 1;
         var key = "".concat(_this.props.lesson.title, "-step-").concat(stepNum);
@@ -2553,9 +2595,9 @@ var LessonDraftShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (this.props.steps === undefined) {
+      if (this.props.lesson === undefined) {
         return null;
-      } else if (this.props.steps[0] === undefined) {
+      } else if (this.props.author === undefined) {
         return null;
       }
 
@@ -3076,6 +3118,14 @@ var splash = function splash() {
   var lessons = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
     return state.entities.lessons;
   }); // const dispatch = useDispatch();
+  // function fetch(){
+  //     console.log("fetching")
+  //     console.log(lessons)
+  //     console.log(dispatch(fetchCategories))
+  //     dispatch(fetchCategories());
+  //     console.log(lessons)
+  // }
+  // fetch()
   // dispatch(fetchAllLessons)
 
   function buildCategories() {

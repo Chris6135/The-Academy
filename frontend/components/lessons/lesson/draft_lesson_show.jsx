@@ -20,6 +20,11 @@ class LessonDraftShow extends React.Component{
 
 
      renderSteps(){
+           if(this.props.steps === undefined){
+            return null
+        }else if(this.props.steps[0] === undefined){
+            return null
+        }
         return this.props.steps.map((step) =>{
             const stepNum = this.props.steps.indexOf(step) + 1
             const key = `${this.props.lesson.title}-step-${stepNum}`
@@ -42,11 +47,11 @@ class LessonDraftShow extends React.Component{
 
     render(){
        
-        if(this.props.steps === undefined){
+        if(this.props.lesson === undefined){
             return null
-        }else if(this.props.steps[0] === undefined){
+        }else if(this.props.author === undefined){
             return null
-        }
+        } 
 
         return(
             <div className="parent-box">

@@ -25,6 +25,7 @@ componentDidMount(){
 
   componentWillUnmount(){
     this.props.clearErrors()
+    this.props.fetchCategories()
   }
 
   componentDidUpdate(){

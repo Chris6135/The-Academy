@@ -25,6 +25,8 @@ class Lesson < ApplicationRecord
     has_many :steps,
     :dependent => :delete_all
 
+    has_one_attached :photo
+
 
 
 end

@@ -14,6 +14,17 @@ const splash = ()=>{
 
     // const dispatch = useDispatch();
 
+    // function fetch(){
+    //     console.log("fetching")
+    //     console.log(lessons)
+    //     console.log(dispatch(fetchCategories))
+    //     dispatch(fetchCategories());
+    //     console.log(lessons)
+
+    // }
+    // fetch()
+
+
     // dispatch(fetchAllLessons)
 
     function buildCategories() {
