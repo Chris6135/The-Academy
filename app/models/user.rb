@@ -22,6 +22,8 @@ class User < ApplicationRecord
     has_many :lessons, :dependent => :delete_all,
     foreign_key: :author_id
 
+    has_one_attached :photo
+
     after_initialize :ensure_session_token 
 
     def self.find_by_credentials(username, password)

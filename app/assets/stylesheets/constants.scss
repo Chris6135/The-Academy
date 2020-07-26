@@ -82,10 +82,19 @@
 
 }
 
+.photo-circle{
+    border-radius: 500px;
+    height: 30px;
+    cursor: pointer;
+
+}
+
 .user-icon{
     margin: 15px;
     font-size: 20px;
     position: relative;
+    cursor: pointer;
+
     }
 
 .user-icon:hover{

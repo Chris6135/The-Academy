@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { signIn, clearErrors } from '../../../actions/session/session_actions'
+import {fetchCategories} from "../../../actions/lessons/lesson_actions"
 import React from 'react';
 import { Link } from 'react-router-dom';
 import signinComponent from './signin'

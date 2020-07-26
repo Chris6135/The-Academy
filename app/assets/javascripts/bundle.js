@@ -997,15 +997,29 @@ var ContentBox = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log(this.props);
+      var pic;
+
+      if (this.props.currentUser === undefined) {
+        return null;
+      } else if (this.props.currentUser.photo_url === undefined) {
+        pic = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "fas fa-user-graduate"
+        });
+      } else {
+        pic = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: this.props.currentUser.photo_url,
+          className: "photo-circle"
+        });
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         ref: this.outerRef,
         onFocus: this.clicker,
         onBlur: this.setBlurListener(this.outerRef, this.leave),
         className: "user-icon",
         tabIndex: "0"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "fas fa-user-graduate"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, pic, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: this.state.menu
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-icon-dropdown-user-catagories"
@@ -1418,10 +1432,12 @@ var SignInForm = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/session/session_actions */ "./frontend/actions/session/session_actions.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _signin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./signin */ "./frontend/components/forms/signin/signin.jsx");
+/* harmony import */ var _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/lessons/lesson_actions */ "./frontend/actions/lessons/lesson_actions.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _signin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./signin */ "./frontend/components/forms/signin/signin.jsx");
+
 
 
 
@@ -1433,7 +1449,7 @@ var mapStateToProps = function mapStateToProps(_ref) {
   return {
     errors: errors.session,
     formType: 'signin',
-    navLink: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+    navLink: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
       to: "/signup"
     }, "sign up")
   };
@@ -1441,19 +1457,9 @@ var mapStateToProps = function mapStateToProps(_ref) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchCategories: function (_fetchCategories) {
-      function fetchCategories() {
-        return _fetchCategories.apply(this, arguments);
-      }
-
-      fetchCategories.toString = function () {
-        return _fetchCategories.toString();
-      };
-
-      return fetchCategories;
-    }(function () {
-      return dispatch(fetchCategories());
-    }),
+    fetchCategories: function fetchCategories() {
+      return dispatch(Object(_actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_2__["fetchCategories"])());
+    },
     processForm: function processForm(user) {
       return dispatch(Object(_actions_session_session_actions__WEBPACK_IMPORTED_MODULE_1__["signIn"])(user));
     },
@@ -1463,7 +1469,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_signin__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_signin__WEBPACK_IMPORTED_MODULE_5__["default"]));
 
 /***/ }),
 
@@ -1718,10 +1724,12 @@ var SignUpForm = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/session/session_actions */ "./frontend/actions/session/session_actions.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _signup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./signup */ "./frontend/components/forms/signup/signup.jsx");
+/* harmony import */ var _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/lessons/lesson_actions */ "./frontend/actions/lessons/lesson_actions.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _signup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./signup */ "./frontend/components/forms/signup/signup.jsx");
+
 
 
 
@@ -1733,7 +1741,7 @@ var mapStateToProps = function mapStateToProps(_ref) {
   return {
     errors: errors.session,
     formType: 'signup',
-    navLink: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+    navLink: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
       to: "/signin"
     }, "log in")
   };
@@ -1741,19 +1749,9 @@ var mapStateToProps = function mapStateToProps(_ref) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchCategories: function (_fetchCategories) {
-      function fetchCategories() {
-        return _fetchCategories.apply(this, arguments);
-      }
-
-      fetchCategories.toString = function () {
-        return _fetchCategories.toString();
-      };
-
-      return fetchCategories;
-    }(function () {
-      return dispatch(fetchCategories());
-    }),
+    fetchCategories: function fetchCategories() {
+      return dispatch(Object(_actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_2__["fetchCategories"])());
+    },
     processForm: function processForm(user) {
       return dispatch(Object(_actions_session_session_actions__WEBPACK_IMPORTED_MODULE_1__["signUp"])(user));
     },
@@ -1766,7 +1764,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_signup__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_signup__WEBPACK_IMPORTED_MODULE_5__["default"]));
 
 /***/ }),
 
@@ -3117,8 +3115,8 @@ var splash = function splash() {
   });
   var lessons = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
     return state.entities.lessons;
-  }); // const dispatch = useDispatch();
-  // function fetch(){
+  });
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(); // function fetch(){
   //     console.log("fetching")
   //     console.log(lessons)
   //     console.log(dispatch(fetchCategories))
@@ -3127,6 +3125,11 @@ var splash = function splash() {
   // }
   // fetch()
   // dispatch(fetchAllLessons)
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    console.log("splash");
+    dispatch(Object(_actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_2__["fetchCategories"])());
+  }, []);
 
   function buildCategories() {
     if (categories !== {}) {
@@ -3774,6 +3777,7 @@ var lessonsReducer = function lessonsReducer() {
       return newState;
 
     case _actions_lessons_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CATEGORIES"]:
+      console.log("grabbin cats");
       newState = Object.assign({}, state, action.payload.lessons);
       return newState;
 

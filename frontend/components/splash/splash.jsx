@@ -1,5 +1,5 @@
 import React, { useEffect, useState }  from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import {fetchAllLessons,fetchCategories} from "../../actions/lessons/lesson_actions"
 import {Link} from "react-router-dom"
 
@@ -12,7 +12,7 @@ const splash = ()=>{
     const categories = useSelector((state) => state.entities.categories);
     const lessons = (useSelector((state) => state.entities.lessons))
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     // function fetch(){
     //     console.log("fetching")
@@ -26,6 +26,11 @@ const splash = ()=>{
 
 
     // dispatch(fetchAllLessons)
+
+    useEffect(()=>{
+        console.log("splash")
+        dispatch(fetchCategories())
+    }, [])
 
     function buildCategories() {
         if(categories !== {}){
@@ -44,7 +49,6 @@ const splash = ()=>{
                 return lessArr.map((less) =>{
 
                     if(less === undefined){
-           
                         return <h1>something went wrong</h1>
                        }
            

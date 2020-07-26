@@ -30,6 +30,16 @@ class ContentBox extends React.Component {
       }
 
     render(){
+      console.log(this.props)
+      let pic 
+      if(this.props.currentUser === undefined){
+        return null
+      }
+      else if(this.props.currentUser.photo_url === undefined){
+        pic =  <div className="fas fa-user-graduate" />
+      }else{
+        pic = <img src={this.props.currentUser.photo_url} className="photo-circle"></img>
+      }
         return(
         <div
           ref = {this.outerRef}
@@ -37,7 +47,8 @@ class ContentBox extends React.Component {
           onBlur={this.setBlurListener(this.outerRef,this.leave)} 
           className="user-icon" 
           tabIndex="0">
-          <div className="fas fa-user-graduate" />
+
+          {pic}
 
               <div className = {this.state.menu} > 
                 <div className="user-icon-dropdown-user-catagories">

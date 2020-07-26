@@ -45,6 +45,7 @@ const lessonsReducer = (state ={}, action) => {
             newState = Object.assign({},action.payload.lessons)
             return newState
         case RECEIVE_CATEGORIES:
+            console.log("grabbin cats")
             newState = Object.assign({},state,action.payload.lessons)
             return newState
         default:

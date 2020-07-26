@@ -15,4 +15,7 @@ class Step < ApplicationRecord
     foreign_key: :lesson_id,
     class_name: :Lesson
 
+    has_one_attached :photo
+
+
 end
