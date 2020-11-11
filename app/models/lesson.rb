@@ -10,6 +10,8 @@
 #
 class Lesson < ApplicationRecord
 
+    validates :title, presence: true
+
     has_one :product,
     primary_key: :id,
     foreign_key: :lesson_id,

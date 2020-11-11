@@ -1,4 +1,4 @@
-json.extract! user, :id, :username, :email, :country, :user_info
+json.extract! user, :id, :username, :email, :country, :user_info, :created_at
 
 json.lessons user.lessons.pluck(:id)
 

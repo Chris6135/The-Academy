@@ -997,7 +997,6 @@ var ContentBox = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props);
       var pic;
 
       if (this.props.currentUser === undefined) {
@@ -2450,7 +2449,7 @@ var NewLesson = /*#__PURE__*/function (_React$Component) {
         className: "title-body-box"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "create-step"
-      }, "createStep")));
+      }, "Create Step")));
     }
   }]);
 
@@ -3327,6 +3326,21 @@ var UserPublished = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var pic;
+
+      if (this.props.user === undefined) {
+        return null;
+      } else if (this.props.user.photo_url === undefined) {
+        pic = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "fas fa-user-graduate"
+        });
+      } else {
+        pic = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: this.props.user.photo_url,
+          className: "profile-photo-circle"
+        });
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3335,9 +3349,7 @@ var UserPublished = /*#__PURE__*/function (_React$Component) {
         className: "user-info-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-photo"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "fas fa-user-graduate"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, pic), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "username"

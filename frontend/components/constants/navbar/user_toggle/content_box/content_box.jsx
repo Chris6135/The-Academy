@@ -30,7 +30,6 @@ class ContentBox extends React.Component {
       }
 
     render(){
-      console.log(this.props)
       let pic 
       if(this.props.currentUser === undefined){
         return null

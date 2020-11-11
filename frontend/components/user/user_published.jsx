@@ -51,15 +51,22 @@ class UserPublished extends React.Component{
     }
 
     render(){
+        let pic 
+        if(this.props.user === undefined){
+          return null
+        }
+        else if(this.props.user.photo_url === undefined){
+          pic =  <div className="fas fa-user-graduate" />
+        }else{
+          pic = <img src={this.props.user.photo_url} className="profile-photo-circle"></img>
+        }
 
         return(
             <div className= "page-container"> 
                 <div className="user-header">
                     <div className="user-info-container">
                         <div className ="user-photo"> 
-                            <div className="fas fa-user-graduate">
-
-                            </div>
+                            {pic}
                         </div>
                         <div className= "user-info">
                             <div className= "username">{this.props.user.username}</div>

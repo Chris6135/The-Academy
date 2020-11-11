@@ -29,10 +29,20 @@
 
 .user-photo{
     // padding:60px;
-    width:120px;
-    height:105px;
+    // width:120px;
+    // height:105px;
    
 }
+
+.profile-photo-circle{
+    background:lightgray;
+    border-radius: 500px;
+    height: 125px;
+    max-width: 125px;
+    border:solid 1px gold
+
+}
+
 
 .user-photo > div{
     position: relative;
@@ -48,8 +58,9 @@
     height:105px;
     display:flex;
     flex-direction: column;
+    margin-left:10px;
    
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .username{
@@ -106,6 +117,7 @@
     margin: 25px;
     border: solid 1.5px #ddd;
     overflow: hidden;
+    border-radius:7px;
 }
 .user-draft-photo{
     background-image: image_url('logo3.png');
