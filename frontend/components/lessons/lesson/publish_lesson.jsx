@@ -28,6 +28,8 @@ class PublishLesson extends React.Component{
         this.props.updateLesson(lesson)
         .then(data => this.props.history.push(`/lesson/show/draft/${data.payload.lesson.id}`))
 
+        //going to have to do some reasearch to remember exactly how this works. 
+
       
       }
 

@@ -21,21 +21,30 @@ import {Link} from "react-router-dom"
     constructor(props){
         super(props)
         console.log(this.props)
-        // this.props.fetchCategories()
+        // this.props.fetchCategories() //hilariously this solution was right, just in the wrong place. 
     }
 
-    
+
+    // Ok it took some serious debugging time, but I think I figured this out. 
+    // the problem ISNT that the cateogry page isn't grabbing the right lessons and putting them in its props. it is.
+    //the problem is that hte category slice of state isn't updating with the newly created lesson until there is a refresh.
+    //I need to update hte category.category id's imidiately when a new lesson is uploaded, that will solve this. 
     componentDidMount(){
        const url = window.location.href
        const urlArr = url.split('')
        window.scrollTo(0, 0)
+       console.log("test1")
+       this.props.fetchCategories()
+
         //    this.props.fetchCategoryLessons(urlArr[urlArr.length-1])
+        // console.log("LOOOK HERE")
+       
     }
 
     componentDidUpdate(){
         window.scrollTo(0, 0)
-
     }
+
 
 
 

@@ -9,7 +9,7 @@ const mapStateToProps = (state,ownProps) => {
   let steps = []
   
   if(lesson){
-    steps = lesson.stepIds.map((stepId)=> {
+    steps = lesson.stepIds.sort().map((stepId)=> {
          return state.entities.steps[stepId]
     })
     return {

@@ -1824,17 +1824,24 @@ var CategoryPage = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, CategoryPage);
 
     _this = _super.call(this, props);
-    console.log(_this.props); // this.props.fetchCategories()
+    console.log(_this.props); // this.props.fetchCategories() //hilariously this solution was right, just in the wrong place. 
 
     return _this;
-  }
+  } // Ok it took some serious debugging time, but I think I figured this out. 
+  // the problem ISNT that the cateogry page isn't grabbing the right lessons and putting them in its props. it is.
+  //the problem is that hte category slice of state isn't updating with the newly created lesson until there is a refresh.
+  //I need to update hte category.category id's imidiately when a new lesson is uploaded, that will solve this. 
+
 
   _createClass(CategoryPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var url = window.location.href;
       var urlArr = url.split('');
-      window.scrollTo(0, 0); //    this.props.fetchCategoryLessons(urlArr[urlArr.length-1])
+      window.scrollTo(0, 0);
+      console.log("test1");
+      this.props.fetchCategories(); //    this.props.fetchCategoryLessons(urlArr[urlArr.length-1])
+      // console.log("LOOOK HERE")
     }
   }, {
     key: "componentDidUpdate",
@@ -2645,7 +2652,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var steps = [];
 
   if (lesson) {
-    steps = lesson.stepIds.map(function (stepId) {
+    steps = lesson.stepIds.sort().map(function (stepId) {
       return state.entities.steps[stepId];
     });
     return {
@@ -2745,7 +2752,7 @@ var PublishLesson = /*#__PURE__*/function (_React$Component) {
       var lesson = Object.assign({}, this.props.lesson, this.state);
       this.props.updateLesson(lesson).then(function (data) {
         return _this3.props.history.push("/lesson/show/draft/".concat(data.payload.lesson.id));
-      });
+      }); //going to have to do some reasearch to remember exactly how this works. 
     }
   }, {
     key: "render",
