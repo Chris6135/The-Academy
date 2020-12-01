@@ -58,11 +58,13 @@ const splash = ()=>{
                                key={key}> 
                                    <div className="draft-box" to={link}>
                                        <Link className="user-draft-photo" to={link}></Link>
-                                       <div className="user-draft-name">
-                                           {less.title} &nbsp;
-                                             
-                                           <div className="user-draft-subtitle"> by {less.author}</div>
-                                       </div>
+                                       <div className="user-draft-namebox">
+                                        <Link className="user-draft-name" to={link}>
+                                             {less.title}
+                                             </Link>
+                                        <div> &nbsp; by &nbsp;</div>
+                                        <div className="user-draft-subtitle">{less.author}</div>
+                                        </div>
                                    </div>
            
                         </div>)
@@ -73,7 +75,7 @@ const splash = ()=>{
                         <ol>
                             <div key={keyN} className ="vlah" >
                             <li>
-                                <Link className="link-title" to={link}> {categories[id].title}</Link> 
+                                <Link className="link-title" to={link}> {categories[id].title} <div className="fas fa-chevron-right"></div> </Link> 
 
                                 <div className="splashLessons">{buildLessons()} </div>
                             </li>

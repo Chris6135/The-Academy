@@ -59,18 +59,24 @@ import {Link} from "react-router-dom"
 
             const key = `lesson key ${lesson.id}`
             const link = `/lesson/show/draft/${lesson.id}`
-            return ( <div className="lesson-box"
+            return ( 
+            
+            <div className="lesson-box"
                     key={key}> 
-                        <Link className="draft-box" to={link}>
-                            <div className="user-draft-photo"></div>
-                            <div className="user-draft-name">
-                                {lesson.title} &nbsp;
-                                             
-                                <div className="user-draft-subtitle"> by {lesson.author}</div>
-                            </div>
-                        </Link>
+                            <div className="draft-box" to={link}>
+                                       <Link className="user-draft-photo" to={link}></Link>
+                                       <div className="user-draft-namebox">
+                                        <Link className="user-draft-name" to={link}>
+                                             {lesson.title}
+                                             </Link>
+                                        <div> &nbsp; by &nbsp;</div>
+                                        <div className="user-draft-subtitle">{lesson.author}</div>
+                                        </div>
+                                   </div>
 
-             </div>)
+             </div>
+             
+             )
         })
     }
 

@@ -11,7 +11,7 @@
     // padding:1px;
     // padding:30px;
     width:100%;
-      display:flex;
+    display:flex;
     flex-direction: column;
     align-items: center;
 }
@@ -127,11 +127,11 @@
     padding: 10px;
     height:80%
 }
-.user-draft-name{
+.user-draft-namebox{
     padding: 20px;
     background: #FFFFFF;
     text-decoration: none;
     font-weight:bolder;
-    display:flex;
+    display:flex !important;
     align-items: baseline;
 }

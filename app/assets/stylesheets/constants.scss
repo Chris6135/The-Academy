@@ -29,6 +29,10 @@
     color: #ccc;
     text-decoration: none;
 
+    &:hover{
+        text-decoration: underline;
+    }
+
   }
 
   .cat-nav > li {
@@ -392,6 +396,10 @@ footer-about-me */
         padding:5px;
         z-index: 1; 
 
+        &:hover{
+            color:#FFFFFF;
+        }
+
         /* width:10px; */
     }
     .footer-catagories > ol > a >li {
@@ -432,7 +440,12 @@ footer-about-me */
             /* color:red; */
            font-size: 40px;
            margin:10px;
+
+           &:hover{
+               color:	#909090;
+           }
             }
+            
     
 
     .footer-bar{
@@ -465,3 +478,5 @@ footer-about-me */
       [content] {
         color:red;
     }
+
+

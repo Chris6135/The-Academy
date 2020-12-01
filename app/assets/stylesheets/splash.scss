@@ -181,6 +181,18 @@ blurb-content */
     text-decoration: underline;
 }
 
+// .link-title{
+//     display:flex;
+// }
+
+.link-title > div {
+    position:relative;
+    display:inline-block !important;
+    top:4px;
+    left:3px;
+    color:grey;
+}
+
 .user-draft-photo{
     cursor: pointer;
 }
@@ -188,7 +200,19 @@ blurb-content */
 .user-draft-subtitle{
     font-weight: 400;
     font-size:12px;
+    color:#505050	;
+
+}
+
+.user-draft-name:hover{
+    text-decoration: underline;
+}
+
+.user-draft-namebox > div:first-of-type{
+    font-weight: 400;
+    font-size:12px;
     color: gray;
+
 
 }
 
