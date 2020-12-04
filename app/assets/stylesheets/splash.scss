@@ -181,9 +181,9 @@ blurb-content */
     text-decoration: underline;
 }
 
-// .link-title{
-//     display:flex;
-// }
+.link-title{
+    width:fit-content
+}
 
 .link-title > div {
     position:relative;
@@ -191,6 +191,7 @@ blurb-content */
     top:4px;
     left:3px;
     color:grey;
+    text-decoration: none !important;
 }
 
 .user-draft-photo{

@@ -44,6 +44,24 @@ class LessonDraftShow extends React.Component{
         )
     }
 
+    parseDate(d){
+
+
+        let  month = d.getMonth();
+        let day= d.getDate();
+        let year = d.getFullYear();
+        let suff = "th"
+        const monthList = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    
+        switch (day  % 10) {
+            case 1:   suff= "st";
+            case 2:   suff= "nd";
+            case 3:   suff= "rd";
+            default:  suff= "th";
+        }
+
+         return (this.props.lesson.published ? "Published " + monthList[month] + " " + day + suff + ", " + year : null)
+    }
 
     render(){
        
@@ -52,6 +70,9 @@ class LessonDraftShow extends React.Component{
         }else if(this.props.author === undefined){
             return null
         } 
+
+        let pubDate= new Date(this.props.lesson.updated_at);
+        let parsedDate = this.parseDate(pubDate)
 
         return(
             <div className="parent-box">
@@ -65,6 +86,9 @@ class LessonDraftShow extends React.Component{
                             <div className="authorInfo">By {this.props.author.username}</div>
                         </div>
                     </div>
+                    <div className="lesson-timestamp">
+                           {parsedDate}
+                        </div>
 
                 {this.renderSteps()}
                 </div>

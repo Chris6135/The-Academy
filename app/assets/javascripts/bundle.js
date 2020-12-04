@@ -2126,7 +2126,7 @@ var LessonEdit = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           _this3.createStep();
         }
-      }, "createStep")));
+      }, "Add Step")));
     }
   }]);
 
@@ -2601,6 +2601,31 @@ var LessonDraftShow = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "parseDate",
+    value: function parseDate(d) {
+      var month = d.getMonth();
+      var day = d.getDate();
+      var year = d.getFullYear();
+      var suff = "th";
+      var monthList = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+      switch (day % 10) {
+        case 1:
+          suff = "st";
+
+        case 2:
+          suff = "nd";
+
+        case 3:
+          suff = "rd";
+
+        default:
+          suff = "th";
+      }
+
+      return this.props.lesson.published ? "Published " + monthList[month] + " " + day + suff + ", " + year : null;
+    }
+  }, {
     key: "render",
     value: function render() {
       if (this.props.lesson === undefined) {
@@ -2609,6 +2634,8 @@ var LessonDraftShow = /*#__PURE__*/function (_React$Component) {
         return null;
       }
 
+      var pubDate = new Date(this.props.lesson.updated_at);
+      var parsedDate = this.parseDate(pubDate);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "parent-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2621,7 +2648,9 @@ var LessonDraftShow = /*#__PURE__*/function (_React$Component) {
         className: "lesson-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "authorInfo"
-      }, "By ", this.props.author.username))), this.renderSteps()));
+      }, "By ", this.props.author.username))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "lesson-timestamp"
+      }, parsedDate), this.renderSteps()));
     }
   }]);
 
@@ -3340,6 +3369,31 @@ var UserPublished = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "parseDate",
+    value: function parseDate(d) {
+      var month = d.getMonth();
+      var day = d.getDate();
+      var year = d.getFullYear();
+      var suff = "th";
+      var monthList = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+      switch (day % 10) {
+        case 1:
+          suff = "st";
+
+        case 2:
+          suff = "nd";
+
+        case 3:
+          suff = "rd";
+
+        default:
+          suff = "th";
+      }
+
+      return "Joined " + monthList[month] + " " + day + suff + ", " + year;
+    }
+  }, {
     key: "render",
     value: function render() {
       var pic;
@@ -3348,7 +3402,12 @@ var UserPublished = /*#__PURE__*/function (_React$Component) {
         return null;
       } else if (this.props.user.photo_url === undefined) {
         pic = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "fas fa-user-graduate"
+          className: "fas fa-user-graduate",
+          style: {
+            left: "-15px",
+            top: "-1px",
+            fontSize: "80px"
+          }
         });
       } else {
         pic = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -3357,6 +3416,8 @@ var UserPublished = /*#__PURE__*/function (_React$Component) {
         });
       }
 
+      var signDate = new Date(this.props.user.created_at);
+      var parsedDate = this.parseDate(signDate);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3373,7 +3434,9 @@ var UserPublished = /*#__PURE__*/function (_React$Component) {
         className: "user-edit-buttons"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-timestamp"
-      }, "timestamp"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        "class": "fas fa-user-plus"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", parsedDate)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-toolbar"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-draft-frame"
@@ -3538,8 +3601,55 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "parseDate",
+    value: function parseDate(d) {
+      var month = d.getMonth();
+      var day = d.getDate();
+      var year = d.getFullYear();
+      var suff = "th";
+      var monthList = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+      switch (day % 10) {
+        case 1:
+          suff = "st";
+
+        case 2:
+          suff = "nd";
+
+        case 3:
+          suff = "rd";
+
+        default:
+          suff = "th";
+      }
+
+      return "Joined " + monthList[month] + " " + day + suff + ", " + year;
+    }
+  }, {
     key: "render",
     value: function render() {
+      var pic;
+
+      if (this.props.user === undefined) {
+        return null;
+      } else if (this.props.user.photo_url === undefined) {
+        pic = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "fas fa-user-graduate",
+          style: {
+            left: "-15px",
+            top: "-1px",
+            fontSize: "80px"
+          }
+        });
+      } else {
+        pic = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: this.props.user.photo_url,
+          className: "profile-photo-circle"
+        });
+      }
+
+      var signDate = new Date(this.props.user.created_at);
+      var parsedDate = this.parseDate(signDate);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "page-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3548,9 +3658,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         className: "user-info-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-photo"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "fas fa-user-graduate"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, pic), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "username"
@@ -3558,7 +3666,9 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         className: "user-edit-buttons"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-timestamp"
-      }, "timestamp"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        "class": "fas fa-user-plus"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", parsedDate)), "                         ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-toolbar"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-draft-frame"

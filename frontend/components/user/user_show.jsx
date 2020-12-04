@@ -46,22 +46,56 @@ class UserShow extends React.Component{
         })
     }
 
+    parseDate(d){
+
+
+        let  month = d.getMonth();
+        let day= d.getDate();
+        let year = d.getFullYear();
+        let suff = "th"
+        const monthList = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    
+        switch (day  % 10) {
+            case 1:   suff= "st";
+            case 2:   suff= "nd";
+            case 3:   suff= "rd";
+            default:  suff= "th";
+        }
+
+         return "Joined " + monthList[month] + " " + day + suff + ", " + year
+    }
+
+
     render(){
+
+        let pic 
+        if(this.props.user === undefined){
+          return null
+        }
+        else if(this.props.user.photo_url === undefined){
+          pic = <div className="fas fa-user-graduate" style={{left:"-15px",top:"-1px", fontSize:"80px"}}/>
+
+        }else{
+          pic = <img src={this.props.user.photo_url} className="profile-photo-circle"></img>
+        }
+
+        let signDate= new Date(this.props.user.created_at);
+        let parsedDate = this.parseDate(signDate)
 
         return(
             <div className= "page-container"> 
                 <div className="user-header">
                     <div className="user-info-container">
                         <div className ="user-photo"> 
-                            <div className="fas fa-user-graduate">
-
-                            </div>
+                          {pic}
                         </div>
                         <div className= "user-info">
                             <div className= "username">{this.props.user.username}</div>
                             <div className="user-edit-buttons"></div>
-                            <div className="user-timestamp">timestamp</div>
-                         </div>
+                            <div className="user-timestamp">   
+                                <i class="fas fa-user-plus"></i>
+                               <div> {parsedDate}</div>
+                            </div>                         </div>
                     </div>
                     <div className="user-toolbar"></div>
                 </div>

@@ -95,7 +95,7 @@ import {Link} from "react-router-dom"
                                       {this.listSteps()}
                                 </div>
                         </div>
-                        <button className="create-step" onClick={()=>{this.createStep()}}>createStep</button>             
+                        <button className="create-step" onClick={()=>{this.createStep()}}>Add Step</button>             
                     </div>
                 </div>
                 )
